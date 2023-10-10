@@ -30,6 +30,8 @@ Git Commands
 	This will open up a text editor to write multiline commit.
 	b) -a : It will stage and commit the tracked files combined.
 	Synatx : git commit -am "some message"
+	c) --amend : It is a convenient way to modify the most recent commit.
+	Syntax : git commit --amend -m "some message" 
 	
 
 8. git log -> This command in git is used to view the commit history of git repository.
@@ -109,4 +111,11 @@ Git Commands
 20. git pull -> It will pull changes from the origin remote, master branch and merge them to the locally checked-out branch.
 
 	Syntax-> git pull origin <branch-name>
+
+21. git revert -> It is a forward-moving undo operation that offers a safe method of undoing changes. 
+	
+	Syntax -> git revert <commit-hash>
+
+
+
 
