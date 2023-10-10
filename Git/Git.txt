@@ -1,0 +1,112 @@
+Git Commands
+
+1. git -v -> To check the version of git installed.
+
+2. git init -> To initialize git repository in local system or project folder.
+
+3. git config -> To configure the git settings.
+	a) git config -global : To configure the settings globally.
+	b) git -list : To see the settings of configuration of git.
+
+4. git clone -> Cloning a repository on our local machine.
+	Syntax: git clone <some-link>
+
+5. git status: Display the status of the code.
+
+	a)  Untracked : New files that git doesn't track yet.
+	b)  modified : Files that has been changed or updated .
+	c)  staged : Files is ready to be committed.
+	d)  unmodified : Files which are unchanged.
+
+6. git add -> This command adds new or changed files in your working directory to the git staging area.
+	
+	a) git add <file-name> : To add single file.
+	b) git add . : To add all files in staging area.
+
+7. git commit -> It is the record of change i.e what changes are done in the files.
+	Syntax: git commit -m "some message"
+	
+	a) For multiline commit : git commit
+	This will open up a text editor to write multiline commit.
+	b) -a : It will stage and commit the tracked files combined.
+	Synatx : git commit -am "some message"
+	
+
+8. git log -> This command in git is used to view the commit history of git repository.
+	
+	a) --oneline : Displays each commit on a single line, showing only the commit hash and the first line of the commit message.
+	b) --author=<author> : Filters the log to show commits by a specific author.
+	c) --since and --until : Limits the log to commits made within a specific time frame.
+	d) --grep=<pattern> : Filters the log to show commits with commit messages matching a specific pattern or keyword.
+
+
+9. git show -> The git show command in Git is used to display detailed information about a specific Git object, such as a commit, a tag, or a tree.
+	
+10.  git diff -> The git diff command in Git is used to view the differences between two Git objects,  typically between two commits, two branches, or between the working directory and the most recent 			commit.
+	
+	a) --staged : To see the differences between the files in the staging area (index) and the last commit.
+	b) --staged <commit> : To compare a specific commit with the files in the staging area 	(index).
+
+11. git push -> Upload local repo content to remote repo.
+	Syntax: git push origin <branch name>
+
+12. git branch -> To check current branch .
+	Syntax : git branch
+	
+	a) -M : To rename the branch.
+		Syntax: git branch -M <branch name>
+ 	b) checkout : To navigate on other branch.
+		Synatx: git checkout <branch name>
+	c) checkout -b : To create new branch
+		Syntax: git checkout -b <branch name>
+	d) -d : To delete branch.
+		Syntax: git branch -d <branch name>
+
+13. Undoing Changes -> Sometimes we did some staging and commit by mistake so we have an option in git to restore it.
+	
+	Case 1 : staged changes
+		Synatx: git reset <filename>      (For single File)	
+			git reset 		    (For all files)
+	Case 2: Commited changes ( for one commit)
+		Syntax : git reset HEAD~1
+	Case 3: Commited changes (for many commit)
+		Syntax : git reset <commit hash>
+		git reset --hard <commit hash> To reset the changes in the editor too.
+
+14. git clean -> It is used to remove untracked files and directories from your working directory.
+	
+	a) -n : This option shows you what files and directories would be removed without actually removing them.
+	b) -f : This option is used to actually remove the untracked files and directories.
+	c) -d : This option tells Git to also remove untracked directories. By default, Git only removes untracked files.
+	d) -i : This option enters interactive mode, allowing you to select which untracked files and directories you want to remove.
+	
+15. .gitignore -> The .gitignore file is a special configuration file used to specify files and directories that should be ignored by Git when tracking changes in a repository.
+
+16. .gitkeep -> It  is not a standard Git command or configuration file, but rather a convention used by some developers to ensure that empty directories are tracked by Git.
+
+17. Fork -> A fork is a new repository that shares the code and visibility settings with the original upstream repository. It is a rough copy of a project .
+
+18. Stash -> In Git, the "stash" command is used to temporarily save changes that you have made to your working directory but do not want to commit yet.
+	
+	Syntax : git stash
+
+	a) save : This will save your changes to a new stash with the specified message.
+		  Syntax : git stash save "Your stash message"
+	b) list : This will display a list of stashes, each with a unique identifier (stash@{N}) and the stash message.
+		 Syntax : git stash list
+	c) pop : Apply or pop your stashed changes.
+		Syntax : git stash pop
+	d) drop : This permanently deletes the specified stash.
+		Syntax : git stash drop stash@{N}
+	e) clear : To remove all stashes.
+		Syntax : git stash clear
+	
+19. Rebase -> It allows you to move or "rebase" a series of commits to a new base commit, typically changing the commit history to make it appear as  if the changes were made on top of the latest state of 		      another branch.
+		
+		a) -i : This opens an interactive text editor with a list of commits. You can then specify actions for each commit, such as "pick," "edit,""squash," etc.
+		          Syntax : git rebase -i <branch name>
+
+20. git pull -> It will pull changes from the origin remote, master branch and merge them to the locally checked-out branch.
+
+	Syntax-> git pull origin <branch-name>
+
