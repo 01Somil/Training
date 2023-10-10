@@ -1,0 +1,1117 @@
+Linux Resource for Future Reference:->
+
+    General Command Syntax:
+        Command     Option(s)      Argument(s)
+    Ex-> ls             -lh          /usr/bin
+
+    Note: Command is necessary, option(s) and Argument(s) may not be compulsory.
+
+    Command: The command is the program you are running.
+    Option(s): Options tell the program how to operate.
+    Argument(s): Arguments tell the command what to operate on.
+
+    LINUX COMMANDS: 
+
+    1. ls -> The ls command in Linux is used to list the files and directories in the current directory. It provides a simple way to view the contents of a directory. By default, it displays the names of files and directories in alphabetical order.
+
+        Example:
+            beryl@beryl-Latitude-7490:~$ ls
+            Desktop    Downloads         GitDemo  Pictures  snap       Videos
+            Documents  examples.desktop  Music    Public    Templates
+
+        a) -l->The -l option (long format) provides a detailed list, showing file permissions, ownership, size, modification date, and more for each file or directory.
+                
+            Example:
+                beryl@beryl-Latitude-7490:~$ ls -l
+                total 52
+                drwxr-xr-x 2 beryl beryl 4096 Oct  3 10:42 Desktop
+                drwxr-xr-x 3 beryl beryl 4096 Oct  3 18:42 Documents
+                drwxr-xr-x 2 beryl beryl 4096 Oct  3 11:11 Downloads
+                -rw-r--r-- 1 beryl beryl 8980 Sep  1 15:33 examples.desktop
+                drwxrwxr-x 3 beryl beryl 4096 Oct  4 11:47 GitDemo
+                drwxr-xr-x 2 beryl beryl 4096 Sep  1 15:40 Music
+                drwxr-xr-x 2 beryl beryl 4096 Sep  1 15:40 Pictures
+                drwxr-xr-x 2 beryl beryl 4096 Sep  1 15:40 Public
+                drwx------ 3 beryl beryl 4096 Sep  6 12:53 snap
+                drwxr-xr-x 2 beryl beryl 4096 Sep  1 15:40 Templates
+                drwxr-xr-x 2 beryl beryl 4096 Sep  1 15:40 Videos
+
+        b) -a -> The -a option (all) includes hidden files and directories in the listing. Hidden files and directories have names that start with a dot (e.g., .hiddenfile).
+
+            Example:
+                beryl@beryl-Latitude-7490:~$ ls -a
+                .              Documents         .local    snap
+                ..             Downloads         .mkshrc   .ssh
+                .bash_history  examples.desktop  .mozilla  .sudo_as_admin_successful
+                .bash_logout   .gitconfig        Music     Templates
+                .bash_profile  GitDemo           Pictures  Videos
+                .bashrc        .gnupg            .pki      .viminfo
+                .cache         .ICEauthority     .profile  .vscode
+                .config        .irb-history      Public    .zlogin
+                Desktop        .lesshst          .rvm      .zshrc
+
+        c) -t ->The -t option lists files and directories in order of modification time, with the most recently modified ones first.
+
+            Example:
+                beryl@beryl-Latitude-7490:~$ ls -t
+                GitDemo    Downloads  snap   Pictures  Templates  examples.desktop
+                Documents  Desktop    Music  Public    Videos
+
+        d) -S -> The -S option lists files in order of size, with the largest files first.
+
+            Example:
+                beryl@beryl-Latitude-7490:~$ ls -S
+                examples.desktop  Documents  GitDemo  Pictures  snap       Videos
+                Desktop           Downloads  Music    Public    Templates
+
+        e) -r ->The -r option reverses the order of the listing, showing files and directories in reverse alphabetical order.
+                
+            Example:
+                beryl@beryl-Latitude-7490:~$ ls -r
+                Videos     snap    Pictures  GitDemo           Downloads  Desktop
+                Templates  Public  Music     examples.desktop  Documents
+
+        f) -R ->The -R option recursively lists the contents of subdirectories as well.
+
+            Example:
+                beryl@beryl-Latitude-7490:~$ ls -R
+                .:
+                Desktop    Downloads         GitDemo  Pictures  snap       Videos
+                Documents  examples.desktop  Music    Public    Templates
+
+                ./Desktop:
+
+                ./Documents:
+                auth.log           log.tar.gz   newfile.txt.save
+                commandlinebasics  newfile.txt  users.txt
+
+                ./Documents/commandlinebasics:
+                'Exercise Files'   myfiles.tar   myfiles.tar.gz   README.md
+
+                './Documents/commandlinebasics/Exercise Files':
+                departments  literature.txt  poems.txt        test.sh
+                dupes.txt    nano.txt        simple_data.txt
+
+                './Documents/commandlinebasics/Exercise Files/departments':
+                engineering  finance  hr  marketing  sales
+
+                './Documents/commandlinebasics/Exercise Files/departments/engineering':
+                drawings  invoices  materials
+
+                './Documents/commandlinebasics/Exercise Files/departments/engineering/drawings':
+
+                './Documents/commandlinebasics/Exercise Files/departments/engineering/invoices':
+
+                './Documents/commandlinebasics/Exercise Files/departments/engineering/materials':
+
+                './Documents/commandlinebasics/Exercise Files/departments/finance':
+                documents  invoices  spreadsheets
+
+                './Documents/commandlinebasics/Exercise Files/departments/finance/documents':
+
+                './Documents/commandlinebasics/Exercise Files/departments/finance/invoices':
+
+                './Documents/commandlinebasics/Exercise Files/departments/finance/spreadsheets':
+
+                './Documents/commandlinebasics/Exercise Files/departments/hr':
+                candidates  'employee info'   policies
+
+                './Documents/commandlinebasics/Exercise Files/departments/hr/candidates':
+
+                './Documents/commandlinebasics/Exercise Files/departments/hr/employee info':
+
+                './Documents/commandlinebasics/Exercise Files/departments/hr/policies':
+
+                './Documents/commandlinebasics/Exercise Files/departments/marketing':
+
+                './Documents/commandlinebasics/Exercise Files/departments/sales':
+                affiliates  enterprise  presentations  promotions
+
+                './Documents/commandlinebasics/Exercise Files/departments/sales/affiliates':
+
+                './Documents/commandlinebasics/Exercise Files/departments/sales/enterprise':
+
+                './Documents/commandlinebasics/Exercise Files/departments/sales/presentations':
+
+                './Documents/commandlinebasics/Exercise Files/departments/sales/promotions':
+
+                ./Downloads:
+                zoom_amd64.deb
+
+                ./GitDemo:
+                Git-Training
+
+                ./GitDemo/Git-Training:
+                Linux.txt  mail.txt  README.md
+
+                ./Music:
+
+                ./Pictures:
+
+                ./Public:
+
+                ./snap:
+                slack
+
+                ./snap/slack:
+                89  98  common  current
+
+                ./snap/slack/89:
+
+                ./snap/slack/98:
+
+                ./snap/slack/common:
+
+                ./Templates:
+
+                ./Videos:
+
+        g) -F ->The -F option appends indicators to filenames to indicate their type (e.g., / for directories, * for executable files).
+
+            Example:
+                beryl@beryl-Latitude-7490:~$ ls -F
+                Desktop/    Downloads/        GitDemo/  Pictures/  snap/       Videos/
+                Documents/  examples.desktop  Music/    Public/    Templates/
+
+        h) -lh ->List files with human-readable sizes (e.g., 1K, 2M) in long format.
+                
+            Example: 
+                beryl@beryl-Latitude-7490:~$ ls -lh
+                total 52K
+                drwxr-xr-x 2 beryl beryl 4.0K Oct  3 10:42 Desktop
+                drwxr-xr-x 3 beryl beryl 4.0K Oct  3 18:42 Documents
+                drwxr-xr-x 2 beryl beryl 4.0K Oct  3 11:11 Downloads
+                -rw-r--r-- 1 beryl beryl 8.8K Sep  1 15:33 examples.desktop
+                drwxrwxr-x 3 beryl beryl 4.0K Oct  4 11:47 GitDemo
+                drwxr-xr-x 2 beryl beryl 4.0K Sep  1 15:40 Music
+                drwxr-xr-x 2 beryl beryl 4.0K Sep  1 15:40 Pictures
+                drwxr-xr-x 2 beryl beryl 4.0K Sep  1 15:40 Public
+                drwx------ 3 beryl beryl 4.0K Sep  6 12:53 snap
+                drwxr-xr-x 2 beryl beryl 4.0K Sep  1 15:40 Templates
+                drwxr-xr-x 2 beryl beryl 4.0K Sep  1 15:40 Videos
+
+        i) *.extension ->Lists files with a specific file extension (e.g., *.txt for text files).
+
+            Example: 
+                beryl@beryl-Latitude-7490:~$ ls *.desktop
+                examples.desktop
+
+        j) --color=always -> This command is used to force colorized output
+
+            Example:
+                beryl@beryl-Latitude-7490:~/Documents$ ls --color=always
+                auth.log           log.tar.gz   newfile.txt.save
+                commandlinebasics  newfile.txt  users.txt
+
+    
+    2. pwd ->Displays the current working directory (your current location in the file system).
+
+        Example:
+            beryl@beryl-Latitude-7490:~$ pwd
+            /home/beryl
+
+    3. cd ->Changes the current directory to the specified path. You can use relative or absolute paths.
+
+        a) cd [directory_name] -> change the directory.
+
+            Example:        
+                beryl@beryl-Latitude-7490:~$ cd Documents/
+                beryl@beryl-Latitude-7490:~/Documents$ 
+
+        b) cd -> It changes into root directory.
+
+            Example:
+                beryl@beryl-Latitude-7490:~/Documents$ cd
+                beryl@beryl-Latitude-7490:~$ 
+
+        c) cd.. ->It changes to one directory back.
+
+            Example: 
+                beryl@beryl-Latitude-7490:~/Documents/commandlinebasics$ cd ..
+                beryl@beryl-Latitude-7490:~/Documents$ 
+
+    4. man ->The man command in Linux is used to access the manual pages (often referred to as man pages) for various commands, programs, and system functions. 
+
+        Example:
+            beryl@beryl-Latitude-7490:~$ man ls
+
+    5. mkdir -> To make a new folder.
+
+        Example:
+            beryl@beryl-Latitude-7490:~/Documents$ mkdir new_folder 
+            beryl@beryl-Latitude-7490:~/Documents$ ls
+            auth.log           log.tar.gz   newfile.txt.save  users.txt
+            commandlinebasics  newfile.txt  new_folder
+
+        a) mkdir [directory_name]/[new_folder_name] -> Create more than one folder at once.
+        
+            Example:
+                beryl@beryl-Latitude-7490:~/Documents$ mkdir many_folders/folder1 many_folders/folder2 many_folders/folder3
+                beryl@beryl-Latitude-7490:~/Documents$ ls -l many_folders/
+                total 12
+                drwxrwxr-x 2 beryl beryl 4096 Oct  4 13:43 folder1
+                drwxrwxr-x 2 beryl beryl 4096 Oct  4 13:43 folder2
+                drwxrwxr-x 2 beryl beryl 4096 Oct  4 13:43 folder3
+
+        b) -p -> This command is particularly useful when you need to create a directory hierarchy, and you want to ensure that all parent directories are created if they don't already exist. 
+            
+            Example:
+                beryl@beryl-Latitude-7490:~/Documents/many_folders$ mkdir -p folder1/subfolder1/grandchildfolder1
+                beryl@beryl-Latitude-7490:~/Documents/many_folders$ ls -R
+                .:
+                folder1  folder2  folder3
+
+                ./folder1:
+                subfolder1
+
+                ./folder1/subfolder1:
+                grandchildfolder1
+
+                ./folder1/subfolder1/grandchildfolder1:
+
+                ./folder2:
+
+                ./folder3:
+
+    6. rmdir -> Removes an empty directory.
+    
+        Example:
+            beryl@beryl-Latitude-7490:~/Documents/many_folders$ rmdir folder1/subfolder1/grandchildfolder1/
+            beryl@beryl-Latitude-7490:~/Documents/many_folders$ ls -R
+            .:
+            folder1  folder2  folder3
+
+            ./folder1:
+            subfolder1
+
+            ./folder1/subfolder1:
+
+            ./folder2:
+
+            ./folder3:
+
+    7. rm-> To remove or delete the file.
+
+        Example:
+            beryl@beryl-Latitude-7490:~$ rm newFile.txt 
+            beryl@beryl-Latitude-7490:~$ ls
+            Desktop  Documents  Downloads  examples.desktop  GitDemo  Music  Pictures  Public  snap  Templates  Videos
+
+        a) rm -d directory_name -> Used to remove the empty directory.
+        
+            Example:
+                beryl@beryl-Latitude-7490:~$ rm -d Images
+                beryl@beryl-Latitude-7490:~$ ls
+                Desktop  Documents  Downloads  examples.desktop  GitDemo  Music  Pictures  Public  snap  Templates  Videos
+
+        b) rm -r directory_name -> To remove the directory with its content.
+
+            Example:
+                beryl@beryl-Latitude-7490:~/Documents$ rm -r many_folders/
+                beryl@beryl-Latitude-7490:~/Documents$ ls
+                auth.log  commandlinebasics  log.tar.gz  newfile.txt  newfile.txt.save  new_folder  users.txt
+
+        c) rm with wildcard -> It is used to delete more than one file at a time.
+        
+            Example:
+                beryl@beryl-Latitude-7490:~/Documents$ ls
+                auth.log  commandlinebasics  log.tar.gz  newfile2.txt  newfile3.txt  newfile.txt  new_folder  users.txt
+                beryl@beryl-Latitude-7490:~/Documents$ rm newfile?.txt
+                beryl@beryl-Latitude-7490:~/Documents$ ls
+                auth.log  commandlinebasics  log.tar.gz  newfile.txt  new_folder  users.txt
+
+
+    8. cp -> This command is used to copy the file.
+
+        Example:
+            beryl@beryl-Latitude-7490:~/Documents$ cp newfile.txt newfile2.txt
+            beryl@beryl-Latitude-7490:~/Documents$ ls
+            auth.log  commandlinebasics  log.tar.gz  newfile2.txt  newfile.txt  new_folder  users.txt
+
+        a) cp [file_name] [directory_name/new_file_name] -> Copy the file from another directory.
+
+            Example:
+                beryl@beryl-Latitude-7490:~/Documents$ cp newfile.txt new_folder/newfile3.txt
+                beryl@beryl-Latitude-7490:~/Documents$ ls new_folder/
+                newfile3.txt  newfile.txt
+
+        b) cp -r [directory_name] [new_directory_name]-> Copy directory from one place to another.
+
+            Example:
+                beryl@beryl-Latitude-7490:~/Documents$ ls new_folder/
+                newfile3.txt  newfile.txt
+                beryl@beryl-Latitude-7490:~/Documents$ cp -r commandlinebasics new_folder/
+                beryl@beryl-Latitude-7490:~/Documents$ ls new_folder
+                commandlinebasics  newfile3.txt  newfile.txt
+
+    9. mv -> Moves files or directories from the source to the destination.
+
+        Example:
+            beryl@beryl-Latitude-7490:~/Documents$ mv newfile2.txt new_folder
+            beryl@beryl-Latitude-7490:~/Documents$ ls new_folder/
+            newfile2.txt
+
+        a) mv -> for rename of file.
+
+            Example:
+                beryl@beryl-Latitude-7490:~/Documents$ ls
+                auth.log  commandlinebasics  log.tar.gz  newfile2.txt  newfile.txt  new_folder  users.txt
+                beryl@beryl-Latitude-7490:~/Documents$ mv newfile2.txt new_folder/newfile3.txt
+                beryl@beryl-Latitude-7490:~/Documents$ ls new_folder/
+                newfile2.txt  newfile3.txt
+
+        b) mv [source_directory][target_directory] -> Move one directory in another directory.
+
+            Example: 
+                beryl@beryl-Latitude-7490:~/Documents$ mv folder new_folder
+                beryl@beryl-Latitude-7490:~/Documents$ ls
+                auth.log  commandlinebasics  log.tar.gz  newfile.txt  new_folder  users.txt
+                beryl@beryl-Latitude-7490:~/Documents$ ls new_folder/
+                folder  newfile2.txt  newfile3.txt
+
+        c) mv with wildcards -> It uses wildcards like (*,?) for moving more than one file at a time.
+
+            Example:
+                beryl@beryl-Latitude-7490:~/Documents$ ls
+                auth.log  commandlinebasics  log.tar.gz  newfile.txt  new_folder  users.txt
+                beryl@beryl-Latitude-7490:~/Documents$ mv *.txt new_folder/
+                beryl@beryl-Latitude-7490:~/Documents$ ls
+                auth.log  commandlinebasics  log.tar.gz  new_folder
+                beryl@beryl-Latitude-7490:~/Documents$ ls new_folder/
+                newfile.txt  users.txt
+
+
+    10. touch -> Creates an empty file with the specified name.
+        Example: 
+            beryl@beryl-Latitude-7490:~/Documents$ touch poem.txt
+            beryl@beryl-Latitude-7490:~/Documents$ ls
+            auth.log  commandlinebasics  log.tar.gz  newfile.txt  new_folder  poem.txt  users.txt
+
+    11. find -> The find command in Linux is a powerful tool for searching and locating files and directories within a specified directory hierarchy based on various criteria, such as filenames, file types, modification times, and more.
+
+    Syntax: find [path] [expression]
+
+        Example:
+
+            beryl@beryl-Latitude-7490:~/Documents$ find . -name "de*"
+            ./commandlinebasics/.git/description
+            ./commandlinebasics/.git/objects/de
+            ./commandlinebasics/Exercise Files/departments
+
+            beryl@beryl-Latitude-7490:~/Documents$ find ~/Documents/commandlinebasics/Exercise\ Files/ -name "de*"
+            /home/beryl/Documents/commandlinebasics/Exercise Files/departments
+
+    11. File Permissions:
+        rwxrwxrwx   --> the file
+        First rwx represent -> User
+        Middle rwx represent -> Group
+        Last rwx represent -> Others
+
+        r = Read
+        w = write
+        x = execute
+        - = no access
+
+        Command: chmod -> Changes the permissions on a file by modifying the file mode bits.
+                        + -> adds permission
+                        - -> remove permission
+                        = -> adds permission but remove others
+        Example: 
+            beryl@beryl-Latitude-7490:~/Documents/commandlinebasics/Exercise Files$ chmod a-x test.sh
+            beryl@beryl-Latitude-7490:~/Documents/commandlinebasics/Exercise Files$ ./test.sh
+            -bash: ./test.sh: Permission denied
+
+    12. chown -> The chown command in Linux is used to change the ownership of files and directories. 
+    
+        Example: 
+            beryl@beryl-Latitude-7490:~/Documents/commandlinebasics/Exercise Files$ sudo chown root test.sh
+            [sudo] password for beryl: 
+            beryl@beryl-Latitude-7490:~/Documents/commandlinebasics/Exercise Files$ nano test.sh
+
+    13. echo -> The echo command in Linux is used to display text or output messages to the terminal.
+
+        Example:
+            beryl@beryl-Latitude-7490:~/Documents/commandlinebasics/Exercise Files$ echo "Hello"
+            Hello
+
+    14. wc -> This command counts the lines, words and characters.
+
+        Example:
+            beryl@beryl-Latitude-7490:~/Documents/commandlinebasics/Exercise Files$ wc nano.txt
+            1  5 26 nano.txt
+
+    15. Pipes (|) -> It connect the output of one command to another.
+
+        Example: 
+            beryl@beryl-Latitude-7490:~/Documents/commandlinebasics/Exercise Files$ echo "This is echo line" | wc
+            1       4      18
+
+    14. cat -> Can be used to output text files on to the screen.
+
+        Example:
+            beryl@beryl-Latitude-7490:~/Documents/commandlinebasics/Exercise Files$ ls
+            departments  dupes.txt  literature.txt  nano.txt  poems.txt  simple_data.txt  test.sh
+            beryl@beryl-Latitude-7490:~/Documents/commandlinebasics/Exercise Files$ cat poems.txt
+            Percy Shelley
+
+            Ozymandias
+
+            I met a traveller from an antique land
+            Who said: Two vast and trunkless legs of stone
+            Stand in the desert. Near them on the sand,
+            Half sunk, a shatter'd visage lies, whose frown
+            And wrinkled lip and sneer of cold command
+            Tell that its sculptor well those passions read
+            Which yet survive, stamp'd on these lifeless things,
+            The hand that mock'd them and the heart that fed.
+            And on the pedestal these words appear:
+            "My name is Ozymandias, king of kings:
+            Look on my works, ye Mighty, and despair!"
+            Nothing beside remains: round the decay
+            Of that colossal wreck, boundless and bare,
+            The lone and level sands stretch far away. 
+
+            ~ ~ ~ 
+
+            William Blake
+
+            The Tyger
+
+
+            Tyger Tyger, burning bright, 
+            In the forests of the night; 
+            What immortal hand or eye, 
+            Could frame thy fearful symmetry?
+
+            In what distant deeps or skies. 
+            Burnt the fire of thine eyes?
+            On what wings dare he aspire?
+            What the hand, dare seize the fire?
+
+            And what shoulder, & what art,
+            Could twist the sinews of thy heart?
+            And when thy heart began to beat,
+            What dread hand? & what dread feet?
+
+            What the hammer? what the chain, 
+            In what furnace was thy brain?
+            What the anvil? what dread grasp, 
+            Dare its deadly terrors clasp! 
+
+            When the stars threw down their spears 
+            And water'd heaven with their tears: 
+            Did he smile his work to see?
+            Did he who made the Lamb make thee?
+
+            Tyger Tyger burning bright, 
+            In the forests of the night: 
+            What immortal hand or eye,
+            Dare frame thy fearful symmetry?
+
+    15. head -> view lines from beginning of a file.
+
+        Example: 
+            beryl@beryl-Latitude-7490:~/Documents/commandlinebasics/Exercise Files$ head -n5 poems.txt
+            Percy Shelley
+
+            Ozymandias
+
+            I met a traveller from an antique land
+
+    16. tail -> view lines from ending of a file.
+
+        Example: 
+            beryl@beryl-Latitude-7490:~/Documents/commandlinebasics/Exercise Files$ tail -n3 poems.txt
+            In the forests of the night: 
+            What immortal hand or eye,
+            Dare frame thy fearful symmetry?
+
+    17. less -> Paginates text and provides navigation control.
+
+        Example:
+            beryl@beryl-Latitude-7490:~/Documents/commandlinebasics/Exercise Files$ less poems.txt
+
+    18. grep -> The grep tool searches text or files for a given string of pattern of text.
+    
+        Example:
+            beryl@beryl-Latitude-7490:~/Documents/commandlinebasics/Exercise Files$ grep "the" poems.txt
+            Stand in the desert. Near them on the sand,
+            Which yet survive, stamp'd on these lifeless things,
+            The hand that mock'd them and the heart that fed.
+            And on the pedestal these words appear:
+            Nothing beside remains: round the decay
+            In the forests of the night; 
+            Burnt the fire of thine eyes?
+            What the hand, dare seize the fire?
+            Could twist the sinews of thy heart?
+            What the hammer? what the chain, 
+            What the anvil? what dread grasp, 
+            When the stars threw down their spears 
+            And water'd heaven with their tears: 
+            Did he who made the Lamb make thee?
+            In the forests of the night: 
+
+        a) -i -> For Case Insensitive
+
+            Example:
+                beryl@beryl-Latitude-7490:~/Documents/commandlinebasics/Exercise Files$ grep -i "the" poems.txt
+                Stand in the desert. Near them on the sand,
+                Which yet survive, stamp'd on these lifeless things,
+                The hand that mock'd them and the heart that fed.
+                And on the pedestal these words appear:
+                Nothing beside remains: round the decay
+                The lone and level sands stretch far away. 
+                The Tyger
+                In the forests of the night; 
+                Burnt the fire of thine eyes?
+                What the hand, dare seize the fire?
+                Could twist the sinews of thy heart?
+                What the hammer? what the chain, 
+                What the anvil? what dread grasp, 
+                When the stars threw down their spears 
+                And water'd heaven with their tears: 
+                Did he who made the Lamb make thee?
+                In the forests of the night: 
+
+        b) -v -> The grep -v command in Linux is used to search for lines in a text file or input data that do not match a specified pattern and display those lines as output. 
+
+            Example:
+                beryl@beryl-Latitude-7490:~/Documents/commandlinebasics/Exercise Files$ grep -vi "the" poems.txt
+                Percy Shelley
+
+                Ozymandias
+
+                I met a traveller from an antique land
+                Who said: Two vast and trunkless legs of stone
+                Half sunk, a shatter'd visage lies, whose frown
+                And wrinkled lip and sneer of cold command
+                Tell that its sculptor well those passions read
+                "My name is Ozymandias, king of kings:
+                Look on my works, ye Mighty, and despair!"
+                Of that colossal wreck, boundless and bare,
+
+                ~ ~ ~ 
+
+                William Blake
+
+
+
+                Tyger Tyger, burning bright, 
+                What immortal hand or eye, 
+                Could frame thy fearful symmetry?
+
+                In what distant deeps or skies. 
+                On what wings dare he aspire?
+
+                And what shoulder, & what art,
+                And when thy heart began to beat,
+                What dread hand? & what dread feet?
+
+                In what furnace was thy brain?
+                Dare its deadly terrors clasp! 
+
+                Did he smile his work to see?
+
+                Tyger Tyger burning bright, 
+                What immortal hand or eye,
+                Dare frame thy fearful symmetry?
+
+        c) -E -> The grep -E command in Linux, also known as egrep, is used for pattern matching using extended regular expressions.
+
+            Example: 
+                beryl@beryl-Latitude-7490:~/Documents/commandlinebasics/Exercise Files$ grep -E "[hijk]" poems.txt
+                Percy Shelley
+                Ozymandias
+                I met a traveller from an antique land
+                Who said: Two vast and trunkless legs of stone
+                Stand in the desert. Near them on the sand,
+                Half sunk, a shatter'd visage lies, whose frown
+                And wrinkled lip and sneer of cold command
+                Tell that its sculptor well those passions read
+                Which yet survive, stamp'd on these lifeless things,
+                The hand that mock'd them and the heart that fed.
+                And on the pedestal these words appear:
+                "My name is Ozymandias, king of kings:
+                Look on my works, ye Mighty, and despair!"
+                Nothing beside remains: round the decay
+                Of that colossal wreck, boundless and bare,
+                The lone and level sands stretch far away. 
+                William Blake
+                The Tyger
+                Tyger Tyger, burning bright, 
+                In the forests of the night; 
+                What immortal hand or eye, 
+                Could frame thy fearful symmetry?
+                In what distant deeps or skies. 
+                Burnt the fire of thine eyes?
+                On what wings dare he aspire?
+                What the hand, dare seize the fire?
+                And what shoulder, & what art,
+                Could twist the sinews of thy heart?
+                And when thy heart began to beat,
+                What dread hand? & what dread feet?
+                What the hammer? what the chain, 
+                In what furnace was thy brain?
+                What the anvil? what dread grasp, 
+                Dare its deadly terrors clasp! 
+                When the stars threw down their spears 
+                And water'd heaven with their tears: 
+                Did he smile his work to see?
+                Did he who made the Lamb make thee?
+                Tyger Tyger burning bright, 
+                In the forests of the night: 
+                What immortal hand or eye,
+                Dare frame thy fearful symmetry?
+
+    19. awk -> The awk command in Linux is a versatile text-processing tool that allows you to manipulate and analyze text data in various ways.
+
+    Syntax: awk 'pattern { action }' [FILENAME]
+
+        Example: 
+            beryl@beryl-Latitude-7490:~/Documents/commandlinebasics/Exercise Files$ awk '{print $2}' simple_data.txt 
+            ID
+            314
+            991
+            3127
+            671
+            1337
+            556
+
+    19. sed -> The sed command in Linux stands for "stream editor" and is used for text manipulation and transformation.
+
+    Syntax: sed [OPTIONS] 'COMMAND' [FILENAME]
+
+        Example:
+            beryl@beryl-Latitude-7490:~/Documents/commandlinebasics/Exercise Files$ cat simple_data.txt 
+            Name	ID	Team
+            Scott	314	Purple
+            Ananti  991     Orange
+            Jian    3127    Purple
+            Miguel  671     Green
+            Wes	1337	Orange
+            Anne	556	Green
+            beryl@beryl-Latitude-7490:~/Documents/commandlinebasics/Exercise Files$ sed 's/Orange/Red/' simple_data.txt 
+            Name	ID	Team
+            Scott	314	Purple
+            Ananti  991     Red
+            Jian    3127    Purple
+            Miguel  671     Green
+            Wes	1337	Red
+            Anne	556	Green
+
+        a) -i -> This command edits the original file directly.
+        
+            Example:
+                beryl@beryl-Latitude-7490:~/Documents/commandlinebasics/Exercise Files$ cat simple_data.txt 
+                Name	ID	Team
+                Scott	314	Purple
+                Ananti  991     Orange
+                Jian    3127    Purple
+                Miguel  671     Green
+                Wes	1337	Orange
+                Anne	556	Green
+                beryl@beryl-Latitude-7490:~/Documents/commandlinebasics/Exercise Files$ sed -i 's/Purple/Violet/' simple_data.txt 
+                beryl@beryl-Latitude-7490:~/Documents/commandlinebasics/Exercise Files$ cat simple_data.txt 
+                Name	ID	Team
+                Scott	314	Violet
+                Ananti  991     Orange
+                Jian    3127    Violet
+                Miguel  671     Green
+                Wes	1337	Orange
+                Anne	556	Green
+
+    20. sort -> The sort command in Linux is used to sort the lines of text files or input data in ascending order by default.
+
+        Example:
+            beryl@beryl-Latitude-7490:~/Documents/commandlinebasics/Exercise Files$ cat simple_data.txt 
+            Name	ID	Team
+            Scott	314	Violet
+            Ananti  991     Orange
+            Jian    3127    Violet
+            Miguel  671     Green
+            Wes	1337	Orange
+            Anne	556	Green
+            beryl@beryl-Latitude-7490:~/Documents/commandlinebasics/Exercise Files$ sort simple_data.txt 
+            Ananti  991     Orange
+            Anne	556	Green
+            Jian    3127    Violet
+            Miguel  671     Green
+            Name	ID	Team
+            Scott	314	Violet
+            Wes	1337	Orange
+
+        a) -u -> This command sorts the lines in file and removes duplicate lines, leaving only unique lines in the output.
+
+            Example:
+                beryl@beryl-Latitude-7490:~/Documents/commandlinebasics/Exercise Files$ cat simple_data.txt 
+                Name	ID	Team
+                Scott	314	Violet
+                Ananti  991     Orange
+                Jian    3127    Violet
+                Miguel  671     Green
+                Wes	1337	Orange
+                Anne	556	Green
+                Anne    556     Green
+
+                beryl@beryl-Latitude-7490:~/Documents/commandlinebasics/Exercise Files$ sort -u simple_data.txt 
+
+                Ananti  991     Orange
+                Anne    556     Green
+                Anne	556	Green
+                Jian    3127    Violet
+                Miguel  671     Green
+                Name	ID	Team
+                Scott	314	Violet
+                Wes	1337	Orange
+
+        b) -r -> This command sorts the lines in file in descending order (reverse order).
+
+            Example:
+                beryl@beryl-Latitude-7490:~/Documents/commandlinebasics/Exercise Files$ cat simple_data.txt 
+                Name	ID	Team
+                Scott	314	Violet
+                Ananti  991     Orange
+                Jian    3127    Violet
+                Miguel  671     Green
+                Wes	1337	Orange
+                Anne	556	Green
+                Anne    556     Green
+
+                beryl@beryl-Latitude-7490:~/Documents/commandlinebasics/Exercise Files$ sort -r simple_data.txt 
+                Wes	1337	Orange
+                Scott	314	Violet
+                Name	ID	Team
+                Miguel  671     Green
+                Jian    3127    Violet
+                Anne	556	Green
+                Anne    556     Green
+                Ananti  991     Orange
+
+        c) -n -> This command sorts the lines in the file in numeric order. 
+
+
+            Example:
+                beryl@beryl-Latitude-7490:~/Documents/commandlinebasics/Exercise Files$ sort -k2 -n simple_data.txt 
+                Name	ID	Team
+                Scott	314	Violet
+                Anne    556     Green
+                Anne	556	Green
+                Miguel  671     Green
+                Ananti  991     Orange
+                Wes	1337	Orange
+                Jian    3127    Violet
+
+    21. tar -> The tar command in Linux is used for creating and extracting archives in the tar format. 
+
+        Example:
+            beryl@beryl-Latitude-7490:~/Documents/commandlinebasics$ tar cvf myfiles.tar Exercise\ Files/
+            Exercise Files/
+            Exercise Files/.swp
+            Exercise Files/test.sh
+            Exercise Files/poems.txt
+            Exercise Files/vim.txt
+            Exercise Files/simple_data.txt
+            Exercise Files/literature.txt
+            Exercise Files/nano.txt
+            Exercise Files/dupes.txt
+            Exercise Files/departments/
+            Exercise Files/departments/marketing/
+            Exercise Files/departments/marketing/.gitkeep
+            Exercise Files/departments/hr/
+            Exercise Files/departments/hr/policies/
+            Exercise Files/departments/hr/policies/.gitkeep
+            Exercise Files/departments/hr/candidates/
+            Exercise Files/departments/hr/candidates/.gitkeep
+            Exercise Files/departments/hr/employee info/
+            Exercise Files/departments/hr/employee info/.gitkeep
+            Exercise Files/departments/engineering/
+            Exercise Files/departments/engineering/invoices/
+            Exercise Files/departments/engineering/invoices/.gitkeep
+            Exercise Files/departments/engineering/drawings/
+            Exercise Files/departments/engineering/drawings/.gitkeep
+            Exercise Files/departments/engineering/materials/
+            Exercise Files/departments/engineering/materials/.gitkeep
+            Exercise Files/departments/sales/
+            Exercise Files/departments/sales/promotions/
+            Exercise Files/departments/sales/promotions/.gitkeep
+            Exercise Files/departments/sales/presentations/
+            Exercise Files/departments/sales/presentations/.gitkeep
+            Exercise Files/departments/sales/enterprise/
+            Exercise Files/departments/sales/enterprise/.gitkeep
+            Exercise Files/departments/sales/affiliates/
+            Exercise Files/departments/sales/affiliates/.gitkeep
+            Exercise Files/departments/finance/
+            Exercise Files/departments/finance/invoices/
+            Exercise Files/departments/finance/invoices/.gitkeep
+            Exercise Files/departments/finance/documents/
+            Exercise Files/departments/finance/documents/.gitkeep
+            Exercise Files/departments/finance/spreadsheets/
+            Exercise Files/departments/finance/spreadsheets/.gitkeep
+            Exercise Files/log.tar.gz
+            Exercise Files/.gitignore
+            beryl@beryl-Latitude-7490:~/Documents/commandlinebasics$ ls
+            'Exercise Files'   myfiles.tar   new_folder   README.md
+
+    22. zip -> The zip command in Linux is used to create, manage, and extract ZIP archives. A ZIP archive is a compressed file format that allows you to bundle multiple files and directories together while reducing their size through compression. 
+
+        Example: 
+            beryl@beryl-Latitude-7490:~/Documents/commandlinebasics$ zip files.zip Exercise\ Files/
+            adding: Exercise Files/ (stored 0%)
+            beryl@beryl-Latitude-7490:~/Documents/commandlinebasics$ ls
+            'Exercise Files'   files.zip   myfiles.tar.bz2   myfiles.tar.gz   new_folder   README.md
+
+        a) -r -> It zips the file with all the contents.
+
+            Example:
+                beryl@beryl-Latitude-7490:~/Documents/commandlinebasics$ zip -r files.zip Exercise\ Files/
+                adding: Exercise Files/ (stored 0%)
+                adding: Exercise Files/.swp (deflated 99%)
+                adding: Exercise Files/test.sh (deflated 24%)
+                adding: Exercise Files/poems.txt (deflated 49%)
+                adding: Exercise Files/vim.txt (deflated 62%)
+                adding: Exercise Files/simple_data.txt (deflated 25%)
+                adding: Exercise Files/literature.txt (deflated 49%)
+                adding: Exercise Files/nano.txt (stored 0%)
+                adding: Exercise Files/dupes.txt (deflated 51%)
+                adding: Exercise Files/departments/ (stored 0%)
+                adding: Exercise Files/departments/marketing/ (stored 0%)
+                adding: Exercise Files/departments/marketing/.gitkeep (stored 0%)
+                adding: Exercise Files/departments/hr/ (stored 0%)
+                adding: Exercise Files/departments/hr/policies/ (stored 0%)
+                adding: Exercise Files/departments/hr/policies/.gitkeep (stored 0%)
+                adding: Exercise Files/departments/hr/candidates/ (stored 0%)
+                adding: Exercise Files/departments/hr/candidates/.gitkeep (stored 0%)
+                adding: Exercise Files/departments/hr/employee info/ (stored 0%)
+                adding: Exercise Files/departments/hr/employee info/.gitkeep (stored 0%)
+                adding: Exercise Files/departments/engineering/ (stored 0%)
+                adding: Exercise Files/departments/engineering/invoices/ (stored 0%)
+                adding: Exercise Files/departments/engineering/invoices/.gitkeep (stored 0%)
+                adding: Exercise Files/departments/engineering/drawings/ (stored 0%)
+                adding: Exercise Files/departments/engineering/drawings/.gitkeep (stored 0%)
+                adding: Exercise Files/departments/engineering/materials/ (stored 0%)
+                adding: Exercise Files/departments/engineering/materials/.gitkeep (stored 0%)
+                adding: Exercise Files/departments/sales/ (stored 0%)
+                adding: Exercise Files/departments/sales/promotions/ (stored 0%)
+                adding: Exercise Files/departments/sales/promotions/.gitkeep (stored 0%)
+                adding: Exercise Files/departments/sales/presentations/ (stored 0%)
+                adding: Exercise Files/departments/sales/presentations/.gitkeep (stored 0%)
+                adding: Exercise Files/departments/sales/enterprise/ (stored 0%)
+                adding: Exercise Files/departments/sales/enterprise/.gitkeep (stored 0%)
+                adding: Exercise Files/departments/sales/affiliates/ (stored 0%)
+                adding: Exercise Files/departments/sales/affiliates/.gitkeep (stored 0%)
+                adding: Exercise Files/departments/finance/ (stored 0%)
+                adding: Exercise Files/departments/finance/invoices/ (stored 0%)
+                adding: Exercise Files/departments/finance/invoices/.gitkeep (stored 0%)
+                adding: Exercise Files/departments/finance/documents/ (stored 0%)
+                adding: Exercise Files/departments/finance/documents/.gitkeep (stored 0%)
+                adding: Exercise Files/departments/finance/spreadsheets/ (stored 0%)
+                adding: Exercise Files/departments/finance/spreadsheets/.gitkeep (stored 0%)
+                adding: Exercise Files/log.tar.gz (deflated 18%)
+                adding: Exercise Files/.gitignore (stored 0%)
+                beryl@beryl-Latitude-7490:~/Documents/commandlinebasics$ ls
+                'Exercise Files'   files.zip   myfiles.tar.bz2   myfiles.tar.gz   README.md   unpack
+
+    23. unzip -> It extracts the zip archives.
+
+        Example:
+        
+            beryl@beryl-Latitude-7490:~/Documents/commandlinebasics/unpack$ unzip files.zip 
+            Archive:  files.zip
+            creating: Exercise Files/
+            inflating: Exercise Files/.swp     
+            inflating: Exercise Files/test.sh  
+            inflating: Exercise Files/poems.txt  
+            inflating: Exercise Files/vim.txt  
+            inflating: Exercise Files/simple_data.txt  
+            inflating: Exercise Files/literature.txt  
+            extracting: Exercise Files/nano.txt  
+            inflating: Exercise Files/dupes.txt  
+            creating: Exercise Files/departments/
+            creating: Exercise Files/departments/marketing/
+            extracting: Exercise Files/departments/marketing/.gitkeep  
+            creating: Exercise Files/departments/hr/
+            creating: Exercise Files/departments/hr/policies/
+            extracting: Exercise Files/departments/hr/policies/.gitkeep  
+            creating: Exercise Files/departments/hr/candidates/
+            extracting: Exercise Files/departments/hr/candidates/.gitkeep  
+            creating: Exercise Files/departments/hr/employee info/
+            extracting: Exercise Files/departments/hr/employee info/.gitkeep  
+            creating: Exercise Files/departments/engineering/
+            creating: Exercise Files/departments/engineering/invoices/
+            extracting: Exercise Files/departments/engineering/invoices/.gitkeep  
+            creating: Exercise Files/departments/engineering/drawings/
+            extracting: Exercise Files/departments/engineering/drawings/.gitkeep  
+            creating: Exercise Files/departments/engineering/materials/
+            extracting: Exercise Files/departments/engineering/materials/.gitkeep  
+            creating: Exercise Files/departments/sales/
+            creating: Exercise Files/departments/sales/promotions/
+            extracting: Exercise Files/departments/sales/promotions/.gitkeep  
+            creating: Exercise Files/departments/sales/presentations/
+            extracting: Exercise Files/departments/sales/presentations/.gitkeep  
+            creating: Exercise Files/departments/sales/enterprise/
+            extracting: Exercise Files/departments/sales/enterprise/.gitkeep  
+            creating: Exercise Files/departments/sales/affiliates/
+            extracting: Exercise Files/departments/sales/affiliates/.gitkeep  
+            creating: Exercise Files/departments/finance/
+            creating: Exercise Files/departments/finance/invoices/
+            extracting: Exercise Files/departments/finance/invoices/.gitkeep  
+            creating: Exercise Files/departments/finance/documents/
+            extracting: Exercise Files/departments/finance/documents/.gitkeep  
+            creating: Exercise Files/departments/finance/spreadsheets/
+            extracting: Exercise Files/departments/finance/spreadsheets/.gitkeep  
+            inflating: Exercise Files/log.tar.gz  
+            extracting: Exercise Files/.gitignore  
+            beryl@beryl-Latitude-7490:~/Documents/commandlinebasics/unpack$ ls 
+            'Exercise Files'   files.zip
+
+    24. free -> It shows the information about RAM.
+
+        Example:
+    
+            beryl@beryl-Latitude-7490:~/Documents/commandlinebasics/unpack$ free
+                    total        used        free      shared  buff/cache   available
+            Mem:    8001944     2450896     1643500      673996     3907548     4589592
+            Swap    2097148           0     2097148
+
+                a) -h -> It shows the RAM information in human readable format.
+
+                Example:
+                beryl@beryl-Latitude-7490:~/Documents/commandlinebasics/unpack$ free -h
+                    total        used        free      shared  buff/cache   available
+                Mem:   7.6G        2.4G        1.5G        663M        3.7G        4.4G
+                Swap:  2.0G          0B        2.0G
+
+
+    25. df -> The df command in Linux is used to display information about disk space usage on the file systems mounted in the system.
+
+        Example: 
+        
+            beryl@beryl-Latitude-7490:~$ df -h
+            Filesystem      Size  Used Avail Use% Mounted on
+            udev            3.8G     0  3.8G   0% /dev
+            tmpfs           782M  2.2M  780M   1% /run
+            /dev/nvme0n1p2  234G   17G  205G   8% /
+            tmpfs           3.9G   95M  3.8G   3% /dev/shm
+            tmpfs           5.0M  4.0K  5.0M   1% /run/lock
+            tmpfs           3.9G     0  3.9G   0% /sys/fs/cgroup
+            /dev/loop2      114M  114M     0 100% /snap/slack/89
+            /dev/loop0      116M  116M     0 100% /snap/slack/98
+            /dev/loop1      219M  219M     0 100% /snap/gnome-3-34-1804/93
+            /dev/loop3       56M   56M     0 100% /snap/core18/2128
+            /dev/loop5       92M   92M     0 100% /snap/gtk-common-themes/1535
+            /dev/loop4       74M   74M     0 100% /snap/core22/864
+            /dev/loop6      219M  219M     0 100% /snap/gnome-3-34-1804/72
+            /dev/loop7      512K  512K     0 100% /snap/gnome-characters/789
+            /dev/loop8      242M  242M     0 100% /snap/gnome-3-38-2004/70
+            /dev/loop9      128K  128K     0 100% /snap/bare/5
+            /dev/nvme0n1p1  511M   16M  496M   4% /boot/efi
+            /dev/loop10      62M   62M     0 100% /snap/core20/1081
+            /dev/loop11     896K  896K     0 100% /snap/gnome-logs/119
+            /dev/loop12     2.5M  2.5M     0 100% /snap/gnome-system-monitor/163
+            /dev/loop13     1.5M  1.5M     0 100% /snap/gnome-system-monitor/184
+            /dev/loop14      41M   41M     0 100% /snap/snapd/20092
+            /dev/loop15     512K  512K     0 100% /snap/gnome-characters/791
+            /dev/loop16     486M  486M     0 100% /snap/gnome-42-2204/126
+            /dev/loop17     350M  350M     0 100% /snap/gnome-3-38-2004/143
+            /dev/loop18      66M   66M     0 100% /snap/gtk-common-themes/1515
+            /dev/loop19     2.2M  2.2M     0 100% /snap/gnome-calculator/950
+            /dev/loop20      64M   64M     0 100% /snap/core20/2015
+            /dev/loop21     896K  896K     0 100% /snap/gnome-logs/121
+            /dev/loop22      56M   56M     0 100% /snap/core18/2790
+            /dev/loop23     497M  497M     0 100% /snap/gnome-42-2204/141
+            /dev/loop24     2.5M  2.5M     0 100% /snap/gnome-calculator/884
+            tmpfs           782M   20K  782M   1% /run/user/121
+            tmpfs           782M   14M  769M   2% /run/user/1000
+
+    26. ip -> The ip command in Linux is a powerful and versatile tool for configuring, managing, and querying network interfaces and routing tables. 
+
+        Example:
+
+            beryl@beryl-Latitude-7490:~$ ip a
+            1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+                link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+                inet 127.0.0.1/8 scope host lo
+                valid_lft forever preferred_lft forever
+                inet6 ::1/128 scope host 
+                valid_lft forever preferred_lft forever
+            2: enp0s31f6: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc fq_codel state DOWN group default qlen 1000
+                link/ether c8:f7:50:38:0c:21 brd ff:ff:ff:ff:ff:ff
+            3: wlp2s0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+                link/ether d8:f2:ca:7f:4f:d1 brd ff:ff:ff:ff:ff:ff
+                inet 192.168.1.3/24 brd 192.168.1.255 scope global dynamic noprefixroute wlp2s0
+                valid_lft 56145sec preferred_lft 56145sec
+                inet6 2401:4900:1c30:4f9b:3953:8286:75a0:fe32/64 scope global temporary dynamic 
+                valid_lft 86096sec preferred_lft 55929sec
+                inet6 2401:4900:1c30:4f9b:497d:a696:17ed:cb3a/64 scope global dynamic mngtmpaddr noprefixroute 
+                valid_lft 86096sec preferred_lft 86096sec
+                inet6 fe80::ccfa:b8f8:df43:e8b0/64 scope link noprefixroute 
+                valid_lft forever preferred_lft forever
+
+    27. apt -> The apt command simplifies package installation, removal, upgrading, and other package-related tasks.
+
+        Example:
+
+            beryl@beryl-Latitude-7490:~$ sudo apt update
+            [sudo] password for beryl: 
+            Hit:1 https://brave-browser-apt-release.s3.brave.com stable InRelease
+            Hit:2 http://packages.microsoft.com/repos/code stable InRelease                                                                 
+            Hit:3 http://in.archive.ubuntu.com/ubuntu bionic InRelease                          
+            Get:4 http://in.archive.ubuntu.com/ubuntu bionic-updates InRelease [88.7 kB]          
+            Get:5 http://security.ubuntu.com/ubuntu bionic-security InRelease [88.7 kB]                 
+            Get:6 http://in.archive.ubuntu.com/ubuntu bionic-backports InRelease [83.3 kB]              
+            Get:7 http://security.ubuntu.com/ubuntu bionic-security/main amd64 DEP-11 Metadata [77.1 kB]
+            Get:8 http://security.ubuntu.com/ubuntu bionic-security/universe amd64 DEP-11 Metadata [62.6 kB]
+            Get:9 http://security.ubuntu.com/ubuntu bionic-security/multiverse amd64 DEP-11 Metadata [2,464 B]
+            Get:10 http://in.archive.ubuntu.com/ubuntu bionic-updates/main amd64 DEP-11 Metadata [296 kB]
+            Get:11 http://in.archive.ubuntu.com/ubuntu bionic-updates/universe amd64 DEP-11 Metadata [303 kB]
+            Get:12 http://in.archive.ubuntu.com/ubuntu bionic-updates/multiverse amd64 DEP-11 Metadata [2,468 B]
+            Get:13 http://in.archive.ubuntu.com/ubuntu bionic-backports/main amd64 DEP-11 Metadata [8,108 B]
+            Get:14 http://in.archive.ubuntu.com/ubuntu bionic-backports/universe amd64 DEP-11 Metadata [10.0 kB]
+            Fetched 1,023 kB in 4s (278 kB/s)                                            
+            Reading package lists... Done
+            Building dependency tree       
+            Reading state information... Done
+            All packages are up to date.
+            N: Skipping acquire of configured file 'main/binary-i386/Packages' as repository 'https://brave-browser-apt-release.s3.brave.com stable InRelease' doesn't support architecture 'i386'
+
+            beryl@beryl-Latitude-7490:~$ sudo apt upgrade 
+            Reading package lists... Done
+            Building dependency tree       
+            Reading state information... Done
+            Calculating upgrade... Done
+            The following security updates require Ubuntu Pro with 'esm-infra' enabled:
+            libwebp6 libpython3.6-minimal poppler-utils libnghttp2-14 libisccfg160
+            libcups2 intel-microcode linux-libc-dev vim-common libcurl4 libldap-2.4-2
+            openssl libdw1 imagemagick libsystemd0 libavahi-glib1 libgs9 libpam-cap
+            libpython3.6-stdlib libelf1 binutils libmagickwand-6.q16-3 libirs160
+            bind9-host linux-headers-generic-hwe-18.04 libavahi-common-data dnsutils
+            sysstat libavahi-common3 libpython2.7 gir1.2-accountsservice-1.0
+            libpython3.6 python3.6 libwinpr2-2 libyajl2 gawk libisc169 udev
+            cups-server-common amd64-microcode cups-common libx11-6 python3-requests
+            libudev1 libapparmor1 libwebpdemux2 libavahi-ui-gtk3-0 python3.6-minimal
+            binutils-x86-64-linux-gnu imagemagick-6.q16 libtiff5 libfreerdp2-2
+            libisc-export169 busybox-static cups-ppdc libcupsmime1 avahi-daemon
+            libnss-myhostname libcap2 systemd-sysv libcap2-bin libldap-common
+            libavahi-core7 liblwres160 linux-image-generic-hwe-18.04 vim-runtime vim
+            libpam-systemd ghostscript systemd linux-generic-hwe-18.04 libssl-dev xxd
+            libwebpmux3 libx11-data ghostscript-x openssh-client libdns-export1100
+            libmagickcore-6.q16-3 libnss-systemd libgs9-common avahi-autoipd
+            binutils-common libcupsppdc1 libflac8 libbinutils libpython2.7-minimal
+            vim-tiny apparmor libisccc160 libmagickcore-6.q16-3-extra cups-bsd
+            avahi-utils cups-core-drivers cups-daemon libssl1.1 libbind9-160
+            accountsservice libdns1100 libcupsimage2 libpython2.7-stdlib
+            libpoppler-glib8 libpoppler73 libavahi-client3 cups curl libcupscgi1
+            cups-client cups-ipp-utils libfreerdp-client2-2 libcurl3-gnutls libx11-xcb1
+            libaccountsservice0 imagemagick-6-common busybox-initramfs
+            Learn more about Ubuntu Pro for 18.04 at https://ubuntu.com/18-04
+            0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+
+    28. history -> It gives you the list of commands which you have used earlier on the terminal.
+
+        Example:
+            beryl@beryl-Latitude-7490:~$ history
+            1  sudo apt update
+            2  sudo apt upgrade 
+            3  exit
+            4  touch Linux.txt
+            5  history
