@@ -1,0 +1,72 @@
+*****PostgreSQL commands*****
+
+** DATABASE**
+
+1. Create Database : This will create a new database.
+	Syntax: create database <database-name>;
+	
+    Example : postgres=# create database person;
+              CREATE DATABASE
+
+	a) \l -> To create a list of all databases created earlier.
+	b) \c -> To connect a database.
+		Syntax : \c <database-name>;
+
+        Example : 
+            postgres=# \c person;
+            psql (15.3 (Ubuntu 15.3-1.pgdg18.04+1), server 10.23 (Ubuntu 10.23-0ubuntu0.18.04.2))
+            You are now connected to database "person" as user "postgres".
+
+
+2. Drop Database : To drop the database.
+	Syntax : drop database <database-name>;
+
+    Example : 
+        postgres=# drop database person;
+        DROP DATABASE
+
+
+**TABLES**
+
+3. Create Table : To create a new table in existing database.
+	Syntax : create table <table-name>(<column1> <data-type> , <column2> <data type> , ..);
+    
+    Example :
+        company=# create table employee (
+        company(# emp_id int primary key,
+        company(# emp_name varchar not null,
+        company(# gender varchar );
+        CREATE TABLE
+
+	a) \d or \dt-> This command wil list all the tables in current database.
+
+        Example :
+            company=# \dt
+                    List of relations
+            Schema |   Name   | Type  |  Owner   
+            --------+----------+-------+----------
+            public | employee | table | postgres
+            (1 row)
+
+4. Drop table : To drop the table from database.
+	Syntax: drop table <table-name>
+
+    Example : 
+        company=# drop table employee;
+        DROP TABLE
+
+5. Describe table : To find the information on columns of a table.
+	Syntax : \d <table-name>
+
+    Example :
+        company=# \d employee
+                    Table "public.employee"
+        Column  |       Type        | Collation | Nullable | Default 
+        ----------+-------------------+-----------+----------+---------
+        emp_id   | integer           |           | not null | 
+        emp_name | character varying |           | not null | 
+        gender   | character varying |           |          | 
+        Indexes:
+            "employee_pkey" PRIMARY KEY, btree (emp_id)
+
+
