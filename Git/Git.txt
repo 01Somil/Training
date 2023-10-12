@@ -119,6 +119,13 @@ Git Commands
 	
 	Syntax -> git revert <commit-hash>
 
+22. git merge -> To merge the changes from another branch into the current branch.
 
+	Steps to merge :
+	a) First, ensure you are in the branch where you want to merge changes into.
+	b) Syntax : git merge <source-branch>.
+	c) If you encounter merge conflicts during the merge process, Git will pause to allow you to resolve the conflicts manually. 
+	d) After resolving the conflicts, you can use git add to stage.
+	e) Then use git commit to complete the merge.
 
 
