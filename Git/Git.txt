@@ -107,7 +107,15 @@ Git Commands
 		Syntax : git stash clear
 	
 19. Rebase -> It allows you to move or "rebase" a series of commits to a new base commit, typically changing the commit history to make it appear as  if the changes were made on top of the latest state of 		      another branch.
-		
+
+		Syntax: git rebase <source-branch> <destination-branch>
+
+		If merge conflicts occur:
+		A. Solve the merge conflicts manually.
+		B. Stage the file.
+		C. Commit the file.
+		D. git rebase --continue
+
 		a) -i : This opens an interactive text editor with a list of commits. You can then specify actions for each commit, such as "pick," "edit,""squash," etc.
 		          Syntax : git rebase -i <branch name>
 
@@ -131,4 +139,3 @@ Git Commands
 23. git cherry-pick -> This command is used to apply a specific commit from one branch to another.
 
 	Syntax: git cherry-pick <commit-hash>
-
