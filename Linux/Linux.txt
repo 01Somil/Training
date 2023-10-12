@@ -1115,3 +1115,13 @@ Linux Resource for Future Reference:->
             3  exit
             4  touch Linux.txt
             5  history
+
+    29. lsb_release -a -> To check the linux version and os name.
+
+        Example:
+            beryl@beryl-Latitude-7490:~$ lsb_release -a 
+            No LSB modules are available.
+            Distributor ID:	Ubuntu
+            Description:	Ubuntu 18.04.6 LTS
+            Release:	18.04
+            Codename:	bionic
