@@ -32,7 +32,8 @@ Git Commands
 	Synatx : git commit -am "some message"
 	c) --amend : It is a convenient way to modify the most recent commit.
 	Syntax : git commit --amend -m "some message" 
-	
+	d) To commit modified files directly.
+	Syntax : git commit -m "some message" <file-name> 
 
 8. git log -> This command in git is used to view the commit history of git repository.
 	
@@ -63,6 +64,8 @@ Git Commands
 		Syntax: git checkout -b <branch name>
 	d) -d : To delete branch.
 		Syntax: git branch -d <branch name>
+	e) --delete : To delete branch from remote repository.
+		Syntax: git push origin --delete <branch-name>
 
 13. Undoing Changes -> Sometimes we did some staging and commit by mistake so we have an option in git to restore it.
 	
