@@ -128,4 +128,7 @@ Git Commands
 	d) After resolving the conflicts, you can use git add to stage.
 	e) Then use git commit to complete the merge.
 
+23. git cherry-pick -> This command is used to apply a specific commit from one branch to another.
+
+	Syntax: git cherry-pick <commit-hash>
 
