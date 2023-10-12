@@ -1,0 +1,20 @@
+Steps to install PostgreSQL on linux Ubuntu 18.04.6 LTS :->
+
+1. Open the terminal in your linux machine.
+2. Visit the official website of postgreSQL.
+3. If you are unable to find the website, then visit
+    https://www.postgresql.org/download/
+4. Select Operating System as Linux and Linux Distribution as Ubuntu.
+5. Then you will redirect to PostgreSQL apt repository page.
+6. Now, you will see the apt repository commands or follow these commands in your terminal:
+    a) sudo sh -c 'echo "deb https://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+    b) wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+    c) sudo apt-get update
+    d) sudo apt-get -y install postgresql
+7. Finally, your postgreSQL will have installed in your system.
+8. To start , type : 
+                sudo -i -u postgres
+9. Fill your password it will move into postgres.
+10. Then type, psql.
+11. It will show you command line interface for postgreSQL.
+12. Hurrah! installation has beeen successfully completed.
