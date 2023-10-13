@@ -226,6 +226,42 @@
             2 | Kavya | female                        
         (2 rows)
 
+** CLAUSES IN POSTGRESQL **
 
+15. Where clause : WHERE clause is used to specify a condition while fetching the data from single table or joining with multiple tables.
+    Syntax : select column1,column2 from <table-name> 
+            where <Condition>
+
+    Example :
+        company=# select * from employee where emp_id=2;
+        emp_id | name  |             gender             
+        --------+-------+--------------------------------
+            2 | Kavya | female                        
+        (1 row)
+
+16. ORDER BY clause : The ORDER BY clause permits us to sort rows returned by a SELECT condition in ascending or descending order depends on the sort expression.
+    Syntax : select * from <table-name> order by <column-name> [asc|desc];
+
+    Example :
+        company=# select * from employee order by name asc;
+        emp_id | name  |             gender             
+        --------+-------+--------------------------------
+            2 | Kavya | female                        
+            1 | Ram   | male                          
+        (2 rows)
+
+17. Group By clause : GROUP BY clause is used in collaboration with the SELECT statement to group together those rows in a table that have identical data. It is also useful with aggregate functions.
+    Syntax : select <column-list> from <table_name> 
+            where [conditions]
+            group by column1, column2....columnN;
+    
+    Example :
+        company=# select name from employee group by name;
+        name  
+        -------
+        Ram
+        Shyam
+        Kavya
+        (3 rows)
 
 
