@@ -62,3 +62,14 @@
       Operations -> Insertion (May cause violation)
                     Deletion (No violation)
                     Updation (May cause violation)
+
+15. Normalization : Normalization is a method to remove all these anomalies and bring the database to a consistent state.
+
+      1st normal form : Table should not contain multivalued attribute.
+      2nd normal form : a) Table or relation must be in 1NF.
+                        b) All the non-prime attributes should be fully functional dependent on candidate key.
+                        There should be no partial dependency in a relation.
+      3rd normal form : a) Table must be in 2NF.
+                        b) There should be no transitive dependency in a table.
+      Boyce Codd normal form : a) Table must be in 3NF.
+                              b) For any non-trivial functional dependency, X → A, X must be a super-key.
