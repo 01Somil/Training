@@ -73,3 +73,17 @@
                         b) There should be no transitive dependency in a table.
       Boyce Codd normal form : a) Table must be in 3NF.
                               b) For any non-trivial functional dependency, X → A, X must be a super-key.
+
+16. Joins : Join is a combination of a Cartesian product followed by a selection process. A Join operation pairs two tuples from different relations, if and only if a given join condition is satisfied.
+      
+      a) Natural Join : Natural join does not use any comparison operator. It does not concatenate the way a Cartesian product does. We can perform a Natural Join only if there is at least one common attribute that exists between two relations. In addition, the attributes must have the same name and domain.
+      
+      b) Self Join : A self join is a specific type of SQL join where a table is joined with itself. This is often used when you want to combine rows with other rows in the same table, typically when those rows have a relationship with each other. 
+
+      c) Equi Join : An equi join returns rows that have matching values in the specified columns from each table.
+
+      d) Left Outer Join : It gives the matching rows and the rows which are in left table but not in right table. 
+
+      e) Right Outer Join : It gives the matching rows and the rows which are in the right table but not in the left table. 
+
+      f) Full Outer Join : All the tuples from both participating relations are included in the resulting relation. If there are no matching tuples for both relations, their respective unmatched attributes are made NULL.
