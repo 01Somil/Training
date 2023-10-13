@@ -47,3 +47,18 @@
       a) Logical Data Independence - It is a kind of mechanism , which liberalizes itself from actual data stored on the disk. 
       b) Physical Data Independence - Physical data independence is the power to change the physical data without impacting the schema or logical data.
 
+13. Alternative key : A set of keys which are from candidate keys set after neglecting primary key.
+
+14. Foreign Key : It is an attribute or set of attributes that references to primary key of same table or another table(relation). There can be more than one foreign key in a table.
+
+      Referential Integrity :
+      
+                  Referenced Table (Base Table)
+      Operations -> Insertion (No violation)
+                    Deletion (May cause violation)
+                    Updation (May cause violation)
+                  
+                  Referencing Table (Child Table)
+      Operations -> Insertion (May cause violation)
+                    Deletion (No violation)
+                    Updation (May cause violation)
