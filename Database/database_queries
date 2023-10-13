@@ -164,6 +164,68 @@
         ----+-------------
         (0 rows)
     
+10. Insert Data : It is used to insert data into table.
+    Syntax : insert into <table-name> (column1,...) values (data1,...);
+    
+    For multiple rows : 
+    Syntax : insert into <table-name> (column1,...) values (data1,...),(data1,...),...;
+
+    Example : 
+        company=# insert into employee (emp_id,name,gender) values (3,'Shyam','male');
+        INSERT 0 1
+        company=# select * from employee;
+        emp_id | name  |             gender             
+        --------+-------+--------------------------------
+            1 | Ram   | male                          
+            2 | Kavya | female                        
+            3 | Shyam | male                          
+        (3 rows)
+    
+11. Select query : SELECT statement is used to fetch the data from a database table, which      returns data in the form of result table.
+    Syntax : select <column_name> from <table-name>;
+    
+    For whole table :
+    Syntax : select * from <table-name>;
+
+    Example : 
+        company=# select * from employee;
+        emp_id | name  |             gender             
+        --------+-------+--------------------------------
+            1 | Ram   | male                          
+            2 | Kavya | female                        
+            3 | Shyam | male                          
+        (3 rows)
+    
+13. Update query : The UPDATE command is used to change the present records in a table.
+    Syntax : update <table-name> set <column-name>=<value> where <condition>;
+
+    Example :
+        company=# update employee SET name='Vijay' where emp_id=3;
+        UPDATE 1
+        company=# select * from employee;
+        emp_id | name  |             gender             
+        --------+-------+--------------------------------
+            1 | Ram   | male                          
+            2 | Kavya | female                        
+            3 | Vijay | male                          
+        (3 rows)
+
+14. Delete query : It is used to delete all existing records from a table. And the WHERE clause is used to remove the selected records or else, all the data would be eliminated.
+    Syntax : delete from <table-name> where <condition>;
+
+    For deleting all rows from table:
+    Syntax : delete from <table-name>;
+
+    Example :   
+        company=# delete from employee where emp_id=3;
+        DELETE 1
+        company=# select * from employee;
+        emp_id | name  |             gender             
+        --------+-------+--------------------------------
+            1 | Ram   | male                          
+            2 | Kavya | female                        
+        (2 rows)
+
 
 
 
