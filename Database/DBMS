@@ -1,8 +1,8 @@
-Definition of DBMS -> Database Management System or DBMS in short refers to the technology of storing and retrieving users data with utmost efficiency along with appropriate security measures. 
+1. Definition of DBMS -> Database Management System or DBMS in short refers to the technology of storing and retrieving users data with utmost efficiency along with appropriate security measures. 
 
-Database -> It is a collection of related data and data is a collection of facts and figures     that can be processed to produce information.
+2. Database -> It is a collection of related data and data is a collection of facts and figures     that can be processed to produce information.
 
-Architecture -> It is a 3-tier architecture.
+3. Architecture -> It is a 3-tier architecture.
 
                 Presentation Tier
                       |
@@ -10,36 +10,40 @@ Architecture -> It is a 3-tier architecture.
                       |
                 Database Tier
 
-Data models -> It define how data is connected to each other and how they are processed and stored inside the system.
+4. Data models -> It define how data is connected to each other and how they are processed and stored inside the system.
 
-Super Key −> A set of attributes (one or more) that collectively identifies an entity in an entity set.
+5. Super Key −> A set of attributes (one or more) that collectively identifies an entity in an entity set.
 
-Candidate Key −> A minimal super key is called a candidate key. An entity set may have more than one candidate key.
+6. Candidate Key −> A minimal super key is called a candidate key. An entity set may have more than one candidate key.
 
-Primary Key −> A primary key is one of the candidate keys chosen by the database designer to uniquely identify the entity set.
+7. Primary Key −> A primary key is one of the candidate keys chosen by the database designer to uniquely identify the entity set.
 
-E-R Diagram Representation :-
-      1. Entities are represented by means of rectangles.
-      2. Attributes are represented by means of ellipses.
-      3. Composite attributes are represented by ellipses that are connected with an ellipse.
-      4. Multivalued attributes are depicted by double ellipse.
-      5. Derived attributes are depicted by dashed ellipse.
+8. E-R Diagram Representation :-
+      a) Entities are represented by means of rectangles.
+      b) Attributes are represented by means of ellipses.
+      c) Composite attributes are represented by ellipses that are connected with an ellipse.
+      d) Multivalued attributes are depicted by double ellipse.
+      e) Derived attributes are depicted by dashed ellipse.
 
-Generalization -> In this, a number of entities are brought together into one generalized entity based on their similar characteristics.
+9. Generalization -> In this, a number of entities are brought together into one generalized entity based on their similar characteristics.
 
-Specialization -> In specialization, a group of entities is divided into sub-groups based on their characteristics. 
+10. Specialization -> In specialization, a group of entities is divided into sub-groups based on their characteristics. 
 
-Relation Data Model Concepts :-
+11. Relation Data Model Concepts :-
 
-      1. Tables − In relational data model, relations are saved in the format of Tables. This format stores the relation among entities. A table has rows and columns, where rows represents records and columns represent the attributes.
+      a) Tables − In relational data model, relations are saved in the format of Tables. This format stores the relation among entities. A table has rows and columns, where rows represents records and columns represent the attributes.
 
-      2. Tuple − A single row of a table, which contains a single record for that relation is called a tuple.
+      b) Tuple − A single row of a table, which contains a single record for that relation is called a tuple.
 
-      3. Relation instance − A finite set of tuples in the relational database system represents relation instance. Relation instances do not have duplicate tuples.
+      c) Relation instance − A finite set of tuples in the relational database system represents relation instance. Relation instances do not have duplicate tuples.
 
-      4. Relation schema − A relation schema describes the relation name (table name), attributes, and their names.
+      d) Relation schema − A relation schema describes the relation name (table name), attributes, and their names.
 
-      5. Relation key − Each row has one or more attributes, known as relation key, which can identify the row in the relation (table) uniquely.
+      e) Relation key − Each row has one or more attributes, known as relation key, which can identify the row in the relation (table) uniquely.
 
-      6. Attribute domain − Every attribute has some pre-defined value scope, known as attribute domain.
+      f) Attribute domain − Every attribute has some pre-defined value scope, known as attribute domain.
+
+12. Data Independence : Two types of data independence are->
+      a) Logical Data Independence - It is a kind of mechanism , which liberalizes itself from actual data stored on the disk. 
+      b) Physical Data Independence - Physical data independence is the power to change the physical data without impacting the schema or logical data.
 
