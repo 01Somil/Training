@@ -133,4 +133,37 @@
             Indexes:
                 "person_pkey" PRIMARY KEY, btree (id)
 
+7. truncate table : The TRUNCATE TABLE command to remove all the records from a particular table.
+    Syntax : truncate table <table-name>;
+
+    Example :
+        company=# truncate table person;
+        TRUNCATE TABLE
+
+8. Temporary table : This query is used to create the temporary table.
+    Syntax : create temporary table <table-name>(...);
+
+    Example:
+        temporary_database=# create temporary table temp_table(fruits_name varchar,fruits_season varchar);
+        CREATE TABLE
+    
+        a) drop temporary table : To drop the temporary table from database.
+            Syntax : drop table <table-name>;
+            Example :
+                temporary_database=# drop table temp_table;
+                DROP TABLE
+
+        Note : If we close thse session then temporary table will automatically delete.
+
+9. Column Aliases : Column alias is used to give a short name to the column.
+    Syntax : select <column-name> as <alias-name> from <table-name>;
+
+    Example : 
+        company=# select id, name as person_name from person;
+        id | person_name 
+        ----+-------------
+        (0 rows)
+    
+
+
 
