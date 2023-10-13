@@ -69,4 +69,68 @@
         Indexes:
             "employee_pkey" PRIMARY KEY, btree (emp_id)
 
+6. alter table : This command is used to change the current table structure.
+    Syntax : ALTER TABLE <table-name> action;  
+
+    a) Add a column : To add a new column in existing table.
+        Syntax: alter table <table-name> add column <column-name>;
+
+        Example :
+            company=# alter table employee add column address varchar(100);
+            ALTER TABLE
+    b) Rename a column : To rename the column name.
+        Syntax : alter table <table-name> rename column <source_name> to <destination_name>;
+
+        Example :
+            company=# alter table employee rename column emp_name to name;
+            ALTER TABLE
+            company=# \d employee
+                                Table "public.employee"
+            Column  |          Type          | Collation | Nullable | Default 
+            ---------+------------------------+-----------+----------+---------
+            emp_id  | integer                |           | not null | 
+            name    | character varying      |           | not null | 
+            gender  | character varying      |           |          | 
+            address | character varying(100) |           |          | 
+            Indexes:
+                "employee_pkey" PRIMARY KEY, btree (emp_id)
+    c) Drop a column : To delete the column from a table.
+        Syntax : alter table <table-name> drop column <column-name>;
+
+        Example :
+            company=# alter table employee drop column address;
+            ALTER TABLE
+    d) Change column type : To change the type of column.
+        Syntax : alter table <table-name> alter column type <new-type>;
+
+        Example :
+            company=# alter table employee alter column gender type char(30);
+            ALTER TABLE
+    e) Add constraint on column : To add the new constraint on column.
+        Syntax : alter table <table-name> alter column <column-name> set <constraint>;
+
+        Example :
+            company=# alter table employee alter column gender set not null;
+            ALTER TABLE
+    f) Drop constraint : To remove the constraint from column in a table.
+        Syntax : alter table <table-name> alter column <column-name> drop <constraint>;
+ 
+        Example :
+            company=# alter table employee alter column gender drop not null;
+            ALTER TABLE
+    g) Add primary key constraint : To add primary key constraint in a column.
+        Syntax : alter table <table-name> add primary key <column-name>;
+
+        Example :
+            company=# alter table person add primary key (id);
+            ALTER TABLE
+            company=# \d person
+                                Table "public.person"
+            Column |         Type          | Collation | Nullable | Default 
+            --------+-----------------------+-----------+----------+---------
+            id     | integer               |           | not null | 
+            name   | character varying(30) |           |          | 
+            Indexes:
+                "person_pkey" PRIMARY KEY, btree (id)
+
 
