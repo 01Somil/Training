@@ -139,3 +139,35 @@ Git Commands
 23. git cherry-pick -> This command is used to apply a specific commit from one branch to another.
 
 	Syntax: git cherry-pick <commit-hash>
+
+24. Generating SSH_KEY and adding it to SSH agent :
+
+	Generate a new SSH_KEY : 
+	a) Open terminal.
+	b) Paste the below mentioned text :
+		ssh-keygen -t ed25519 -C "your_email@example.com"
+	c) This will create a prompt like this :
+		> Enter passphrase (empty for no passphrase): [Type a passphrase]
+	d) Enter same passphrase again :
+		> Enter same passphrase again: [Type passphrase again]
+	e) Finally it generates your new SSH key.
+
+	Adding it to SSH agent :
+	a) Open terminal.
+	b) Start ssh-agent in background :
+		eval "$(ssh-agent -s)"
+	c) Add your ssh private key to the ssh-agent :
+		ssh-add ~/.ssh/id_ed25519
+	d) Add the SSH public key to your account on GitHub.
+	
+	Adding new SSH key to github account :
+	a) Copy the SSH public key to your clipboard.Type this command :
+		cat ~/.ssh/id_ed25519.pub
+	b) In the upper-right corner of any page, click your profile photo, then click Settings.
+	c) In the "Access" section of the sidebar, click  SSH and GPG keys.
+	d) Click New SSH key or Add SSH key.
+	e) In the "Title" field, add a descriptive label for the new key.
+	f) In the "Key" field, paste your public key.
+	g) Click Add SSH key.
+	h) If prompted, confirm access to your account on GitHub by entering your github password.
+	i) Done.
