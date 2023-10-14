@@ -328,5 +328,116 @@
         3 | James |   5000
         (2 rows)
 
+** POSTGRESQL CONDITIONS **
 
- 
+22. AND Condition : The AND condition is used to specify the data if all the conditions separated by AND are TRUE.
+    Syntax : where <condition1> and <condition2>;
+
+    Example : 
+        company=# select * from company where id>2 and salary>=9000;
+        id | name | salary 
+        ----+------+--------
+        4 | A    |  10000
+        5 | B    |   9000
+        (2 rows)
+
+23. OR Condition : The OR condition is used to return the data if any of the conditions divided by OR is TRUE.
+    Syntax : where <condition1> or <condition2>;
+
+    Example :
+        company=# select * from company where id>2 or salary>8000;
+        id | name  | salary 
+        ----+-------+--------
+        1 | Paul  |  20000
+        3 | James |   5000
+        4 | A     |  10000
+        5 | B     |   9000
+        6 | C     |   8000
+        (5 rows)
+
+24. NOT Condition : The PostgreSQL NOT condition is used with the WHERE clause to negate a condition in a command. 
+    Syntax : select * from <table-name> where <column-name> not <condition> 
+
+    Example : 
+        company=# select * from company where name not in ('James','Paul');
+        id | name | salary 
+        ----+------+--------
+        4 | A    |  10000
+        5 | B    |   9000
+        6 | C    |   8000
+        (3 rows)
+
+25. LIKE Condition : The Like condition is used to perform pattern matching for identifying the exact outcome.
+    Percent (%) wildcard: To match any sequence of zero or more characters.
+    Underscore (_) wildcard: To match any single character.
+    Syntax : select * from <table-name> where <column-name> like <pattern>;
+
+    Example :
+        company=# select * from company where name like 'J%';
+        id | name  | salary 
+        ----+-------+--------
+        2 | James |   5000
+        3 | James |   5000
+        (2 rows)
+    
+    NOT LIKE Condition : To negate the LIKE condition.
+    Syntax : select * from <table-name> where <column-name> not like <pattern>;
+
+    Example :
+        company=# select * from company where name not like 'J%';
+        id | name | salary 
+        ----+------+--------
+        1 | Paul |  20000
+        4 | A    |  10000
+        5 | B    |   9000
+        6 | C    |   8000
+        (4 rows)
+
+26. IN Condition : The PostgreSQL IN condition is used within the WHERE clause to get those data that matches any data in a list. The IN condition is used to reduce multiple OR conditions.
+    Syntax : select * from <table-name> where <column-name> in <value1,..>;
+
+    Example : 
+        company=# select * from company where name in('Paul','James') order by salary;
+        id | name  | salary 
+        ----+-------+--------
+        2 | James |   5000
+        3 | James |   5000
+        1 | Paul  |  20000
+        (3 rows)
+
+27. NOT IN Condition : The PostgreSQL NOT IN condition is used with WHERE clause to fetch data from a table where defined condition contradicts the PostgreSQL IN condition.
+    Syntax : select * from <table-name> where <column-name> not in <value1,...>;
+
+    Example : 
+        company=# select * from company where name not in('Paul','James') order by salary;
+        id | name | salary 
+        ----+------+--------
+        6 | C    |   8000
+        5 | B    |   9000
+        4 | A    |  10000
+        (3 rows)
+
+28. BETWEEN Condition : The PostgreSQL Between condition is used to define how to retrieve values from an expression within a specific range.
+    Syntax : select * from <table-name> where <column-name> between <value1> and <value2>;
+
+    Example :
+        company=# select * from company where salary between 8000 and 11000;
+        id | name | salary 
+        ----+------+--------
+        4 | A    |  10000
+        5 | B    |   9000
+        6 | C    |   8000
+        (3 rows)
+
+29. EXISTS Condition : The EXISTS condition is used to check for the presence of any data in a subquery, and returns true if the subquery returns several records.
+    Syntax : select * from <table-name> where exists <subquery>;
+
+    Example : 
+        company=# select * from company where exists (select name from employee where employee.id=company.id and gender='male');
+        id | name  | salary 
+        ----+-------+--------
+        1 | Paul  |  20000
+        3 | James |   5000
+        4 | A     |  10000
+        (3 rows)
+
