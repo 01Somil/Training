@@ -468,3 +468,37 @@
             Example :
                 company=# create temporary view company_view as select id,name from company;
                 CREATE VIEW
+
+** POSTGRESQL CONSTRAINTS **
+
+31. Primary key : A primary key does not hold any null value. And for this, we can also say that the primary key is collecting the unique and not-null constraint of a table. If the column has a primary key constraint, then it cannot be null or empty.
+    Example:
+        company=# create table person(id serial primary key,name varchar,gender varchar);
+        CREATE TABLE
+    
+32. Unique : It is used to make sure that all values in a column of a table are exclusive. 
+    Example:
+        company=# alter table person add column email varchar(50) unique;
+        ALTER TABLE
+        company=# \d person
+                                        Table "public.person"
+        Column |         Type          | Collation | Nullable |              Default               
+        --------+-----------------------+-----------+----------+------------------------------------
+        id     | integer               |           | not null | nextval('person_id_seq'::regclass)
+        name   | character varying     |           |          | 
+        gender | character varying     |           |          | 
+        email  | character varying(50) |           |          | 
+        Indexes:
+            "person_pkey" PRIMARY KEY, btree (id)
+            "person_email_key" UNIQUE CONSTRAINT, btree (email)
+
+33. Check constraint :  It is used to make sure that all values in a column or a field of a table satisfy particular situations.
+    Example : 
+        company=# create table worker (worker_id serial primary key,
+        company(# worker_name varchar(25), age integer check(age>18));
+        CREATE TABLE
+
+34. Not Null : It is used to make sure that the values of a column are not null.
+    Example :
+        company=# alter table worker alter column worker_name set not null;
+        ALTER TABLE
