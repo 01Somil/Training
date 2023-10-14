@@ -502,3 +502,33 @@
     Example :
         company=# alter table worker alter column worker_name set not null;
         ALTER TABLE
+
+35. Foreign Key : The foreign key is also known as the referencing key, and it matches the primary key field from another table, which implies that the foreign key field in one table refers to the other table's primary key field.
+    Example : 
+        company=# create table department(dept_id integer primary key,emp_id int,
+        foreign key(emp_id)  
+        references employee(emp_id));
+        CREATE TABLE
+        company=# \d employee
+                            Table "public.employee"
+        Column  |         Type          | Collation | Nullable | Default 
+        ----------+-----------------------+-----------+----------+---------
+        emp_id   | integer               |           | not null | 
+        emp_name | character varying(50) |           | not null | 
+        Indexes:
+            "employee_pkey" PRIMARY KEY, btree (emp_id)
+        Referenced by:
+            TABLE "department" CONSTRAINT "department_emp_id_fkey" FOREIGN KEY (emp_id) REFERENCES employee(emp_id)
+    
+    Drop Foreign Key :
+        Example :
+            company=# alter table department drop constraint department_emp_id_fkey ;
+            ALTER TABLE
+            company=# \d department
+                        Table "public.department"
+            Column  |  Type   | Collation | Nullable | Default 
+            ---------+---------+-----------+----------+---------
+            dept_id | integer |           | not null | 
+            emp_id  | integer |           |          | 
+            Indexes:
+                "department_pkey" PRIMARY KEY, btree (dept_id)
