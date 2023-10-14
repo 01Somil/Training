@@ -441,3 +441,30 @@
         4 | A     |  10000
         (3 rows)
 
+** POSTGRESQL VIEWS **
+
+30. Views : A view can contain all rows of a table or selected rows from one or more tables. A view can be created from one or many tables, which depends on the written PostgreSQL query to create a view.
+    Syntax : create view <view-name> as select <column-list> from <table-name>;
+
+    Example : 
+        company=# create view company_view as select id,name from company;
+        CREATE VIEW
+
+        a) \dv : To list all the views.
+            Example :
+                company=# \dv
+                            List of relations
+                Schema |     Name     | Type |  Owner   
+                --------+--------------+------+----------
+                public | company_view | view | postgres
+                (1 row)
+
+        b) drop view : To drop a view from database;
+            Example :
+                company=# drop view company_view;
+                DROP VIEW
+        
+        c) temp view : To create temporary view.
+            Example :
+                company=# create temporary view company_view as select id,name from company;
+                CREATE VIEW
