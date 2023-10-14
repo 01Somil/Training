@@ -532,3 +532,115 @@
             emp_id  | integer |           |          | 
             Indexes:
                 "department_pkey" PRIMARY KEY, btree (dept_id)
+
+** JOINS IN POSTGRESQL **
+
+36. Inner Join : The PostgreSQL Inner Join is used to return only those records from the tables, which are equivalent to the defined condition and hides other rows and columns. In PostgreSQL, it as a default Join, therefore it is not compulsory to use the Inner Join keyword with the query.
+    Syntax : select <column-list> from <table1> inner join <table2> on 
+            table1.column_name=table2.column_name;
+    
+    Example :
+        company=# select emp_fname,emp_lname,location,dept_name from employee inner join department on employee.emp_id=department.emp_id;
+        emp_fname | emp_lname |  location   |    dept_name    
+        -----------+-----------+-------------+-----------------
+        John      | Smith     | New York    | ACCOUNTING
+        Mia       | Clark     | Florida     | SALES
+        Noah      | Rodriguez | Chicago     | RESEARCH
+        Ava       | Gracia    | Houston     | OPERATIONS
+        James     | Luther    | Los Angeles | HUMAN RESOURCES
+ 
+ 37. Left Join or Left Outer Join : The PostgreSQL LEFT JOIN or Left Outer Join is used to return all rows from the left table and rows from the other table where the join condition is fulfilled defined in the ON condition. And if there are no corresponding records found from the right table, it will return null.
+    Syntax : select <column-list> from <table1> left join <table2> on 
+            table1.column_name=table2.column_name;
+    
+    Example : 
+        company=# select employee.emp_id,emp_fname,emp_lname,dept_name,location from employee left join department on employee.emp_id=department.emp_id;
+        emp_id | emp_fname | emp_lname  |    dept_name    |  location   
+        --------+-----------+------------+-----------------+-------------
+            1 | John      | Smith      | ACCOUNTING      | New York
+            2 | Mia       | Clark      | SALES           | Florida
+            3 | Noah      | Rodriguez  | RESEARCH        | Chicago
+            4 | Ava       | Gracia     | OPERATIONS      | Houston
+            5 | James     | Luther     | HUMAN RESOURCES | Los Angeles
+            6 | Paul      | Williamson |                 | Delhi
+            7 | James     | Smith      |                 | Mumbai
+        (7 rows)
+
+38. Right Join or Right Outer Join : The PostgreSQL Right JOIN or Right Outer Join is used to return all rows from the right table, and rows from the other table where the join condition is fulfilled defined in the ON condition. And if there are no corresponding records found from the Left table, it will return null values.
+    Syntax : select <column-list> from <table1> right join <table2> on 
+            table1.column_name=table2.column_name;
+    
+    Example :
+        company=# select employee.emp_id,emp_fname,emp_lname,dept_name,location from employee right join department on employee.emp_id=department.emp_id;
+        emp_id | emp_fname | emp_lname |    dept_name    |  location   
+        --------+-----------+-----------+-----------------+-------------
+            1 | John      | Smith     | ACCOUNTING      | New York
+            2 | Mia       | Clark     | SALES           | Florida
+            3 | Noah      | Rodriguez | RESEARCH        | Chicago
+            4 | Ava       | Gracia    | OPERATIONS      | Houston
+            5 | James     | Luther    | HUMAN RESOURCES | Los Angeles
+                |           |           | Finance         | 
+                |           |           | HR              | 
+        (7 rows)
+
+39. Full Join or Full Outer Join : The PostgreSQL Full Join or Full Outer Join is used to return all records when there is a match in the left table or right table records. 
+    Syntax : select <column-list> from <table1> full join <table2> on 
+            table1.column_name=table2.column_name;
+
+    Example :
+        company=# select employee.emp_id,emp_fname,emp_lname,dept_name,location from employee full join department on employee.emp_id=department.emp_id;
+        emp_id | emp_fname | emp_lname |    dept_name    |  location   
+        --------+-----------+-----------+-----------------+-------------
+            1 | John      | Smith     | ACCOUNTING      | New York
+            2 | Mia       | Clark     | SALES           | Florida
+            3 | Noah      | Rodriguez | RESEARCH        | Chicago
+            4 | Ava       | Gracia    | OPERATIONS      | Houston
+            5 | James     | Luther    | HUMAN RESOURCES | Los Angeles
+                |           |           | Finance         | 
+                |           |           | HR              | 
+        (7 rows)
+
+40. Cross Join : The PostgreSQL Cross Join is used to combine all possibilities of the multiple tables and returns the output, which contain each row from all the selected tables.
+    Syntax : select <column-list> from <table1> cross join <table2>;
+
+    Example :
+        company=# select * from employee cross join department;
+        emp_id | emp_fname | emp_lname |  location   | emp_id | dept_id |    dept_name    
+        --------+-----------+-----------+-------------+--------+---------+-----------------
+            1 | John      | Smith     | New York    |      1 |       1 | ACCOUNTING
+            2 | Mia       | Clark     | Florida     |      1 |       1 | ACCOUNTING
+            3 | Noah      | Rodriguez | Chicago     |      1 |       1 | ACCOUNTING
+            4 | Ava       | Gracia    | Houston     |      1 |       1 | ACCOUNTING
+            5 | James     | Luther    | Los Angeles |      1 |       1 | ACCOUNTING
+            1 | John      | Smith     | New York    |      2 |       2 | SALES
+            2 | Mia       | Clark     | Florida     |      2 |       2 | SALES
+            3 | Noah      | Rodriguez | Chicago     |      2 |       2 | SALES
+            4 | Ava       | Gracia    | Houston     |      2 |       2 | SALES
+            5 | James     | Luther    | Los Angeles |      2 |       2 | SALES
+            1 | John      | Smith     | New York    |      3 |       3 | RESEARCH
+            2 | Mia       | Clark     | Florida     |      3 |       3 | RESEARCH
+            3 | Noah      | Rodriguez | Chicago     |      3 |       3 | RESEARCH
+            4 | Ava       | Gracia    | Houston     |      3 |       3 | RESEARCH
+            5 | James     | Luther    | Los Angeles |      3 |       3 | RESEARCH
+            1 | John      | Smith     | New York    |      4 |       4 | OPERATIONS
+            2 | Mia       | Clark     | Florida     |      4 |       4 | OPERATIONS
+            3 | Noah      | Rodriguez | Chicago     |      4 |       4 | OPERATIONS
+            4 | Ava       | Gracia    | Houston     |      4 |       4 | OPERATIONS
+            5 | James     | Luther    | Los Angeles |      4 |       4 | OPERATIONS
+            1 | John      | Smith     | New York    |      5 |       5 | HUMAN RESOURCES
+            2 | Mia       | Clark     | Florida     |      5 |       5 | HUMAN RESOURCES
+            3 | Noah      | Rodriguez | Chicago     |      5 |       5 | HUMAN RESOURCES
+            4 | Ava       | Gracia    | Houston     |      5 |       5 | HUMAN RESOURCES
+            5 | James     | Luther    | Los Angeles |      5 |       5 | HUMAN RESOURCES
+            1 | John      | Smith     | New York    |      6 |       6 | Finance
+            2 | Mia       | Clark     | Florida     |      6 |       6 | Finance
+            3 | Noah      | Rodriguez | Chicago     |      6 |       6 | Finance
+            4 | Ava       | Gracia    | Houston     |      6 |       6 | Finance
+            5 | James     | Luther    | Los Angeles |      6 |       6 | Finance
+            1 | John      | Smith     | New York    |      7 |       7 | HR
+            2 | Mia       | Clark     | Florida     |      7 |       7 | HR
+            3 | Noah      | Rodriguez | Chicago     |      7 |       7 | HR
+            4 | Ava       | Gracia    | Houston     |      7 |       7 | HR
+            5 | James     | Luther    | Los Angeles |      7 |       7 | HR
+        (35 rows)
+
