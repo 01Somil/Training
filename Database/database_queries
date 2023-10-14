@@ -264,4 +264,69 @@
         Kavya
         (3 rows)
 
+18. Having clause : The having clause is used to specify a search condition for a group or an aggregate.
+    Syntax : select <column1> from <table-name> where <condition> 
+            group by<column-name1> having <condition>;
+    
+    Example:
+        company=# select name,SUM(salary) from company group by name having SUM(salary)>5000;
+        name  |  sum  
+        -------+-------
+        Paul  | 20000
+        James | 10000
+        (2 rows)
 
+19. Distinct clause : It is used to delete the matching rows or data from a table and get only the unique records.
+    Syntax : select distinct <column-list> from <table-name>;
+
+    Example : 
+        company=# select distinct name,salary from company;
+        name  | salary 
+        -------+--------
+        Paul  |  20000
+        James |   5000
+        (2 rows)
+
+20. Limit clause : It is used to get a subset of rows produced by a command.
+    Syntax : select <column-list> from <table-name> order by <column-name> [ASC|DESC]
+            LIMIT <row_count>;
+
+    Example :
+        company=# select * from company order by salary limit 3;
+        id | name  | salary 
+        ----+-------+--------
+        2 | James |   5000
+        3 | James |   5000
+        6 | C     |   8000
+        (3 rows)
+    
+    LIMIT clause with OFFSET : We can use the OFFSET clause if we want to miss out various of rows before getting the row_count rows.
+    Syntax : select <column-list> from <table-name> order by <column-name> 
+            LIMIT <row-count> OFFSET <row-to-skip>;
+    Example :
+        company=# select * from company order by salary limit 3;
+        id | name  | salary 
+        ----+-------+--------
+        2 | James |   5000
+        3 | James |   5000
+        6 | C     |   8000
+        (3 rows)
+
+21. Fetch clause : It is used to repond a portion of rows returned by a particular statement.
+    Syntax : select <column-list> from <table-name> order by <column-name>
+            fetch first <row-count> row only;
+    
+    Fetch clause with offset : 
+        Syntax : select <column-list> from <table-name> order by <column-name>
+                offset <row-to-skip> rows fetch first <row-count> row only;
+
+    Example :
+        company=# select * from company order by salary fetch first 2 row only;
+        id | name  | salary 
+        ----+-------+--------
+        2 | James |   5000
+        3 | James |   5000
+        (2 rows)
+
+
+ 
