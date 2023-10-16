@@ -873,3 +873,51 @@
     
     Note - In small data, it uses sequential scan,not the indexes, as we don't have enough data in our table for the planner to work with the index.
     Command -> SET enable_seqscan=off;
+
+53. Union : The UNION operator combines one or more SELECT commands into a single output.
+    Syntax : select <columnList1> from <table1> union
+            select <columnList2> from <table2>;
+    
+    Example :
+        company=# select * from car_list union select * from cars;
+        car_name | car_year 
+        ----------+----------
+        car3     |     2021
+        car2     |     2020
+        car1     |     2019
+        car2     |     2022
+        (4 rows)
+    
+54. Union All : The UNION operator combines one or more SELECT commands into a single output with all duplicates.
+    Syntax : select <columnList1> from <table1> union all select <columnList2> from <table2>;
+
+    Example :
+        company=# select * from car_list union all select * from cars;
+        car_name | car_year 
+        ----------+----------
+        car1     |     2019
+        car2     |     2020
+        car1     |     2019
+        car3     |     2021
+        car2     |     2022
+        (5 rows)
+
+55. Intersect : The PostgreSQL intersect operator gets the intersection of multiple datasets.
+    Syntax : select <columnList1> from <table1> intersect select <columnList2> from <table2>;
+
+    Example :
+        company=# select * from car_list intersect select * from cars;
+        car_name | car_year 
+        ----------+----------
+        car1     |     2019
+        (1 row)
+
+56. Except : The PostgreSQL EXCEPT operator retrieve the different rows from the left (first SELECT) command, which are not in the result set of the right (second SELECT) command.
+    Syntax : select <columnList1> from <table1> except select <columnList2> from <table2>;
+
+    Example :
+        company=# select * from car_list except select * from cars;
+        car_name | car_year 
+        ----------+----------
+        car2     |     2020
+        (1 row)
