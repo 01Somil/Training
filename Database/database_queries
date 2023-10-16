@@ -921,3 +921,69 @@
         ----------+----------
         car2     |     2020
         (1 row)
+
+** POSTGRESQL SCHEMA **
+
+57. Create Schema : The CREATE SCHEMA statement is used to create a new schema into the existing database.
+    Syntax : create schema <schema-name>;
+
+    Example :
+        company=# create schema schema2;
+        CREATE SCHEMA
+
+58. View Schemas : To list all the schemas present in the database.
+    Syntax : \dn
+
+    Example :
+        company=# \dn
+        List of schemas
+        Name   |  Owner   
+        ---------+----------
+        public  | postgres
+        schema1 | postgres
+        schema2 | postgres
+        (3 rows)
+
+59. Drop Schema : The drop schema command is used to delete a schema and its related objects from a database. 
+    Syntax : drop schema <schema-name> [CASCADE|RESTRICT];
+
+    Example :
+        company=# drop schema schema2;
+        DROP SCHEMA
+
+    To drop all the dependent objects related to schema, we use cascade.
+    Example :
+        company=# drop schema schema2 cascade;
+        NOTICE:  drop cascades to table schema2.table1
+        DROP SCHEMA
+
+60. Current Schema : To check the current schema i.e on which schema you are working on.
+    Syntax : select current_schema();
+    
+    Example :
+        company=# select current_schema();
+        current_schema 
+        ----------------
+        schema1
+        (1 row)
+
+61. Set Schema : To change from one schema to another.
+    Syntax : set search_path=<schema-name>;
+
+    Example :
+        company=# set search_path =schema1;
+        SET
+
+62. Alter Schema : The alter schema command will allow us to modify the schema's definition.
+    Syntax : alter schema <schema-name> rename to <new schema-name>;
+    
+    Example :
+        company=# alter schema schema1 rename to schema_new;
+        ALTER SCHEMA
+
+63. Modify Owner : This command will change the owner(role) of this schema.
+    Syntax : alter schema <schema-name> owner to <role-name>;
+
+    Example :
+        company=# alter schema schema_new owner to postgres;
+        ALTER SCHEMA
