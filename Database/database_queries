@@ -644,3 +644,160 @@
             5 | James     | Luther    | Los Angeles |      7 |       7 | HR
         (35 rows)
 
+** POSTGRESQL TRIGGERS **
+
+41. Create Trigger : It is used to create new trigger.
+    
+    Steps for creating a trigger :
+    a) Creating a new function :
+        Syntax : create or replace function <function-name>()
+                returns trigger
+                language plpgsql
+                as
+                $$  
+                begin
+                    <trigger-logic>
+                end;
+                $$;
+    b) Creating a new trigger :
+        Syntax : create trigger trigger_name
+                [before|after] [insert|delete|update]
+                on <table-name>
+                for each row
+                execute procedure <trigger-function>();
+
+    Example : 
+        company=# create or replace function first_name_changes()
+        company-# returns trigger
+        company-# language plpgsql
+        company-# as
+        company-# $$
+        company$# begin
+        company$# if new.fname<>old.fname then
+        company$# insert into client_audits(client_id ,fname,changed_on)
+        company$# values(old.id,old.fname,now());
+        company$# end if;
+        company$# return new ;
+        company$# end;
+        company$# $$;
+        CREATE FUNCTION
+        
+        company=# create trigger fname_changes
+        company-# before update on clients
+        company-# for each row 
+        company-# execute procedure first_name_changes();
+        CREATE TRIGGER
+
+        company=# INSERT INTO Clients (id,fname, lname)  
+        VALUES (1,'Mike', 'Ross'),  
+        (2,'Olivia', 'Smith');  
+        INSERT 0 2
+        company=# update clients set fname='Alivia' where id=2;
+        UPDATE 1
+
+        company=# select * from clients;
+        id | fname  | lname 
+        ----+--------+-------
+        1 | Mike   | Ross
+        2 | Alivia | Smith
+        (2 rows)
+
+        company=# select * from client_audits;
+        id | client_id | fname  |         changed_on         
+        ----+-----------+--------+----------------------------
+            |         2 | Olivia | 2023-10-16 11:23:39.751707
+        (1 row)
+
+42. Drop Trigger : To drop a trigger.
+    Syntax : drop trigger <trigger-name> on <table-name>;
+
+    Example :
+        company=# drop trigger fname_changes on clients;
+        DROP TRIGGER
+
+43. Alter Trigger :  The Alter Trigger command, which is used to rename the existing trigger.
+    Syntax : alter trigger <trigger-name>
+            on <table-name>
+            rename to <new-trigger-name>;
+
+    Example :
+        company=# alter trigger fname_changes on clients rename to fnameChanges;
+        ALTER TRIGGER
+ 
+ 44. View trigger : To view all the triggers generated on the table.
+    Syntax : \dS <table-name>
+    
+    Example :
+        company=# \dS clients;
+                            Table "public.clients"
+        Column |         Type          | Collation | Nullable | Default 
+        --------+-----------------------+-----------+----------+---------
+        id     | integer               |           | not null | 
+        fname  | character varying(20) |           |          | 
+        lname  | character varying(20) |           |          | 
+        Indexes:
+            "clients_pkey" PRIMARY KEY, btree (id)
+        Triggers:
+            fnamechanges BEFORE UPDATE ON clients FOR EACH ROW EXECUTE PROCEDURE first_name_changes()
+
+45. Disable trigger : To disable the trigger from table.
+    Syntax : alter table <table-name>
+            disable trigger <trigger-name>|<ALL>;
+    
+    Example : 
+        company=# alter table clients disable trigger after_charge_changes;
+        ALTER TABLE
+        company=# \dS clients;
+                            Table "public.clients"
+        Column |         Type          | Collation | Nullable | Default 
+        --------+-----------------------+-----------+----------+---------
+        id     | integer               |           | not null | 
+        fname  | character varying(20) |           |          | 
+        lname  | character varying(20) |           |          | 
+        charge | integer               |           |          | 
+        Indexes:
+            "clients_pkey" PRIMARY KEY, btree (id)
+        Triggers:
+            fname_changes AFTER UPDATE ON clients FOR EACH ROW EXECUTE PROCEDURE first_name_changes()
+        Disabled user triggers:
+            after_charge_changes AFTER UPDATE ON clients FOR EACH ROW EXECUTE PROCEDURE charge_changes()
+    
+    For diable all triggers :
+    Example : 
+        company=# alter table clients disable trigger all;
+        ALTER TABLE
+        company=# \dS clients;
+                            Table "public.clients"
+        Column |         Type          | Collation | Nullable | Default 
+        --------+-----------------------+-----------+----------+---------
+        id     | integer               |           | not null | 
+        fname  | character varying(20) |           |          | 
+        lname  | character varying(20) |           |          | 
+        charge | integer               |           |          | 
+        Indexes:
+            "clients_pkey" PRIMARY KEY, btree (id)
+        Disabled user triggers:
+            after_charge_changes AFTER UPDATE ON clients FOR EACH ROW EXECUTE PROCEDURE charge_changes()
+            fname_changes AFTER UPDATE ON clients FOR EACH ROW EXECUTE PROCEDURE first_name_changes()
+
+46. Enable trigger : To enable the trigger from diable mode.
+    Syntax : alter table <table-name>
+            enable trigger [trigger-name>|All];
+    
+    Example : 
+        company=# alter table clients enable trigger after_charge_changes;
+        ALTER TABLE
+        company=# \dS clients;
+                            Table "public.clients"
+        Column |         Type          | Collation | Nullable | Default 
+        --------+-----------------------+-----------+----------+---------
+        id     | integer               |           | not null | 
+        fname  | character varying(20) |           |          | 
+        lname  | character varying(20) |           |          | 
+        charge | integer               |           |          | 
+        Indexes:
+            "clients_pkey" PRIMARY KEY, btree (id)
+        Triggers:
+            after_charge_changes AFTER UPDATE ON clients FOR EACH ROW EXECUTE PROCEDURE charge_changes()
+        Disabled user triggers:
+            fname_changes AFTER UPDATE ON clients FOR EACH ROW EXECUTE PROCEDURE first_name_changes()
