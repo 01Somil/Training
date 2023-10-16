@@ -801,3 +801,75 @@
             after_charge_changes AFTER UPDATE ON clients FOR EACH ROW EXECUTE PROCEDURE charge_changes()
         Disabled user triggers:
             fname_changes AFTER UPDATE ON clients FOR EACH ROW EXECUTE PROCEDURE first_name_changes()
+
+** POSTGRESQL INDEXES ** 
+
+47. Create Index : It is used to create a new index by defining the index name and table or column name on which the index is created.
+    Syntax : create index <index-name> on <table-name>(<column-name>);
+
+    Example : 
+        company=# create index idx_company on company(name);
+        CREATE INDEX
+        company=# \d company 
+                            Table "public.company"
+        Column |         Type          | Collation | Nullable | Default 
+        --------+-----------------------+-----------+----------+---------
+        id     | integer               |           |          | 
+        name   | character varying(20) |           |          | 
+        salary | integer               |           |          | 
+        Indexes:
+            "idx_company" btree (name)
+
+        Note -> Explain command is used to see the query plan.
+        Example :
+            company=# explain select * from company where name='Paul';
+                                QUERY PLAN                       
+            --------------------------------------------------------
+            Seq Scan on company  (cost=0.00..1.07 rows=1 width=66)
+            Filter: ((name)::text = 'Paul'::text)
+            (2 rows)
+
+48. Drop Index : The Drop index command is used to remove the existing index. And if we drop an Index, it will improve the performance.
+    Syntax : drop index <index-name>;
+
+    Example : 
+        company=# drop index idx_company ;
+        DROP INDEX
+
+49. View Indexes : To list all the index of a table.
+    Syntax : \d <table-name>
+
+    Example :
+        company=# \d company 
+                            Table "public.company"
+        Column |         Type          | Collation | Nullable | Default 
+        --------+-----------------------+-----------+----------+---------
+        id     | integer               |           |          | 
+        name   | character varying(20) |           |          | 
+        salary | integer               |           |          | 
+        Indexes:
+            "idx_company" btree (name)
+
+50. Unique Index : The Unique Index is generated to get data integrity and improve performance. And it doesn't allow us to insert a duplicate value in the table.
+    Syntax : create unique index <index-name> on <table-name>(<column-name>);
+
+    Example :
+        company=# create unique index idx_company on company(id);
+        CREATE INDEX
+
+51. Index on Expression : The functional-based indexes are called the indexes on expressions.
+    Syntax : create index <index-name> on <table-name>(expression);
+
+    Example :
+        company=# create index idx_company on company (UPPER(name));
+        CREATE INDEX
+
+52. MultiColumn Index : We can create an index on a various column of a table; such indexes are known as a multi-column index.
+    Syntax : create index <index-name> on <table-name>(<column1,column2....>);
+
+    Example : 
+        company=# create index idx_company on company(id,name);
+        CREATE INDEX
+    
+    Note - In small data, it uses sequential scan,not the indexes, as we don't have enough data in our table for the planner to work with the index.
+    Command -> SET enable_seqscan=off;
