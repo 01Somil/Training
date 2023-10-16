@@ -87,3 +87,20 @@
       e) Right Outer Join : It gives the matching rows and the rows which are in the right table but not in the left table. 
 
       f) Full Outer Join : All the tuples from both participating relations are included in the resulting relation. If there are no matching tuples for both relations, their respective unmatched attributes are made NULL.
+
+17. Indexing :
+      Why is it used?
+      It is used to reduce block operations from CPU (I/O operations). It helps to achieve cost efficiency and also saves a lot of time.
+
+      Indexing is of following types :
+      a) Primary Index − Primary index is defined on an ordered data file. The data file is ordered on a key field. The key field is generally the primary key of the relation.
+
+      b) Secondary Index − Secondary index may be generated from a field which is a candidate key and has a unique value in every record, or a non-key with duplicate values.
+
+      c) Clustering Index − Clustering index is defined on an ordered data file. The data file is ordered on a non-key field.
+
+      Ordered indexing is of two types :
+      a) Dense Index -> In dense index, there is an index record for every search key value in the database. This makes searching faster but requires more space to store index records itself.
+      b) Sparse Index -> In sparse index, index records are not created for every search key. An index record here contains a search key and an actual pointer to the data on the disk.
+
+      B+ tree : A B+ tree is a balanced binary search tree that follows a multi-level index format. The leaf nodes of a B+ tree denote actual data pointers. B+ tree ensures that all leaf nodes remain at the same height, thus balanced.
