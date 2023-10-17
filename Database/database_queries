@@ -1010,3 +1010,23 @@
     Subquery with delete command example :
         company=# delete from company where age in(select age from company_bkp where age>=27);
         DELETE 2
+
+65. All operator : ALL operator is used for comparing a value with a list of values returned by a subquery. 
+
+    Example :
+        company=# select * from company_bkp where salary>all(select avg(salary) from company_bkp group by address) ;
+        id | name  | age | address | salary 
+        ----+-------+-----+---------+--------
+        5 | David |  27 | Texas   |  85000
+        (1 row)
+
+66. Any operator : The ANY operator allows you to perform a comparison between a single column value and a range of other values.
+
+    Example : 
+        company=# select * from company_bkp where id=any(select id from company_bkp where salary>20000);
+        id | name  | age |  address   | salary 
+        ----+-------+-----+------------+--------
+        4 | Mark  |  25 | Rich-Mond  |  65000
+        5 | David |  27 | Texas      |  85000
+        6 | Kim   |  22 | South-Hall |  45000
+        (3 rows)
