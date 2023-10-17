@@ -987,3 +987,26 @@
     Example :
         company=# alter schema schema_new owner to postgres;
         ALTER SCHEMA
+
+64. Subquery : A subquery is used to return data that will be used in the main query as a condition to further restrict the data to be retrieved.
+
+    Example :
+        company=# select * from company where id in (select id from company where salary>45000);
+        id | name  | age |  address  | salary 
+        ----+-------+-----+-----------+--------
+        4 | Mark  |  25 | Rich-Mond |  65000
+        5 | David |  27 | Texas     |  85000
+        (2 rows)
+
+    Subquery with insert command example :
+        company=# insert into company_bkp select * from company where id in (select id from company);
+        INSERT 0 7
+
+    Subquery with update command example :
+        company=# update company set salary =salary * 0.50 
+        company-# where age in (select age from company_bkp where age>=27);
+        UPDATE 2
+
+    Subquery with delete command example :
+        company=# delete from company where age in(select age from company_bkp where age>=27);
+        DELETE 2
