@@ -1052,3 +1052,18 @@
         6 | Kim   | INDIA
         7 | James | Houston
         (7 rows)
+
+68. || operator : This operator is used to concatenate two columns or any text.
+
+    Example : 
+        company=# select id||' '||name as fullname from company_bkp ;
+        fullname 
+        ----------
+        1 Paul
+        2 Allen
+        3 Teddy
+        4 Mark
+        5 David
+        6 Kim
+        7 James
+        (7 rows)
