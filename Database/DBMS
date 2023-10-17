@@ -148,3 +148,12 @@ Concurrency control protocols can be broadly divided into two categories −
       b)Time stamp based protocols : Lock-based protocols manage the order between the conflicting pairs among transactions at the time of execution, whereas timestamp-based protocols start working as soon as a transaction is created.
 
 21. Deadlock : Deadlock is an unwanted situation that arises in a shared resource environment, where a process indefinitely waits for a resource that is held by another process.
+
+22. Transaction Failure : A transaction has to abort when it fails to execute or when it reaches a point from where it can’t go any further. This is called transaction failure where only a few transactions or processes are hurt.
+
+      Reasons of transaction failure :
+      a) Logical errors − Where a transaction cannot complete because it has some code error or any internal error condition.
+
+      b) System errors − Where the database system itself terminates an active transaction because the DBMS is not able to execute it, or it has to stop because of some system condition.
+
+23. Log based recovery : Log is a sequence of records, which maintains the records of actions performed by a transaction. It is important that the logs are written prior to the actual modification and stored on a stable storage media, which is failsafe.
