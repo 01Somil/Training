@@ -141,3 +141,10 @@
             Kill the transaction
       
       e)Committed − If a transaction executes all its operations successfully, it is said to be committed. All its effects are now permanently established on the database system.
+
+20. Concurrency control : In a multiprogramming environment where multiple transactions can be executed simultaneously, it is highly important to control the concurrency of transactions. We have concurrency control protocols to ensure atomicity, isolation, and serializability of concurrent transactions.
+Concurrency control protocols can be broadly divided into two categories −
+      a) Lock based protocols : Database systems equipped with lock-based protocols use a mechanism by which any transaction cannot read or write data until it acquires an appropriate lock on it.
+      b)Time stamp based protocols : Lock-based protocols manage the order between the conflicting pairs among transactions at the time of execution, whereas timestamp-based protocols start working as soon as a transaction is created.
+
+21. Deadlock : Deadlock is an unwanted situation that arises in a shared resource environment, where a process indefinitely waits for a resource that is held by another process.
