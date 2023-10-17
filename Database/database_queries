@@ -1030,3 +1030,25 @@
         5 | David |  27 | Texas      |  85000
         6 | Kim   |  22 | South-Hall |  45000
         (3 rows)
+
+67. Case expression : The CASE expression goes through conditions and returns a value when the first condition is met (like an if-then-else statement).
+
+    Example :
+        company=# select id,name,
+        company-# case
+        company-# when address='California' then 'US'
+        company-# when address='South-Hall' then 'INDIA'
+        company-# else
+        company-# address
+        company-# end
+        company-# from company_bkp ;
+        id | name  |  address  
+        ----+-------+-----------
+        1 | Paul  | US
+        2 | Allen | Texas
+        3 | Teddy | Norway
+        4 | Mark  | Rich-Mond
+        5 | David | Texas
+        6 | Kim   | INDIA
+        7 | James | Houston
+        (7 rows)
