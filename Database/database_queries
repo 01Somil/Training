@@ -1109,3 +1109,11 @@
                 13
                 12
         (7 rows)
+    
+72. Age function : It is used to calculate the timespan from a given date. 
+    Example :
+        duplicate_database=# select age(current_date,dob)as age from temp;
+                age           
+        -------------------------
+        23 years 9 mons 17 days
+        (1 row)
