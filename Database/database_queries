@@ -1067,3 +1067,45 @@
         6 Kim
         7 James
         (7 rows)
+
+69. Substring Function : This function is used for selecting a part of string.
+    Example :
+        company=# select substring(name,1,3) from company;
+        substring 
+        -----------
+        Pau
+        All
+        Ted
+        Mar
+        Dav
+        Kim
+        Jam
+        (7 rows)
+    
+70. Trim Function : This function is used to remove all the trailing and leading blanks.
+    Example :
+        company=# select trim(name) from company;
+        btrim 
+        -------
+        Paul
+        Allen
+        Teddy
+        Mark
+        David
+        Kim
+        James
+        (7 rows)
+
+71. Length function : It is used to calculate the length of a string.
+    Example :   
+        company=# select length(name)+length(address) as total_length from company;
+        total_length 
+        --------------
+                14
+                10
+                11
+                13
+                10
+                13
+                12
+        (7 rows)
