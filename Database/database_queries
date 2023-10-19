@@ -1203,3 +1203,53 @@
             2023
             2023
             (4 rows)
+
+74. Self Join : PostgreSQL has a special type of join called the SELF JOIN which is used to join a table with itself. It is achieved with the help of LEFT JOIN, RIGHT JOIN or INNER JOIN using aliases.
+
+    a) With Inner Join :
+    Example : 
+        company=# select e1.first_name||' '||e1.last_name as employee,e2.first_name||' '||e2.last_name as manager from employee e1 inner join employee e2 on e1.employee_id=e2.manager_id;
+            employee      |      manager      
+        -------------------+-------------------
+        Sandeep Jain      | Abhishek  Kelenia
+        Sandeep Jain      | Harsh Aggarwal
+        Abhishek  Kelenia | Raju Kumar
+        Abhishek  Kelenia | Nikhil Aggarwal
+        Abhishek  Kelenia | Anshul Aggarwal
+        Harsh Aggarwal    | Virat Kohli
+        Harsh Aggarwal    | Rohit Sharma
+        (7 rows)
+    
+    b) With Left Join :
+    Example :
+        company=# select e1.first_name||' '||e1.last_name as employee,e2.first_name||' '||e2.last_name as manager from employee e1 left join employee e2 on e1.employee_id=e2.manager_id;
+            employee      |      manager      
+        -------------------+-------------------
+        Sandeep Jain      | Abhishek  Kelenia
+        Sandeep Jain      | Harsh Aggarwal
+        Abhishek  Kelenia | Raju Kumar
+        Abhishek  Kelenia | Nikhil Aggarwal
+        Abhishek  Kelenia | Anshul Aggarwal
+        Harsh Aggarwal    | Virat Kohli
+        Harsh Aggarwal    | Rohit Sharma
+        Nikhil Aggarwal   | 
+        Rohit Sharma      | 
+        Anshul Aggarwal   | 
+        Raju Kumar        | 
+        Virat Kohli       | 
+        (12 rows)
+
+    c) Right Join : With right join 
+    Example : 
+        company=# select e1.first_name||' '||e1.last_name as employee,e2.first_name||' '||e2.last_name as manager from employee e1 right join employee e2 on e1.employee_id=e2.manager_id;
+            employee      |      manager      
+        -------------------+-------------------
+                          | Sandeep Jain
+        Sandeep Jain      | Abhishek  Kelenia
+        Sandeep Jain      | Harsh Aggarwal
+        Abhishek  Kelenia | Raju Kumar
+        Abhishek  Kelenia | Nikhil Aggarwal
+        Abhishek  Kelenia | Anshul Aggarwal
+        Harsh Aggarwal    | Virat Kohli
+        Harsh Aggarwal    | Rohit Sharma
+        (8 rows)
