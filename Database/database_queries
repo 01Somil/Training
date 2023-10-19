@@ -1117,3 +1117,89 @@
         -------------------------
         23 years 9 mons 17 days
         (1 row)
+
+73. Date Function : It is used to extract details from date and it returns the result in integer format.
+
+    a) Year extract from date.
+    Example :
+        classroom_management=# select extract('year' from dob) as year from students;
+        year 
+        ------
+        2000
+        2001
+        2002
+        2004
+        (4 rows)
+    b) Month extract from date.
+    Example :
+        classroom_management=# select extract('month' from dob) as month from students;
+        month 
+        -------
+            1
+            1
+            1
+            1
+        (4 rows)
+    c) Day extract from date.
+    Example :
+        classroom_management=# select extract('day' from dob) as day from students ;
+        day 
+        -----
+        1
+        1
+        2
+        3
+        (4 rows)
+    d) Age from date.
+    Example :
+        classroom_management=# select (extract('year' from now())-extract('year' from dob)) as age from students;
+        age 
+        -----
+        21
+        19
+        23
+        23
+        (4 rows)
+    e) date_part function : This is another method for extracting the details from date.
+        Syntax : date_part('[year|month|day]',<timestamp>|<interval>)
+        
+        e.1) For year - To extract year from date.
+        Example :
+            classroom_management=# select date_part('year',dob) as year from students;
+            year 
+            ------
+            2002
+            2004
+            2000
+            2000
+            (4 rows)
+        e.2) For month - To extract month from date.
+        Example :
+            classroom_management=# select date_part('month',dob) as month from students;
+            month 
+            -------
+                1
+                1
+                1
+                1
+            (4 rows)
+        e.3) For day - To extract day from date.
+        Example :
+            classroom_management=# select date_part('day',dob) as day from students;
+            day 
+            -----
+            1
+            1
+            2
+            3
+            (4 rows)
+        e.4) From timestamp - To extract details from timestamp.
+        Example :
+            classroom_management=# select date_part('year',timestamp '2023-01-01') as year from students;
+            year  
+            ------
+            2023
+            2023
+            2023
+            2023
+            (4 rows)
