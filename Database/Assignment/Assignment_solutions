@@ -1,0 +1,175 @@
+** Queries in airline_flight_information database **
+
+a) Find the names of aircraft such that all pilots certified to operate them earn
+more than $80,000.
+    Sol : 
+    airline_flight_information=# select distinct  a.aname from aircraft a join certified c on a.aid=c.aid join employees e on c.eid=e.eid where e.salary>80000;
+        aname    
+    -------------
+    Airbus A350
+    Boeing 787
+    Boeing 777
+    Airbus A330
+    Boeing 747
+    (5 rows)
+
+b) For each pilot who is certified for more than three aircraft, find the eid and the
+maximum cruisingrange of the aircraft for which she or he is certified.
+    Sol : 
+    airline_flight_information=# select c.eid,max(a.cruisingrange) from certified c join aircraft a on c.aid=a.aid group by c.eid having count(*)>3;
+    eid | max  
+    -----+------
+    1 | 5200
+    (1 row)
+
+c) Find the names of pilots whose salary is less than the price of the cheapest
+route from Los Angeles to Honolulu.
+    Sol :
+    airline_flight_information=# select ename from employees where salary < (select min(price) from flights where "from"='Los Angeles' and "to"='Honolulu');
+    ename 
+    -------
+    Aarav
+    Kabir
+    Arjun
+    Dhoni
+    (4 rows)
+
+d) For all aircraft with cruisingrange over 1000 miles, find the name of the
+aircraft and the average salary of all pilots certified for this aircraft.
+    Sol :
+    airline_flight_information=# select a.aname,avg(e.salary) from aircraft a join certified c on a.aid=c.aid join employees e on c.eid=e.eid where a.cruisingrange>1000 group by a.aname;
+        aname    |        avg         
+    -------------+--------------------
+    Airbus A320 | 70000.000000000000
+    Airbus A350 | 80000.000000000000
+    Boeing 787  | 95000.000000000000
+    Boeing 737  | 77500.000000000000
+    Boeing 777  | 87500.000000000000
+    Airbus A340 | 75000.000000000000
+    (6 rows)
+
+e) Find the names of pilots certified for some Boeing aircraft.
+    Sol :
+    airline_flight_information=# select distinct e.ename from employees e join certified c on e.eid=c.eid join aircraft a on c.aid=a.aid where a.aname like 'Boeing%';
+    ename  
+    --------
+    Aarav
+    Adarsh
+    Kabir
+    Kiara
+    (4 rows)
+
+f) Find the aids of all aircraft that can be used on routes from Los Angeles to
+Chicago.
+    Sol : 
+    airline_flight_information=# select distinct a.aid from aircraft a,flights f where f."from"='Los Angeles' and f."to"='Chicago' and a.cruisingrange>=f.distance;
+    aid 
+    -----
+    5
+    6
+    2
+    7
+    1
+    8
+    9
+    3
+    (8 rows)
+
+* Insert into certified values (10,2);
+
+g) Identify the routes that can be piloted by every pilot who makes more than
+$100,000.
+    Sol :
+    airline_flight_information=# select distinct "from","to" from flights where distance<=(select a.cruisingrange from aircraft a join certified c on a.aid=c.aid join employees e on e.eid=c.eid where e.salary>100000);
+        from     |     to      
+    -------------+-------------
+    Lucknow     | Mangalore
+    Jaipur      | Kochi
+    Los Angeles | Chicago
+    Pune        | Lucknow
+    Ahmedabad   | Guwahati
+    Hyderabad   | Jaipur
+    Kolkata     | Chennai
+    Madison     | Chicago
+    Los Angeles | New York
+    Delhi       | Bangalore
+    Kochi       | Bhubaneswar
+    Mumbai      | Delhi
+    Madison     | Los Angeles
+    Chandigarh  | Ahmedabad
+    Chicago     | New York
+    (15 rows)
+
+h) Print the enames of pilots who can operate planes with cruisingrange greater
+than 3000 miles but are not certified on any Boeing aircraft.
+
+
+* insert into flights values(5018,'Chicago','New York',3500,'15:00:00','17:00:00',4250),(5019,'Madison','New York',5000,'14:00:00','17:30:00',7050);
+
+i) A customer wants to travel from Madison to New York with no more than two
+changes of flight. List the choice of departure times from Madison if the
+customer wants to arrive in New York by 6 p.m.
+    Sol :
+    airline_flight_information=# select distinct f1.departs as departure_times from flights f1 join flights f2 on f1.arrives>=f2.departs join flights f3 on f2.arrives>=f3.departs join flights f4 on f3.arrives>=f4.departs where f1.from='Madison' and f4.to='New York' and f4.arrives<='18:00:00';
+    departure_times 
+    -----------------
+    14:00:00
+    10:00:00
+    08:38:00
+    (3 rows)
+
+j) Compute the difference between the average salary of a pilot and the average
+salary of all employees (including pilots).
+    Sol :
+    airline_flight_information=# select sum(salary) - (select sum(e.salary) from employees e where e.eid not in(select distinct c.eid from certified c)) as difference from employees;
+    difference 
+    ------------
+        630000
+    (1 row)
+
+k) Print the name and salary of every nonpilot whose salary is more than the
+average salary for pilots.
+    Sol :
+    airline_flight_information=# select ename,salary from employees where eid not in(select distinct c.eid from certified c) and salary>(select avg(e.salary) from employees e where e.eid in(select distinct c.eid from certified c));
+    ename  | salary 
+    ---------+--------
+    Ronaldo |  95000
+    (1 row)
+
+l) Print the names of employees who are certified only on aircrafts with cruising
+range longer than 1000 miles.
+    Sol :
+    airline_flight_information=# select distinct e.ename from employees e join certified c on e.eid=c.eid join aircraft a on c.aid=a.aid where a.cruisingrange>1000 and e.eid not in(select distinct c.eid from certified c join employees e on e.eid=c.eid join aircraft a on c.aid=a.aid where a.cruisingrange<=1000);
+    ename  
+    --------
+    Adarsh
+    Kabir
+    Arjun
+    Messi
+    (4 rows)
+
+
+m) Print the names of employees who are certified only on aircrafts with cruising
+range longer than 1000 miles, but on at least two such aircrafts.
+    Sol :
+    airline_flight_information=# select e.ename from employees e join certified c on e.eid=c.eid join aircraft a on c.aid=a.aid where a.cruisingrange>1000 group by c.eid,e.ename having count(*)>=2;
+    ename  
+    --------
+    Aarav
+    Adarsh
+    Kabir
+    Arjun
+    (4 rows)
+
+n) Print the names of employees who are certified only on aircrafts with cruising
+range longer than 1000 miles and who are certified on some Boeing aircraft.
+    Sol : 
+    airline_flight_information=# select distinct e.ename from employees e join certified c on e.eid=c.eid join aircraft a on c.aid=a.aid where a.cruisingrange>1000 and a.aname like 'Boeing%';
+    ename  
+    --------
+    Aarav
+    Adarsh
+    Kabir
+    (3 rows)
+
+ 
