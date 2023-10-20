@@ -1253,3 +1253,17 @@
         Harsh Aggarwal    | Virat Kohli
         Harsh Aggarwal    | Rohit Sharma
         (8 rows)
+
+75. Date_Part function for time : It is used to extract the hours,minutes and seconds from givent time.
+    Syntax : date_part('[hour|minutes|seconds]',time)
+
+    Example :
+    airline_flight_information=# select date_part('hour',arrives) as hour from flights limit 5;
+    hour 
+    -----------
+            14
+            19
+            12
+            18
+            11
+    (5 rows)
