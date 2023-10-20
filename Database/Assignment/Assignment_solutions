@@ -16,10 +16,10 @@ more than $80,000.
 b) For each pilot who is certified for more than three aircraft, find the eid and the
 maximum cruisingrange of the aircraft for which she or he is certified.
     Sol : 
-    airline_flight_information=# select c.eid,max(a.cruisingrange) from certified c join aircraft a on c.aid=a.aid group by c.eid having count(*)>3;
-    eid | max  
-    -----+------
-    1 | 5200
+    airline_flight_information=# select c.eid,max(a.cruisingrange) as maximum_cruisingrange from certified c join aircraft a on c.aid=a.aid group by c.eid having count(*)>3;
+    eid | maximum_cruisingrange 
+    -----+-----------------------
+    1 |                  5200
     (1 row)
 
 c) Find the names of pilots whose salary is less than the price of the cheapest
@@ -102,6 +102,12 @@ $100,000.
 
 h) Print the enames of pilots who can operate planes with cruisingrange greater
 than 3000 miles but are not certified on any Boeing aircraft.
+    Sol :
+    airline_flight_information=# select distinct e.ename from employees e join certified c on e.eid=c.eid join aircraft a on c.aid=a.aid where a.cruisingrange>3000 and e.eid not in(select distinct e.eid from employees e join certified c on e.eid=c.eid join aircraft a on c.aid=a.aid where a.aname like 'Boeing%');
+    ename 
+    -------
+    Arjun
+    (1 row)
 
 
 * insert into flights values(5018,'Chicago','New York',3500,'15:00:00','17:00:00',4250),(5019,'Madison','New York',5000,'14:00:00','17:30:00',7050);
