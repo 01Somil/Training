@@ -219,10 +219,10 @@ j) Compute the difference between the average salary of a pilot and the average
 salary of all employees (including pilots).
 
     Sol :
-    airline_flight_information=# select sum(salary) - (select sum(e.salary) from employees e where e.eid not in(select distinct c.eid from certified c)) as difference from employees;
-    difference 
-    ------------
-        630000
+    airline_flight_information=# select avg(salary)-(select avg(salary) from employees e where eid in(select distinct c.eid from certified c)) as difference from employees;
+    difference   
+    ----------------
+    0.000000000000
     (1 row)
 
 k) Print the name and salary of every nonpilot whose salary is more than the
