@@ -1,0 +1,17 @@
+Ruby is a dynamic, open source, object oriented and reflective programming language. It is fully object oriented programming language. Everything is an object in Ruby.
+
+** Installation of Ruby in Ubuntu **
+
+1. Open the terminal and use the following command :
+    sudo apt install ruby-full  
+2. If the terminal asks for the password, type it and press enter.
+3. If asks for additional disk space [yes/no] press y and hit enter.
+4. After installation, check ruby version through ruby -v.
+5. Installation is completed.
+
+** Creation of file and run ruby file **
+
+1. Create a ruby file with .rb extension. 
+2. Run the file through this command :
+    ruby <file-name>.rb
+
