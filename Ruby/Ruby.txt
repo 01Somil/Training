@@ -73,3 +73,80 @@ Data types represents a type of data such as text, string, numbers, etc. There a
     d) Hashes
     e) Arrays
     f) Booleans
+
+** Ruby Control Statements **
+
+1. If-Else Statements : The Ruby if else statement is used to test condition. There are various types of if statement in Ruby.
+
+    a) if statement : 
+        Syntax: if <condition>
+                    --code--
+                end
+
+    b) if-else statement : 
+        Syntax : if(condition)  
+                //code if condition is true  
+                else  
+                //code if condition is false  
+                end  
+
+    c) if-else-if (elsif) statement :
+        Syntax : if(condition1)  
+                //code to be executed if condition1is true  
+                elsif (condition2)  
+                //code to be executed if condition2 is true  
+                else (condition3)  
+                //code to be executed if condition3 is true  
+                end  
+    
+    d) ternay (shortened if statement) statement :
+        Syntax : test-expression ? if-true-expression : if-false-expression  
+    
+2. Case Statements : The case statement matches one statement with multiple conditions just like a switch statement in other languages.
+    Syntax : case <expression>
+            when <expression1>
+                code...
+            ....
+            else
+                code...
+            end
+
+3. For Loop : Ruby for loop iterates over a specific range of numbers. Hence, for loop is used if a program has fixed number of iterations.
+
+    Syntax : for <variable> in <expression> do
+                code
+             end
+
+4. While loop :  While loop is used to iterate a program several times. If the number of iterations is not fixed for a program, while loop is used.
+    Syntax : while <condition>
+                code
+             end
+
+5. Do-while loop : Do while loop iterates a part of program several times. It is quite similar to a while loop with the only difference that loop will execute at least once.
+    Syntax : loop do 
+                --code--
+             if <expression>
+                break
+             end 
+            
+6. Until Loop : The Ruby until loop runs until the given condition evaluates to true. It exits the loop when condition becomes true. It is just opposite of the while loop which runs until the given condition evaluates to false.           
+    Syntax : until <condition>
+             --code--
+             end
+    
+7. Break statement : The Ruby break statement is used to terminate a loop.
+
+8. Next Statement : The Ruby next statement is used to skip loop's next iteration. 
+
+9. Comments : Ruby comments are non executable lines in a program. 
+    a) Single line comment : It is defined by '#' character.
+    b) Multi-Line comment : It is used to comments multiple lines at once.
+        Syntax :
+        =begin
+            --code--
+        =end
+
+10. Redo Statement : It is used to repeat the current iteration of the loop. The redo statement is executed without evaluating the loop's condition.
+The redo statement is used inside a loop.
+
+11. Retry Statement : Ruby retry statement is used to repeat the whole loop iteration from the start. The retry statement is used inside a loop.
