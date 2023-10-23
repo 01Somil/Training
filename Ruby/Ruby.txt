@@ -150,3 +150,132 @@ Data types represents a type of data such as text, string, numbers, etc. There a
 The redo statement is used inside a loop.
 
 11. Retry Statement : Ruby retry statement is used to repeat the whole loop iteration from the start. The retry statement is used inside a loop.
+
+** Ruby Core **
+
+1. Ruby Objects : Objects in Ruby are created by calling new method of the class. It is a unique type of method and predefined in the Ruby library.
+Ruby objects are instances of the class.
+    Syntax : <object-name>=<class-name>.new
+
+2. Ruby Classes : Each Ruby class is an instance of class Class. Classes in Ruby are first-class objects.
+    Syntax : class <class-name>
+                --code--
+             end
+
+3. Methods : It prevent us from writing the same code in a program again and again. It is a set of expression that returns a value.
+    Syntax : def <method-name>
+                --code--
+             end
+    Methods Withs parameter :
+    Syntax : def <method-name>(parameters)
+                --code--
+             end
+
+4. Blocks : Ruby code blocks are called closures in other programming languages. It consist of a group of codes which is always enclosed with braces or written between do..end. 
+    A block is written in two ways,
+
+    a) Multi-line between do and end (multi-line blocks are niot inline) : 
+        Example : [10,20,30].each do |n|
+                    puts n
+                  end
+    b) Inline between braces {} : 
+        Example : [10, 20, 30].each {|n| puts n}  
+    
+    c) The yield statement is used to call a block within a method with a value.
+        Syntax : def <method-name>
+                    --code--
+                    yield
+                 end
+                <method-name> {-- code --}
+    
+    d) Passing parameters with yield.
+        Syntax : def <method-name>
+                    yield <parameter>
+                    --code--
+                 end
+                <method-name> {|i| --code--}
+    
+    e) BEGIN and END block : It is used to declare that file is being loaded and file has been loaded respectively.
+        Syntax : BEGIN{
+            --code--
+        }
+        END{
+            --code--
+        }
+        --code--
+    
+    f) Ampersand block : The &block is a way to pass a reference (instead of a local variable) to the block to a method.
+        Syntax : def <method-name>(&b)
+                    --code--
+                    b.call
+                 end
+                <method-name> {--code--}
+
+5. Modules : Ruby module is a collection of methods and constants. A module method may be instance method or module method. Module name should start with a capital letter.
+    Syntax :
+    module <Module-name>
+        --code--
+    end
+
+    Modules basically serve two purposes:
+
+    a) They act as namespace. They prevent the name clashes.
+    b) They allow the mixin facility to share functionality between classes.
+
+    Mixins : Ruby doesn't support multiple inheritance. Modules eliminate the need of multiple inheritance using mixin in Ruby.When you include a module within a class, the class will have access to the methods of the module.
+
+6. Strings : Ruby string object holds and manipulates an arbitary sequence of bytes, typically representing characters. They are created using String::new or as literals.
+
+    a) Quotes : Ruby string literals are enclosed within single and double quotes.
+        Example : puts "some message"
+    b) Accessing string elements : With the help of [] brackets. -1 index is for last character.
+    c) Multiline string : Strings can be written in multiple lines.
+        c.1) String can be written within double quotes.
+        c.2) The % character is used and string is enclosed within / character.
+        c.3) In heredoc syntax, we use << and string is enclosed within word STRING.
+    d) Variable Interpolation : It is replacing variables with values inside string literals.
+        Example : str="John"
+                  puts "Hello ,#{str}"
+    e) Concatenate Strings : To join more than one strings.
+        There are four ways to concatenate Ruby strings into single string:
+        e.1) Using plus sign in between strings.
+        e.2) Using a single space in between strings.
+        e.3) Using << sign in between strings.
+        e.4) Using concat method in between strings.
+    f) Freezing : In Ruby, by default strings are not immutable. To make them immutable, freeze method can be used. Immutable is defined as an existing string can't be modified, only a new string can be created out of them.
+        Syntax : string-name.freeze
+    g) Comparing Strings : Strings can be compared with three operators.
+        g.1) With == operator : Returns true or false
+        g.2) With eql? Operator : Returns true or false
+        g.3) With casecmp method : Returns 0 if matched or 1 if not matched
+
+7. Arrays : Ruby arrays are ordered collections of objects. They can hold objects like integer, number, hash, string, symbol or any other array.
+    
+    a) Creation of array : 
+        a.1) Using literal constructor []
+        a.2) Using new class method.
+        Syntax : arr=Array.new
+                or arr= Array.new(size) 
+    b) length : To find the length of array.
+        Syntax : <arr-name>.length
+    c) Accessing array elements : using [] method
+        Syntax : array-name[index];
+    d) at method : To access a particular element, at method can also be used.
+        Syntax : <arr-name>.at(index)
+    e) fetch method : The fetch method is used to provide a default value error for out of array range indices.
+        Syntax : <arr-name>.fetch(numbers,"default value")
+    f) first and last method : The first and last method will return first and last element of an array respectively.
+    g) take method : The take method returns the first n elements of an array.
+    h) drop method : The drop method is the opposite of take method. It returns elements after n elements have been dropped.
+    i) Adding items in array : 
+        i.1) push or <<  -> at the end of an array
+        i.2) unshift  -> front of array
+        i.3) insert -> at particular index 
+            Syntax : <arr-name>.insert(index,value)
+    j) Remove items from array : To remove elements from an array.
+        j.1) pop -> from end of an array
+        shift   -> From start of an array
+        delete  -> Delete from anywhere in an array.
+            Syntax : <arr-name>.delete(value)
+        uniq -> To remove duplicates from an array.
+            Syntax : <arr-name>.uniq
