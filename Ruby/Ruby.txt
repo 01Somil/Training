@@ -274,8 +274,13 @@ Ruby objects are instances of the class.
             Syntax : <arr-name>.insert(index,value)
     j) Remove items from array : To remove elements from an array.
         j.1) pop -> from end of an array
-        shift   -> From start of an array
-        delete  -> Delete from anywhere in an array.
+        j.2) shift   -> From start of an array
+        j.3) delete  -> Delete from anywhere in an array.
             Syntax : <arr-name>.delete(value)
-        uniq -> To remove duplicates from an array.
+        j.4) uniq -> To remove duplicates from an array.
             Syntax : <arr-name>.uniq
+
+8. Hashes : A hash is a collection of unique keys and their values. If a hash is accessed with a key that does not exist, the method will return nil.
+    Syntax : <hash-name>={key1=>value1 , key2=>value2, ...}
+                                or
+            <hash-name>={key1:value1 , key2:value2 , ...}
