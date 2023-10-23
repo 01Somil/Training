@@ -15,3 +15,61 @@ Ruby is a dynamic, open source, object oriented and reflective programming langu
 2. Run the file through this command :
     ruby <file-name>.rb
 
+** RUBY Operators **
+
+Ruby has a built-in modern set of operators. Operators are a symbol which is used to perform different operations. For example, +, -, /, *, etc.
+
+    Types of operators :
+    a) Unary operator : Unary operators expect a single operand to run on.
+    Example : !-> Boolean Not , ~ -> Bitwise Complement , + -> Unary Plus.
+
+    b) Arithmetic operator : Arithmetic operators take numerical values as operands and return them in a single value.
+    Example : +,-,/,*,** ,%
+    c) Bitwise operator : Bitwise operators work on bits operands.
+    Example : & , | , << ,>> ,^, ~
+    d) Logical operator : Logical operators work on bits operands.
+    Example : &&, || 
+    e) Ternary operator : Ternary operators first check whether given conditions are true or false, then execute the condition.
+    Example : ?: (Conditional Expression)
+    f) Assignment operator : Assignment operator assign a value to the operands.
+    Example : =, +=, -= , *= , /= , %= , **=
+    g) Comparison operator : Comparison operators compare two operands.
+    Example : == , ===, != ,> ,<, >=, <= , <=> , .eql? , equal? 
+
+    <=> : Combined comparison operator. Returns 0 if first operand equals second, 1 if first operand is greater than the second and -1 if first operand is less than the second.
+
+    .eql? : True if the receiver and argument have both the same type and equal values.
+    1 == 1.0 returns true, but 1.eql?(1.0) is false.
+
+    equal? : True if the receiver and argument have the same object id.
+    if aObj is duplicate of bObj then aObj == bObj is true, a.equal?bObj is false but a.equal?aObj is true.
+
+    h) Range operator : Comparison operators compare two operands.
+    Example : .. -> Range is inclusive of the last term
+              ... -> Range is exclusive of the last term
+
+** RUBY Variables **
+
+Ruby variables are locations which hold data to be used in the programs. 
+    
+    There are four types of variables in Ruby:
+    a) Local variables : A local variable name starts with a lowercase letter or underscore (_). It is only accessible or have its scope within the block of its initialization. Once the code block completes, variable has no scope.
+
+    b) Class variables : A class variable name starts with @@ sign. They need to be initialized before use. A class variable belongs to the whole class and can be accessible from anywhere inside the class. If the value will be changed at one instance, it will be changed at every instance.
+
+    c) Instance variables : An instance variable name starts with a @ sign. It belongs to one instance of the class and can be accessed from any instance of the class within a method. They only have limited access to a particular instance of a class.
+    They don't need to be initialize. An uninitialized instance variable will have a nil value.
+    
+    d) Global variables : A global variable name starts with a $ sign. Its scope is globally, means it can be accessed from any where in a program.
+    An uninitialized global variable will have a nil value.
+
+** Ruby Data Types **
+
+Data types represents a type of data such as text, string, numbers, etc. There are different data types in Ruby:
+
+    a) Numbers
+    b) Strings
+    c) Symbols
+    d) Hashes
+    e) Arrays
+    f) Booleans
