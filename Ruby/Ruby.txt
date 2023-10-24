@@ -366,3 +366,33 @@ Ruby objects are instances of the class.
     C.2) Delete : Syntax : File.delete("filename.txt")  
 
     D) Writing in a file : You can write content into a file. File needs to be opened in write mode for this method.
+
+13. Directories : Class Dir has directory streams as objects which represents directories in underlying file system. Directories are handled with Dir class.
+    
+    a) Creating a directory : To create a directory mkdir command is used. You can give permission to a directory if you want (optional).
+        Syntax: Dir.mkdir "directory-name",permission
+    b) Checking directory : To check whether a directory exists or not exist? Method is used.
+        Syntax : Dir.exist?"directory-name"
+    c) Current working directory : To know the current working directory pwd method is used.
+        Syntax : Dir.pwd
+    d) Remove directory : To remove a directory, rmdir, unlink or delete methods are used. They perform same function for a Ruby directory.
+        Syntax : Dir.rmdir "directory-name"
+
+14. Exceptions : In a Ruby program, when something goes wrong, it throws an exceptional behavior. By default Ruby program terminates on throwing an exception.
+
+15. OOPS Concept : Ruby is a true object oriented language which can be embedded into Hypertext Markup Language. Everything in Ruby is an object. OOPs is a programming concept that uses objects and their interactions to design applications and computer programs. There are four basic concepts in OOPS :
+
+    a) Encapsulation: It hides the implementation details of a class from other objects due to which a class is unavailable to the rest of the code. Its main purpose is to protect data from data manipulation.
+
+    b) Polymorphism: It is the ability to represent an operator or function in different ways for different data input.
+
+    c) Inheritance: It creates new classes from pre defined classes. New class inherit behaviors of its parent class which is referred as superclass. In this way, pre defined classes can be made more reusable and useful.
+
+    d) Abstraction: It hides the complexity of a class by modelling classes appropriate to the problem.
+
+16. Constructor : A constructor is automatically called when an object is created. They do not return any values. In Ruby, they are called initialize.
+    Syntax : class <ClassName>
+                def initialize
+                    --code--
+                end
+             end   
