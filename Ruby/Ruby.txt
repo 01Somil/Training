@@ -35,14 +35,118 @@ Ruby has a built-in modern set of operators. Operators are a symbol which is use
 
     b) Arithmetic operator : Arithmetic operators take numerical values as operands and return them in a single value.
     Example : +,-,/,*,** ,%
+        b.1) Addition : Adds values on either side of the operator.
+        Example : 
+            3.2.2 :010 > a=10
+            => 10 
+            3.2.2 :011 > b=20
+            => 20 
+            3.2.2 :012 > a+b
+            => 30 
+        b.2) Substraction : Subtracts right hand operand from left hand operand.
+        Example :
+            3.2.2 :013 > a=20
+            => 20 
+            3.2.2 :014 > b=10
+            => 10 
+            3.2.2 :015 > a-b
+            => 10 
+        b.3) Multiplication : Multiplies values on either side of the operator.
+        Example :
+            3.2.2 :017 > a=20
+            => 20 
+            3.2.2 :018 > b=30
+            => 30 
+            3.2.2 :019 > puts a*b
+            => 600
+        b.4) Division : Divides left hand operand by right hand operand.
+        Example :
+            3.2.2 :020 > a=20
+            => 20 
+            3.2.2 :021 > b=10
+            => 10 
+            3.2.2 :022 > a/b
+            => 2 
+        b.5) Modulus : Divides left hand operand by right hand operand and returns remainder.
+        Example :
+            3.2.2 :023 > a=5
+            => 5 
+            3.2.2 :024 > b=4
+            => 4 
+            3.2.2 :025 > a%b
+            => 1 
+        b.6) Exponent : Performs exponential (power) calculation on operators.
+        Example : 
+            3.2.2 :026 > a=2
+            => 2 
+            3.2.2 :027 > b=5
+            => 5 
+            3.2.2 :028 > a**b
+            => 32 
+
     c) Bitwise operator : Bitwise operators work on bits operands.
     Example : & , | , << ,>> ,^, ~
+
+        c.1) & operator : Binary AND Operator copies a bit to the result if it exists in both operands.
+        Example : 
+            3.2.2 :029 > a=10
+            => 10 
+            3.2.2 :030 > b=15
+            => 15 
+            3.2.2 :031 > a&b
+            => 10 
+        c.2) | operator : Binary OR Operator copies a bit if it exists in either operand.
+        Example : 
+            3.2.2 :032 > a|b
+            => 15 
+        c.3) ^ operator: Binary XOR Operator copies the bit if it is set in one operand but not both.
+        Example :
+            3.2.2 :033 > a^b
+            => 5 
+        c.4) ~ operator : 	Binary Ones Complement Operator is unary and has the effect of 'flipping' bits.
+        Example :
+            3.2.2 :035 > ~a
+             => -11 
+        c.5) << operator : Binary Left Shift Operator. The left operands value is moved left by  the number of bits specified by the right operand.
+        Example :
+            3.2.2 :036 > a<<2
+            => 40 
+        c.6) >> operator : Binary Right Shift Operator. The left operands value is moved right by the number of bits specified by the right operand.
+        Example :
+            3.2.2 :037 > a>>2
+             => 2 
+
     d) Logical operator : Logical operators work on bits operands.
     Example : &&, || 
+        d.1) && / AND operator : Called Logical AND operator. If both the operands are true, then the condition becomes true.
+        Example :
+            3.2.2 :044 > a=30
+            => 30 
+            3.2.2 :045 > b=40
+            => 40 
+            3.2.2 :046 > a==30 && b==40
+            => true 
+        d.2) || / OR operator : Called Logical OR Operator. If any of the two operands are non zero, then the condition becomes true.
+        Example :
+            3.2.2 :047 > a==30 || b==50
+            => true 
+        d.3) ! / not operator : Called Logical NOT Operator. Use to reverses the logical state of its operand. If a condition is true, then Logical NOT operator will make false.
+        Example :
+            3.2.2 :048 > !a==30
+            => false
+        
     e) Ternary operator : Ternary operators first check whether given conditions are true or false, then execute the condition.
     Example : ?: (Conditional Expression)
+        3.2.2 :049 > a=20
+        => 20 
+        3.2.2 :050 > b=40
+        => 40 
+        3.2.2 :051 > a==20?'Value of a is 20':'Value of a is not 20'
+        => "Value of a is 20" 
+
     f) Assignment operator : Assignment operator assign a value to the operands.
     Example : =, +=, -= , *= , /= , %= , **=
+
     g) Comparison operator : Comparison operators compare two operands.
     Example : == , ===, != ,> ,<, >=, <= , <=> , .eql? , equal? 
 
@@ -53,6 +157,51 @@ Ruby has a built-in modern set of operators. Operators are a symbol which is use
 
     equal? : True if the receiver and argument have the same object id.
     if aObj is duplicate of bObj then aObj == bObj is true, a.equal?bObj is false but a.equal?aObj is true.
+
+        g.1) == operator : Checks if the value of two operands are equal or not, if yes then condition becomes true.
+        Example :
+            3.2.2 :052 > a=50
+            => 50 
+            3.2.2 :053 > b=100
+            => 100 
+            3.2.2 :054 > a==b
+            => false  
+        g.2) != operator : Checks if the value of two operands are equal or not, if values are not equal then condition becomes true.
+        Example :
+            3.2.2 :061 > a!=b
+             => true 
+        g.3) > operator : Checks if the value of left operand is greater than the value of right operand, if yes then condition becomes true.
+        Example :
+            3.2.2 :062 > a>b
+            => false 
+        g.4) < operator : Checks if the value of left operand is less than the value of right operand, if yes then condition becomes true.
+        Example :
+            3.2.2 :063 > a<b
+            => true 
+        g.5) >= operator : Checks if the value of left operand is greater than or equal to the value of right operand, if yes then condition becomes true.
+        Example :
+            3.2.2 :064 > a>=b
+             => false 
+        g.6) <= operator : Checks if the value of left operand is less than or equal to the value of right operand, if yes then condition becomes true.
+        Example :
+            3.2.2 :065 > a<=b
+            => true 
+        g.7) <=> operator : Combined comparison operator. Returns 0 if first operand equals second, 1 if first operand is greater than the second and -1 if first operand is less than the second.
+        Example : 
+            3.2.2 :066 > a<=>b
+            => -1 
+        g.8) === operator : Used to test equality within a when clause of a case statement.
+        Example : 
+            3.2.2 :067 > a===b
+            => false 
+        g.9) .eql? operator : True if the receiver and argument have both the same type and equal values.
+        Example :
+            3.2.2 :068 > a.eql?b
+            => false 
+        g.10) equal? : True if the receiver and argument have the same object id.
+        Example :
+            3.2.2 :069 > a.equal?b
+             => false 
 
     h) Range operator : Comparison operators compare two operands.
     Example : .. -> Range is inclusive of the last term
