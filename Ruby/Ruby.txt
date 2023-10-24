@@ -1,5 +1,15 @@
 Ruby is a dynamic, open source, object oriented and reflective programming language. It is fully object oriented programming language. Everything is an object in Ruby.
 
+** Installation of RVM **
+1. Open your linux terminal and use the following commands.
+    a) gpg2 --keyserver keyserver.ubuntu.com --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
+    b) \curl -sSL https://get.rvm.io | bash -s stable
+    c) \curl -sSL https://get.rvm.io | bash -s stable --rails
+2. RVM installed.
+3. Use 'rvm list' to list all the versions of ruby in your system.
+4. Use 'rvm use <version-name>' to switch the version of ruby.
+5. Use 'rvm install' to install the versions of ruby.
+
 ** Installation of Ruby in Ubuntu **
 
 1. Open the terminal and use the following command :
@@ -356,5 +366,3 @@ Ruby objects are instances of the class.
     C.2) Delete : Syntax : File.delete("filename.txt")  
 
     D) Writing in a file : You can write content into a file. File needs to be opened in write mode for this method.
-
-
