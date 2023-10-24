@@ -284,3 +284,77 @@ Ruby objects are instances of the class.
     Syntax : <hash-name>={key1=>value1 , key2=>value2, ...}
                                 or
             <hash-name>={key1:value1 , key2:value2 , ...}
+
+9. Date and Time : Ruby has Mainly three classes related to date and time in its documentation.
+    a) Date
+    b) DateTime
+    c) Time
+
+10. Ranges : It represents a set of values with a beginning and an end. The ranges which has .. in them, run from beginning to end inclusively. The ranges which has ... in them, run exclusively the end value.
+    Ruby has a variety of ways to define ranges.
+    a) Ranges as sequences : The most natural way to define a range is in sequence. They have a start point and an end point. 
+    b) Ranges as conditions : Ranges are also defined as conditional expressions. Different conditions are defined in a set of lines. These conditions are enclosed within start statement and end statement.
+    c) Ranges as intervals : Intervals are represented by === case equality operator.
+    d) Reverse range : Ruby reverse range operator does not return any value. We can use reverse function of ruby to reverse the range.
+
+11. Iterators : Iterator is a concept used in object-oriented language. Iteration means doing one thing many times like a loop.
+    a) Each Iterator :The Ruby each iterator returns all the elements from a hash or array.
+        Syntax : (collection).each do |variable|
+                    --code--
+                 end
+    b) Times Iterator : A loop is executed specified number of times by the times iterator. Loop will start from zero till one less than specified number.
+        Syntax : x.times do |variable|
+                    --code--
+                 end
+    c) Step Iterator : A step iterator is used to iterate while skipping over a range.
+        Syntax : (controller).step(<step-count>) do |variable|
+                    --code--
+                 end
+    d) Each line operator : A each_line iterator is used to iterate over a new line in a string.
+        Syntax : <string with\n>.each_line do |variable|
+                    --code--
+                 end
+    e) Upto Iterator : An upto iterator iterates from number x to number y.
+        Syntax : x.upto(y) do |variable|
+                    --code--
+                 end
+    f) Downto iterator : An downto iterator iterates from number y to number x.
+        Syntax : y.downto(x) do |variable|
+                    --code--
+                 end
+    
+12. File I/O : Ruby I/O is a way to interact with your system. IO class is the basis for all input and output in Ruby. 
+    Common modes in I/O port
+    a) "r": read-only mode is the default mode starts at beginning of file.
+    b) "r+": read-write mode, starts at beginning of file.
+    c) "w": write-only mode, either creates a new file or truncates an existing file for writing.
+    d) "w+": read-write mode, either creates a new file or truncates an existing file for reading and writing.
+    e) "a": write-only mode, if file exists it will append the file othrwise a new file will be created for writing only.
+    f) "a+": read and write mode, if file exists it will append the file othrwise a new file will be created for writing and reading.
+
+    A) Opening a file : There are two methods to open a file in ruby.
+    A.1) File.new method : Using this method a new file can be created for reading, writing or both.
+        Syntax : f=File.new("filename.rb")
+
+    A.2) File.open method : Using this method a new file object is created. That file object is assigned to a file.
+        Syntax : File.open("filename.rb","mode") do |f|
+    
+    B) Reading a file : There are three different methods to read a file.
+    B.1) To return a single line, following syntax is used.
+        Syntax : f.gets
+                 --code--
+    B.2) To return the whole file after the current position.
+        Syntax : f.read
+                    --code--
+    B.3) To return file as an array of lines
+        Syntax : f.readlines  
+                    --code--
+    B.4) Sysread method : The sysread method is also used to read the content of a file. With the help of this method you can open a file in any mode.  
+
+    C) Renaming and Deleting of a file : Ruby files are renamed using rename method and deleted using delete mehtod.
+    C.1) Rename : Syntax : File.rename("olderName.txt", "newName.txt")  
+    C.2) Delete : Syntax : File.delete("filename.txt")  
+
+    D) Writing in a file : You can write content into a file. File needs to be opened in write mode for this method.
+
+
