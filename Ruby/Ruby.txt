@@ -853,6 +853,171 @@ Ruby objects are instances of the class.
         3.0.0 :034 > str.count('lo')
         => 3  
 
+    6.35) delete(*selectors) : Returns a copy of self with characters specified by selectors removed.
+    Example :
+        3.0.0 :042 > str
+        => "hello" 
+        3.0.0 :043 > str.delete('lo')
+        => "he" 
+
+    6.36) delete!(*selectors) : It modifies self in place. Returns self if any changes were made, nil otherwise.
+    Example :
+        3.0.0 :044 > str.delete!('lo')
+        => "he" 
+    
+    6.37) delete_prefix (prefix) : Returns a copy of self with leading substring prefix removed
+    Example :
+        3.0.0 :048 > str.delete_prefix('he')
+        => "llo" 
+
+    6.38) delete_prefix!(prefix) : Returns self if the prefix is removed, nil otherwise.
+
+    6.39) delete_suffix (suffix) : Returns a copy of self with trailing substring suffix removed
+    Example :
+        3.0.0 :049 > str
+        => "hello" 
+        3.0.0 :050 > str.delete_suffix('llo')
+        => "he" 
+    
+    6.40) delete_suffix!(suffix) : Returns self if the suffix is removed, nil otherwise.
+    Example :
+        3.0.0 :051 > str.delete_suffix!('llo')
+        => "he" 
+
+    6.41) downcase(*options) : Returns a string containing the downcased characters in self.
+    Example :
+        3.0.0 :053 > str="HeLLo"
+        => "HeLLo" 
+        3.0.0 :054 > str.downcase
+        => "hello" 
+
+    6.42) downcase! : Modify original string.
+    Example :
+        3.0.0 :055 > str
+        => "HeLLo" 
+        3.0.0 :056 > str.downcase!
+        => "hello" 
+
+    6.43) dump : Returns a printable version of self, enclosed in double-quotes, with special characters escaped, and with non-printing characters replaced by hexadecimal notation.
+    Example :
+        3.0.0 :057 > str="hello\n "
+        => "hello\n " 
+        3.0.0 :058 > str.dump
+        => "\"hello\\n \"" 
+
+    6.44) each_byte {|byte| ...} : Calls the given block with each successive byte from self; returns self.
+    Example :
+        3.0.0 :061 > str.each_byte {|byte| print byte , ' '}
+        104 101 108 108 111  => "hello" 
+
+    6.45) each_char : Calls the given block with each successive character from self; returns self.
+    Example :
+        3.0.0 :062 > str.each_char {|c| print c,' '}
+        h e l l o  => "hello" 
+
+    6.46) each_codepoint : Calls the given block with each successive codepoint from self; each codepoint is the integer value for a character; returns self.
+    Example :
+        3.0.0 :063 > str.each_codepoint{|c| print c,' '}
+        104 101 108 108 111  => "hello" 
+
+    6.47) empty? : Returns true if the length of self is zero, false otherwise.
+    Example : 
+        3.0.0 :065 > str.empty?
+        => false
+
+    6.48) encoding : Returns the Encoding object that represents the encoding of obj.
+    Example :
+        3.0.0 :070 > str.encoding
+         => #<Encoding:UTF-8> 
+        
+    6.49) end_with?(*strings) : Returns whether self ends with any of the given strings
+    Example :
+        3.0.0 :072 > str.end_with?('ello')
+         => false 
+
+    6.50) eql? : Returns true if object has the same length and content; as self; false otherwise.
+    Example :
+        3.0.0 :073 > str="hello"
+        => "hello" 
+        3.0.0 :074 > str.eql?("Hello")
+        => false 
+    
+    6.51) force_encoding (encoding) : Changes the encoding of self to encoding, which may be a string encoding name or an Encoding object; returns self.
+    Example : 
+        3.0.0 :075 > str.force_encoding('ascii')
+        => "hello" 
+        3.0.0 :076 > str.encoding
+        => #<Encoding:US-ASCII> 
+
+    6.52) freeze : To make the string immutable.
+    Example :
+        3.0.0 :080 > str.freeze
+        => "hello" 
+        3.0.0 :081 > str[0]='l'
+        Traceback (most recent call last):
+                5: from /home/beryl/.rvm/rubies/ruby-3.0.0/bin/irb:23:in `<main>'
+                4: from /home/beryl/.rvm/rubies/ruby-3.0.0/bin/irb:23:in `load'
+                3: from /home/beryl/.rvm/rubies/ruby-3.0.0/lib/ruby/gems/3.0.0/gems/irb-1.3.0/exe/irb:11:in `<top (required)>'
+                1: from (irb):81:in `[]='
+
+    6.53) getbyte(index) : Returns the byte at zero-based index as an integer, or nil if index is out of range
+    Example :
+        3.0.0 :003 > str="Hello"
+        => "Hello" 
+        3.0.0 :004 > str.getbyte(1)
+        => 101 
+    
+    6.54) hash : Returns the integer hash value for self. The value is based on the length, content and encoding of self
+    Example :
+        3.0.0 :006 > str.hash
+        => -902046462397498627 
+    
+    6.55) hex : Interprets the leading substring of self as a string of hexadecimal digits (with an optional sign and an optional 0x) and returns the corresponding number; returns zero if there is no such leading substring
+    Example :
+        3.0.0 :007 > str.hex
+         => 0 
+
+    6.56) include? : Returns true if self contains other_string, false otherwise.
+    Example :
+        3.0.0 :008 > str.include?('o')
+        => true 
+
+    6.57) index (substring, offset = 0) : Returns the integer index of the first match for the given argument, or nil if none found; the search of self is forward, and begins at position offset (in characters).
+    Example :
+        3.0.0 :001 > str="hello"
+        => "hello" 
+        3.0.0 :002 > str.index('l')
+        => 2 
+    
+    6.58) initialize_copy(other_string) : Replaces the contents of self with the contents of other_string
+    Example :
+        3.0.0 :004 > str.replace('Hii')
+        => "Hii" 
+    
+    6.59) insert (index,other_string) : Inserts the given other_string into self; returns self.
+    Example :
+        3.0.0 :005 > str
+        => "Hii" 
+        3.0.0 :006 > str.insert(2," Hello")
+        => "Hi Helloi" 
+
+    6.60) inspect : Returns a printable version of self, enclosed in double-quotes, and with special characters escaped.
+    Example :
+        3.0.0 :007 > str.inspect
+        => "\"Hi Helloi\"" 
+
+    6.61) intern : Returns the Symbol corresponding to str, creating the symbol if it did not previously exist.
+    Example :
+        3.0.0 :008 > str.intern
+        => :"Hi Helloi" 
+        3.0.0 :009 > "Welcome".intern   # Welcome symbol not exist previously
+        => :Welcome 
+
+    6.62) length : Returns the count of characters (not bytes) in self.
+    Example :
+        3.0.0 :010 > str.length
+        => 9 
+
 7. Arrays : Ruby arrays are ordered collections of objects. They can hold objects like integer, number, hash, string, symbol or any other array.
     
     a) Creation of array : 
