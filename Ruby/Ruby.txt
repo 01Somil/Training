@@ -1018,6 +1018,105 @@ Ruby objects are instances of the class.
         3.0.0 :010 > str.length
         => 9 
 
+    6.63) ljust(size,pad_string=' ') : Returns a left-justified copy of self.
+    Example : 
+        3.0.0 :012 > str="hello"
+        => "hello" 
+        3.0.0 :013 > str.ljust(10)
+        => "hello     " 
+
+    6.64) lstrip : Returns a copy of self with leading whitespace removed.
+    Example :
+        3.0.0 :015 > str="\n\r\nhello"
+        => "\n\r\nhello" 
+        3.0.0 :016 > str.lstrip
+        => "hello"
+
+    6.65) lstrip! : Any modifications are made in self; returns self if any modification are made, nil otherwise.
+    Example :
+        3.0.0 :017 > str.lstrip!
+        => "hello"
+    
+    6.66) next : Returns the successor to self. The successor is calculated by incrementing characters.
+    Example :
+        3.0.0 :019 > str
+        => "hello" 
+        3.0.0 :020 > str.succ
+        => "hellp" 
+
+    6.67) next! : It modifies self in place; returns self.
+    Example :
+        3.0.0 :021 > str.succ!
+        => "hellp" 
+        3.0.0 :022 > str
+        => "hellp" 
+
+    6.68) oct : Interprets the leading substring of self as a string of octal digits (with an optional sign) and returns the corresponding number; returns zero if there is no such leading substring.
+    Example : 
+        3.0.0 :024 > '123'.oct
+        => 83 
+
+    6.69) ord : Returns the integer ordinal of the first character of self.
+    Example :
+        3.0.0 :025 > str.ord
+        => 104 
+    
+    6.70) partition(string_or_regexp) → [head, match, tail] 
+    Example: 
+        3.0.0 :026 > str.partition('l')
+        => ["he", "l", "lp"]
+    
+    6.71) prepend (*other_string) : Prepends each string in other_strings to self and returns self.
+    Example :
+        3.0.0 :028 > str="hello"
+        => "hello" 
+        3.0.0 :029 > str.prepend("Welcome ","John ")
+        => "Welcome John hello" 
+
+    6.72) replace(other_string) : Replaces the contents of self with the contents of other_string.
+    Example :
+        3.0.0 :030 > str
+        => "Welcome John hello" 
+        3.0.0 :031 > str.replace("hello")
+        => "hello" 
+    
+    6.73) reverse : Returns a new string with the characters from self in reverse order.
+    Example :
+        3.0.0 :032 > str
+        => "hello" 
+        3.0.0 :033 > str.reverse
+        => "olleh" 
+
+    6.74) reverse! : Returns self with its characters reversed.
+    Example :
+        3.0.0 :034 > str
+        => "hello" 
+        3.0.0 :035 > str.reverse!
+        => "olleh" 
+
+    6.75) rjust (size,pad_string=' ') : Returns a right-justified copy of self.
+    Example :
+        3.0.0 :036 > str
+        => "olleh" 
+        3.0.0 :037 > str.rjust(10)
+        => "     olleh" 
+    
+    6.76) rpartition(sep) → [head, match, tail] 
+    Example :
+        3.0.0 :039 > str="hello"
+        => "hello" 
+        3.0.0 :040 > str.rpartition('l')
+        => ["hel", "l", "o"] 
+
+    6.77) rstrip : Returns a copy of the receiver with trailing whitespace removed.
+    Example :
+        3.0.0 :043 > str="hello\n\v\r"
+        => "hello\n\v\r" 
+        3.0.0 :044 > str.rstrip
+        => "hello" 
+    
+    6.78) rstrip! : Returs self and same functionality as rstrip.
+
 7. Arrays : Ruby arrays are ordered collections of objects. They can hold objects like integer, number, hash, string, symbol or any other array.
     
     a) Creation of array : 
