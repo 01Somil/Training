@@ -447,20 +447,63 @@ The redo statement is used inside a loop.
 1. Ruby Objects : Objects in Ruby are created by calling new method of the class. It is a unique type of method and predefined in the Ruby library.
 Ruby objects are instances of the class.
     Syntax : <object-name>=<class-name>.new
+    Example :
+        3.0.0 :005 > class Shape
+        3.0.0 :006 >   def fun
+        3.0.0 :007 >     puts "This is function of shape class"
+        3.0.0 :008 >   end
+        3.0.0 :009 > end
+        => :fun 
+        3.0.0 :010 > shape=Shape.new
+        => #<Shape:0x00005574efdf1560> 
+        3.0.0 :011 > puts shape.fun
+        This is function of shape class
+
+        => nil 
 
 2. Ruby Classes : Each Ruby class is an instance of class Class. Classes in Ruby are first-class objects.
     Syntax : class <class-name>
                 --code--
              end
+    Example :
+        3.0.0 :005 > class Shape
+        3.0.0 :006 >   def fun
+        3.0.0 :007 >     puts "This is function of shape class"
+        3.0.0 :008 >   end
+        3.0.0 :009 > end
+        => :fun 
+        3.0.0 :010 > shape=Shape.new
+        => #<Shape:0x00005574efdf1560> 
+        3.0.0 :011 > puts shape.fun
+        This is function of shape class
+
+        => nil 
 
 3. Methods : It prevent us from writing the same code in a program again and again. It is a set of expression that returns a value.
     Syntax : def <method-name>
                 --code--
              end
+    Example :
+        3.0.0 :001 > def add_numbers
+        3.0.0 :002 >   return 2
+        3.0.0 :003 > end
+        => :add_numbers 
+        3.0.0 :004 > puts add_numbers
+        2
+        => nil 
+
     Methods Withs parameter :
     Syntax : def <method-name>(parameters)
                 --code--
              end
+    Example :
+        3.0.0 :001 > def two_numbers(a,b)
+        3.0.0 :002 >   return a+b
+        3.0.0 :003 > end
+        => :two_numbers 
+        3.0.0 :004 > puts two_numbers(3,4)
+        7
+        => nil 
 
 4. Blocks : Ruby code blocks are called closures in other programming languages. It consist of a group of codes which is always enclosed with braces or written between do..end. 
     A block is written in two ways,
