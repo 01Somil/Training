@@ -1117,6 +1117,193 @@ Ruby objects are instances of the class.
     
     6.78) rstrip! : Returs self and same functionality as rstrip.
 
+    6.79) scan (string or regex) : Matches a pattern against self.
+    Example :
+        3.0.0 :001 > str="fun is fun"
+        => "fun is fun" 
+        3.0.0 :002 > str.scan("fun")
+        => ["fun", "fun"] 
+
+    6.80) setbyte(index,integer) : Sets the byte at zero-based index to integer; returns integer.
+    Example : 
+        3.0.0 :005 > str.setbyte(0,98)
+        => 98 
+        3.0.0 :006 > str
+        => "bun is fun" 
+
+    6.81) size : Returns the count of characters (not bytes) in self.
+    Example :
+        3.0.0 :007 > str.size
+        => 10 
+
+    6.82) slice (*args) : Returns the substring of self specified by the arguments. 
+    Example :
+        3.0.0 :008 > str.slice(1..5)
+        => "un is" 
+
+    6.83) slice!(*args) : Removes and returns the substring of self specified by the arguments.
+        slice!(index) → new_string or nil
+        slice!(start, length) → new_string or nil
+        slice!(range) → new_string or nil
+        slice!(regexp, capture = 0) → new_string or nil
+        slice!(substring) → new_string or nil 
+    Example :
+        3.0.0 :009 > str
+        => "bun is fun" 
+        3.0.0 :010 > str.slice!(7)
+        => "f" 
+
+    6.84) squeeze(*selectors) : “Squeezed” means that each multiple-character run of a selected character is squeezed down to a single character.
+    Example :
+        3.0.0 :011 > str="hello john"
+        => "hello john" 
+        3.0.0 :012 > str.squeeze()
+        => "helo john" 
+
+    6.85) squeeze!(*selectors) : Returns self if any changes were made, nil otherwise.
+
+    6.86) start_with?(*string or regexp) : Returns whether self starts with any of the given string_or_regexp.
+    Example :
+        3.0.0 :013 > str.start_with?("he")
+        => true 
+
+    6.86) strip : Returns a copy of the receiver with leading and trailing whitespace removed
+    Example : 
+        3.0.0 :016 > str="\n\rhello\n\r"
+        => "\n\rhello\n\r" 
+        3.0.0 :017 > str.strip
+        => "hello" 
+
+    6.87) strip! : Modify original string.
+
+    6.88) sub(pattern | replacement) : Returns a copy of self with only the first occurrence (not all occurrences) of the given pattern replaced.
+    Example : 
+        3.0.0 :018 > str="fun is fun"
+        => "fun is fun" 
+        3.0.0 :020 > str.sub("fun","sun")
+         => "sun is fun" 
+
+    6.89) sub!(pattern|replacement) : Modify the actual string.
+
+    6.90) succ : Returns the successor to self. The successor is calculated by incrementing characters.
+    Example : 
+        3.0.0 :024 > str
+        => "fun is fun" 
+        3.0.0 :025 > str.succ
+        => "fun is fuo" 
+    
+    6.91) succ! : It modifies self in place; returns self.
+    Example : 
+        3.0.0 :028 > str.succ!
+        => "fun is fuo" 
+        3.0.0 :029 > str
+        => "fun is fuo" 
+
+    6.92) sum(n=16) : Returns a basic n-bit checksum of the characters in self; the checksum is the sum of the binary value of each byte in self, modulo 2**n - 1.
+    Example :
+        3.0.0 :044 > str="abcd"
+        => "abcd" 
+        3.0.0 :045 > str.sum
+        => 394 
+
+    6.93) swapcase(*options) : Returns a string containing the characters in self, with cases reversed; each uppercase character is downcased; each lowercase character is upcased.
+    Example : 
+        3.0.0 :046 > str="HellO"
+        => "HellO" 
+        3.0.0 :047 > str.swapcase
+        => "hELLo" 
+    
+    6.94) swapcase!(*options) : Upcases each lowercase character in self; downcases uppercase character; returns self if any changes were made, nil otherwise.
+
+    6.95) to_c : Returns a complex which denotes the string form.
+    Example :
+        3.0.0 :048 > str="1"
+        => "1" 
+        3.0.0 :049 > str.to_c
+        => (1+0i) 
+    
+    6.96) to_f : Returns the result of interpreting leading characters in self as a Float.
+    Example : 
+        3.0.0 :051"> str="201"
+        => "201" 
+        3.0.0 :052 > str.to_f
+        => 201.0 
+    
+    6.97) to_i(base=10) : Returns the result of interpreting leading characters in self as an integer in the given base.
+    Example : 
+        3.0.0 :053 > str.to_i
+        => 201 
+        
+    6.98) to_r : Returns the result of interpreting leading characters in str as a rational.
+    Example :
+        3.0.0 :054 > str.to_r
+        => (201/1) 
+
+    6.99) to_s : Returns self if self is a String, or self converted to a String if self is a subclass of String.
+    Example : 
+        3.0.0 :055 > a=100
+        => 100 
+        3.0.0 :056 > a.to_s
+        => "100" 
+
+    6.100) to_sym : Returns the Symbol corresponding to str, creating the symbol if it did not previously exist.
+    Example :
+        3.2.2 :005 > str="100"
+        => "100" 
+        3.2.2 :006 > str.to_sym
+        => :"100" 
+
+    6.101) tr(selector,replacement) : Returns a copy of self with each character specified by string selector translated to the corresponding character in string replacements.
+    Example :
+        3.2.2 :010 > str="hello"
+        => "hello" 
+        3.2.2 :011 > str.tr("el","ip")
+        => "hippo" 
+    
+    6.102) tr!(selector,replacement) : Returns self if any changes were made, nil otherwise.
+
+    6.103) tr_s(selector,replacement) : Like String#tr, but also squeezes the modified portions of the translated string; returns a new string.
+    Example : 
+        3.2.2 :014 > str
+        => "hello" 
+        3.2.2 :015 > str.tr_s("el","ip")
+        => "hipo"
+    
+    6.104) tr_s(selector,replacement) : Like String#tr_s, but modifies self in place. Returns self if any changes were made, nil otherwise.
+
+    6.105) undump : Returns an unescaped version of self.
+    Example : 
+        3.2.2 :020 > str
+        => "hello" 
+        3.2.2 :021 > s=str.dump
+        => "\"hello\"" 
+        3.2.2 :022 > s.undump
+        => "hello" 
+
+    6.106) upcase (*options) : Returns a string containing the upcased characters in self.
+    Example : 
+        3.2.2 :023 > str
+        => "hello" 
+        3.2.2 :024 > str.upcase
+        => "HELLO" 
+    
+    6.107) upcase!(*options) : Upcases the characters in self; returns self if any changes were made, nil otherwise.
+    Example :
+        3.2.2 :025 > str.upcase!
+        => "HELLO" 
+
+    6.108) upto(other_string,exclusive =false){|string|...} : It calls the block with each string value returned by successive calls.
+    Example : 
+        3.2.2 :026 > str="a1"
+        => "a1" 
+        3.2.2 :027 > str.upto("a6"){|s| print s,' '}
+        a1 a2 a3 a4 a5 a6  => "a1" 
+
+    6.109) valid_encoding? : Returns true if self is encoded correctly, false otherwise.
+    Example : 
+        3.2.2 :029 > str.valid_encoding?
+         => true 
+
 7. Arrays : Ruby arrays are ordered collections of objects. They can hold objects like integer, number, hash, string, symbol or any other array.
     
     a) Creation of array : 
