@@ -1304,6 +1304,18 @@ Ruby objects are instances of the class.
         3.2.2 :029 > str.valid_encoding?
          => true 
 
+    6.110)  gsub(pattern, replacement) → new_string
+            gsub(pattern) {|match| ... } → new_string
+            gsub(pattern) → enumerator 
+            Returns a copy of self with all occurrences of the given pattern replaced.
+    Example :
+        3.2.2 :061 > str="A man, a plan, a cat, a ham, a yak, a yam, a hat, a canal-Panama!"
+        => "A man, a plan, a cat, a ham, a yak, a yam, a hat, a canal-Panama!" 
+        3.2.2 :062 > str.gsub(/[[:punct:]]/, '').gsub(/\s+/, '')
+        => "AmanaplanacatahamayakayamahatacanalPanama" 
+    
+    6.111) gsub!(pattern,replacement)->new_string
+
 7. Arrays : Ruby arrays are ordered collections of objects. They can hold objects like integer, number, hash, string, symbol or any other array.
     
     a) Creation of array : 
@@ -1334,6 +1346,379 @@ Ruby objects are instances of the class.
             Syntax : <arr-name>.delete(value)
         j.4) uniq -> To remove duplicates from an array.
             Syntax : <arr-name>.uniq
+    
+    ** Public Class Methods Of Array **
+
+    7.1) ::[](*args) : Returns a new array populated with the given objects.
+    Example :
+        3.2.2 :001 > arr=[1,2,3]
+        => [1, 2, 3] 
+    
+    7.2) ::new → new_empty_array
+        new(array) → new_array
+        new(size) → new_array
+        new(size, default_value) → new_array
+        new(size) {|index| ... } → new_array 
+        It returns a new array.
+    Example :
+        3.2.2 :004 > arr=Array.new([1,2,3])
+        => [1, 2, 3] 
+
+    7.3) ::try_convert(object) : If object is an Array object, returns object.
+        Otherwise if object responds to :to_ary, calls object.to_ary and returns the result.
+    Example : 
+        3.2.2 :014 > Array.try_convert(arr)
+        => [1, 2, 3] 
+    
+    ** Public Instance Methods of Array Class **
+
+    7.4) array & other_array : Returns a new Array containing each element found in both array and Array other_array; duplicates are omitted; items are compared using eql?
+    Example : 
+        3.2.2 :019 > arr=[1,2,3]
+        => [1, 2, 3] 
+        3.2.2 :020 > other_arr=[3,4,5]
+        => [3, 4, 5] 
+        3.2.2 :021 > arr & other_arr
+        => [3] 
+
+    7.5) array * n : When non-negative argument Integer n is given, returns a new Array built by concatenating the n copies of self
+    Example :
+        3.2.2 :022 > arr
+        => [1, 2, 3] 
+        3.2.2 :023 > arr * 3
+        => [1, 2, 3, 1, 2, 3, 1, 2, 3] 
+
+    7.6) array + other_array : Returns a new Array containing all elements of array followed by all elements of other_array
+    Example : 
+        3.2.2 :027 > arr + other_arr
+        => [1, 2, 3, 3, 4, 5] 
+        3.2.2 :028 > arr
+        => [1, 2, 3] 
+        3.2.2 :029 > other_arr
+        => [3, 4, 5] 
+        3.2.2 :030 > arr + other_arr
+        => [1, 2, 3, 3, 4, 5] 
+
+    7.7) array - other_array : Returns a new Array containing only those elements from array that are not found in Array other_array.
+    Example : 
+        3.2.2 :031 > arr - other_arr
+        => [1, 2] 
+    
+    7.8) array<<object : Appends object to self; returns self.
+    Example :
+        3.2.2 :032 > arr
+        => [1, 2, 3] 
+        3.2.2 :033 > arr << [4,5]
+        => [1, 2, 3, [4, 5]] 
+
+    7.9) array <=> other_array : Returns -1, 0, or 1 as self is less than, equal to, or greater than other_array. For each index i in self, evaluates result = self[i] <=> other_array[i].
+    Example :
+        3.2.2 :035 > arr
+        => [1, 2, 3, [4, 5]] 
+        3.2.2 :036 > other_arr
+        => [3, 4, 5] 
+        3.2.2 :037 > arr <=> other_arr
+        => -1 
+
+    7.10) array == other_array : Returns true if both array.size == other_array.size and for each index i in array, array[i] == other_array[i]
+    Example :
+        3.2.2 :041 > other_arr=[1,2.0,"hi"]
+        => [1, 2.0, "hi"] 
+        3.2.2 :042 > arr
+        => [1, 2, "hi"] 
+        3.2.2 :043 > arr == other_arr
+        => true 
+
+    7.11)  array[index] → object or nil
+            array[start, length] → object or nil
+            array[range] → object or nil 
+    Example : 
+        3.2.2 :044 > arr
+        => [1, 2, "hi"] 
+        3.2.2 :045 > arr[0]
+        => 1
+    
+    7.12) array[index]=object : Assigns elements in self; returns the given object.
+         array[index] = object → object
+        array[start, length] = object → object
+        array[range] = object → object 
+    Example :
+        3.2.2 :046 > arr[0]='Hello'
+        => "Hello" 
+        3.2.2 :047 > arr
+        => ["Hello", 2, "hi"] 
+    Another example :
+        3.2.2 :048 > arr[0..1]="object"
+         => "object" 
+
+    7.13)  all? → true or false
+            all? {|element| ... } → true or false
+            all?(obj) → true or false 
+        Returns true if all elements of self meet a given criterion.
+    Example :
+        3.2.2 :051 > arr.all?
+        => true 
+        3.2.2 :052 > arr=[0,nil,2.0]
+        => [0, nil, 2.0] 
+        3.2.2 :053 > arr.all?
+        => false 
+
+    7.14)  any? → true or false
+            any? {|element| ... } → true or false
+            any?(obj) → true or false 
+        Returns true if any element of self meets a given criterion.
+    Example :
+        3.2.2 :054 > [nil,0,false].any?
+        => true 
+        3.2.2 :055 > [nil,false].any?
+        => false
+
+    7.15) append(*args) or push : Appends the elements in the end of an array.
+    Example : 
+        3.2.2 :056 > arr
+        => [0, nil, 2.0] 
+        3.2.2 :057 > arr.append(5)
+        => [0, nil, 2.0, 5] 
+
+    7.16) assoc(object) : Returns the first element in self that is an Array whose first element == obj.
+    Example :
+        3.2.2 :061 > multi_arr=[[1,2],[3,4]]
+        => [[1, 2], [3, 4]] 
+        3.2.2 :062 > multi_arr.assoc(3)
+        => [3, 4] 
+
+    7.17) at(index) : Return the object at that index.
+    Example :
+        3.2.2 :066 > arr.at(3)
+         => 5 
+
+    7.18) bsearch {|element|...} : Returns an element from self selected by a binary search.
+    Example :
+        3.2.2 :072 > bsearch_arr=[1,2,5,10]
+        => [1, 2, 5, 10] 
+        3.2.2 :073 > bsearch_arr.bsearch{|x| x>=4}
+        => 5 
+    
+    7.19) bsearch_index {|element| ... } : Searches self as described at method bsearch, but returns the index of the found element instead of the element itself.
+    Example :
+        3.2.2 :074 > bsearch_arr.bsearch_index{|x| x>=4}
+        => 2 
+
+    7.20) clear : Removes all elements from self.
+    Example :
+        3.2.2 :076 > bsearch_arr.clear
+        => [] 
+
+    7.21) collect or map : Calls the block, if given, with each element of self; returns a new Array whose elements are the return values from the block.
+    Example :
+        3.2.2 :077 > arr
+        => [0, nil, 2.0, 5] 
+        3.2.2 :078 > arr.collect{|x| puts x}
+        0
+
+        2.0
+        5
+        => [nil, nil, nil, nil] 
+    
+    7.22) collect! or map! : Return self with modified values.
+    Example :
+        3.2.2 :079 > arr.collect!{|x| x.class}
+        => [Integer, NilClass, Float, Integer] 
+        3.2.2 :080 > arr
+        => [Integer, NilClass, Float, Integer] 
+
+    7.23) combination(n) {|element| ... } : Calls the block, if given, with combinations of elements of self; returns self.
+    Example :
+        3.2.2 :084 > arr.combination(2) {|x| p x}
+        [0, 1]
+        [0, 2]
+        [1, 2]
+        => [0, 1, 2]
+    
+    7.24) compact : Returns a new Array containing all non-nil elements from self.
+    Example :
+        3.2.2 :088 > arr=[1,nil,nil,2,nil,'Hi']
+        => [1, nil, nil, 2, nil, "Hi"] 
+        3.2.2 :089 > arr.compact
+        => [1, 2, "Hi"] 
+    
+    7.25) compact! : Return self with modifications.
+
+    7.26) concat(*other_arrays) : Adds to array all elements from each Array in other_arrays; returns self.
+    Example :
+        3.2.2 :091 > arr.compact!
+        => [1, 2, "Hi"] 
+        3.2.2 :092 > arr.concat([3,4],[5,6])
+        => [1, 2, "Hi", 3, 4, 5, 6] 
+
+    7.27) count → an_integer
+            count(obj) → an_integer
+            count {|element| ... } → an_integer
+            Returns a count of specified elements.
+    Example :
+        3.2.2 :093 > arr.count
+        => 7 
+
+    7.28)  cycle {|element| ... } → nil
+        cycle(count) {|element| ... } → nil
+        cycle → new_enumerator
+        cycle(count) → new_enumerator 
+        When called with positive Integer argument count and a block, calls the block with each element, then does so again, until it has done so count times; returns nil
+    Example : 
+        3.2.2 :100 > arr.cycle(2) {|x| print x ,' '}
+        1 2 Hi 3 4 5 6 1 2 Hi 3 4 5 6  => nil 
+
+    7.29) deconstruct : 
+    Example :
+        3.2.2 :101 > arr.deconstruct
+        => [1, 2, "Hi", 3, 4, 5, 6] 
+
+    7.30) delete(object) : Removes zero or more elements from self.
+    Example :   
+        3.2.2 :105 > arr.delete(2)
+        => 2 
+        3.2.2 :106 > arr
+        => [1, 3] 
+
+    7.31) delete_at(index) : Deletes an element from self, per the given Integer index.
+    Example :
+        3.2.2 :107 > arr=[1,2,3,4,5]
+        => [1, 2, 3, 4, 5] 
+        3.2.2 :108 > arr.delete_at(2)
+        => 3 
+
+    7.32) delete_if{|element|...} : Delete elements from array with given condition.
+    Example :
+        3.2.2 :109 > arr
+        => [1, 2, 4, 5] 
+        3.2.2 :110 > arr.delete_if{|x| x>2}
+        => [1, 2] 
+
+    7.33) difference(*other_arrays) : Returns a new Array containing only those elements from self that are not found in any of the Arrays other_arrays.
+    Example :
+        3.2.2 :115 > arr
+        => [1, 2, 2, 3, 3] 
+        3.2.2 :116 > arr.difference([1,2],[2,3])
+        => [] 
+
+    7.34) drop(n) : Drop the first n elements and return the new array.
+    Example :
+        3.2.2 :117 > arr
+        => [1, 2, 2, 3, 3] 
+        3.2.2 :118 > arr.drop(2)
+        => [2, 3, 3] 
+
+    7.35) dig(index, *identifiers) : Finds and returns the object in nested objects that is specified by index and identifiers.
+    Example :
+        3.2.2 :124 > nested_arr=[1,[2,3,[4,5]]]
+        => [1, [2, 3, [4, 5]]] 
+        3.2.2 :126 > nested_arr.dig(1)
+        => [2, 3, [4, 5]] 
+
+    7.36) drop_while{|element|...} : Drops the elements on the basis of conditions.
+    Example :
+        3.2.2 :127 > arr
+        => [1, 2, 2, 3, 3] 
+        3.2.2 :128 > arr.drop_while{|x| x<=2}
+        => [3, 3] 
+
+    7.37) each {|element|...} : Iterates over array elements.
+    Example :3.2.2 :130 > arr.each{|x| p x}
+        1
+        2
+        2
+        3
+        3
+        => [1, 2, 2, 3, 3] 
+    
+    7.38) each_index {|index|...} : Iterates over array indexes.
+    Example :
+        3.2.2 :132 > arr.each_index{|x| puts "#{x} #{arr[x]}"}
+        0 1
+        1 2
+        2 2
+        3 3
+        4 3
+        => [1, 2, 2, 3, 3] 
+    
+    7.39) empty? : Returns true if the count of elements in self is zero, false otherwise.
+    Example :
+        3.2.2 :134 > arr.empty?
+        => false
+
+    7.40) eql?other_array : Returns true if self and other_array are the same size, and if, for each index i in self, self[i].eql? other_array[i].
+    Example :
+        3.2.2 :135 > arr
+        => [1, 2, 2, 3, 3] 
+        3.2.2 :136 > other_arr
+        => [1, 2.0, "hi"] 
+        3.2.2 :137 > arr.eql?other_arr
+        => false 
+
+    7.41)  fetch(index) → element
+            fetch(index, default_value) → element
+            fetch(index) {|index| ... } → element 
+        Returns the element at particular index.
+    Example :
+        3.2.2 :140 > arr
+        => [1, 2, 2, 3, 3] 
+        3.2.2 :141 > arr.fetch(3)
+        => 3
+
+    7.42) fill(obj) → self
+        fill(obj, start) → self
+        fill(obj, start, length) → self
+        fill(obj, range) → self
+        fill {|index| ... } → self
+        fill(start) {|index| ... } → self
+        fill(start, length) {|index| ... } → self
+        fill(range) {|index| ... } → self
+        Replaces specified elements in self with specified objects; returns self.
+    Example :
+        3.2.2 :142 > arr.fill(2)
+        => [2, 2, 2, 2, 2] 
+
+    7.43) filter {|element|...} or select {|element|...} : It filter out the objects on the given condition or if no condition given then it returns a new enumerator.
+    Example :
+        3.2.2 :146 > arr.filter{|x| print x,' '}
+        2 2 2 2 3  => [] 
+
+    7.44) filter! {|element|...} or select! {|element|...} : It filter the objects and modify it into original array.
+
+    7.45) find_index or index : Returns the index of a specified element.
+    Example :
+        3.2.2 :148 > arr=[1,2,3,4,5]
+        => [1, 2, 3, 4, 5] 
+        3.2.2 :149 > arr.find_index(3)
+        => 2 
+
+    7.46) first or first(n) : Return first element or first n elements in new array.
+    Example : 
+        3.2.2 :151 > arr
+        => [1, 2, 3, 4, 5] 
+        3.2.2 :152 > arr.first(2)
+        => [1, 2] 
+
+    7.47) flatten or flatten(level) : Returns a new Array that is a recursive flattening of self
+    Example :
+        3.2.2 :153 > multi_arr
+        => [[1, 2], [3, 4]] 
+        3.2.2 :154 > multi_arr.flatten
+        => [1, 2, 3, 4] 
+
+    7.48) flatten! or flatten(level) : Same as flatten but it modifies array.
+
+    7.49) hash : Returns the integer hash value for self.
+    Example :
+        3.2.2 :155 > arr.hash
+        => -41166320240308276 
+
+    7.50) include?(object) : Returns true if for some index i in self, obj == self[i]; otherwise false.
+    Example :
+        3.2.2 :156 > arr
+        => [1, 2, 3, 4, 5] 
+        3.2.2 :157 > arr.include?(3)
+        => true
 
 8. Hashes : A hash is a collection of unique keys and their values. If a hash is accessed with a key that does not exist, the method will return nil.
     Syntax : <hash-name>={key1=>value1 , key2=>value2, ...}
