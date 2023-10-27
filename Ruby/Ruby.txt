@@ -2156,6 +2156,460 @@ Ruby objects are instances of the class.
     Syntax : <hash-name>={key1=>value1 , key2=>value2, ...}
                                 or
             <hash-name>={key1:value1 , key2:value2 , ...}
+    
+    ** Public Class Methods **
+
+    8.1) Hash[] → new_empty_hash
+         Hash[hash] → new_hash
+         Hash[ [*2_element_arrays] ] → new_hash
+         Hash[*objects] → new_hash
+        Returns a new Hash object populated with the given objects.
+    Example :
+        3.0.0 :003 > h = Hash[:A , 1, :B,2]
+        => {:A=>1, :B=>2} 
+        3.0.0 :004 > h={A:1,B:2,C:3}
+        => {:A=>1, :B=>2, :C=>3} 
+    
+    8.2) new(default_value = nil) → new_hash
+        new {|hash, key| ... } → new_hash : Returns a new empty Hash object.
+    Example :
+        3.0.0 :005 > h=Hash.new
+        => {}
+    
+    8.3) try_convert(object) : If obj is a Hash object, returns obj.
+    Example :
+        3.0.0 :033 > Hash.try_convert(h)
+        => {:k=>1} 
+    
+    ** Public Instance Methods **
+
+    8.4) hash < other_hash , hash >other_hash : Returns true if hash is a proper subset of other_hash, false otherwise.
+    Example :
+        3.0.0 :040 > h1={A:0, B:1}
+        => {:A=>0, :B=>1} 
+        3.0.0 :041 > h2={A:0, B:1,C:2}
+        => {:A=>0, :B=>1, :C=>2} 
+        3.0.0 :042 > h1<h2
+        => true 
+
+    8.5) hash <= other_hash hash >= other_hash : Returns true if hash is a subset of other_hash, false otherwise.
+    Example :
+        3.0.0 :047 > h1
+        => {:A=>0, :B=>1} 
+        3.0.0 :048 > h2
+        => {:A=>0, :B=>1, :C=>2} 
+        3.0.0 :049 > h1<=h2
+        => true 
+
+    8.6) hash == other_hash : If key and value are equal in both hashes.Keys are regardless of order.
+    Example :
+        3.0.0 :053 > h1
+        => {:A=>0, :B=>1} 
+        3.0.0 :054 > h2
+        => {:A=>0, :B=>1, :C=>2} 
+        3.0.0 :055 > h1 == h2
+        => false 
+
+    8.7) hash[key] : Returns the value associated with the given key, if found.
+    Example : 
+        3.0.0 :057 > h1[:A]
+        => 0 
+
+    8.8) hash[key]=value : Associates the given value with the given key; returns value.
+    Example : 
+        3.0.0 :059 > h1[:C]=2
+        => 2 
+        3.0.0 :060 > h1
+        => {:A=>0, :B=>1, :C=>2} 
+
+    8.9) any? → true or false
+        any?(object) → true or false
+        any? {|key, value| ... } → true or false
+        Returns true if any element satisfies a given criterion; false otherwise.
+    Example :
+        3.0.0 :075 > h1
+        => {:A=>0, :B=>1, :C=>2} 
+        3.0.0 :076 > h1.any?([:B,1])
+        => true 
+    
+    8.10) assoc(key) : If the given key is found, returns a 2-element Array containing that key and its value.
+    Example :
+        3.0.0 :081 > h1
+        => {:A=>0, :B=>1, :C=>2} 
+        3.0.0 :082 > h1.assoc(:B)
+        => [:B, 1]
+
+    8.11) clear : Removes all hash entries; returns self.
+    Example :  
+        3.0.0 :083 > h1.clear
+        => {} 
+
+    8.12) compact : Returns a copy of self with all nil-valued entries removed
+    Example :
+        3.0.0 :085 > h1={A:0,B:1,C:2,D:nil}
+        => {:A=>0, :B=>1, :C=>2, :D=>nil} 
+        3.0.0 :086 > h1.compact
+        => {:A=>0, :B=>1, :C=>2} 
+
+    8.13) compact! : Returns self with all its nil-valued entries removed.
+    
+    8.14) compare_by_identity : Sets self to consider only identity in comparing keys; two keys are considered the same only if they are the same object; returns self.
+    Example :
+        3.0.0 :111 > h3
+        => {} 
+        3.0.0 :112 > h3.compare_by_identity
+        => {} 
+        3.0.0 :113 > h3["A"]=0
+        => 0 
+        3.0.0 :114 > h3["A"]=1
+        => 1 
+        3.0.0 :115 > h3
+        => {"A"=>0, "A"=>1} 
+    
+    8.15) compare_by_identity? : Returns true if compare_by_identity has been called, false otherwise.
+    Example :
+        3.0.0 :116 > h3.compare_by_identity?
+        => true 
+    
+    8.16) deconstruct_keys(p1) : Returns hash.
+    Example :
+        3.0.0 :124 > h1.deconstruct_keys(h1)
+        => {:A=>0, :B=>1, :C=>2, :D=>nil} 
+
+    8.17) default or default(key) : Returns the default value for the given key.
+    Example :   
+        3.0.0 :144 > h3=Hash.new{|hash,key| hash[key]="No value"}
+        => {} 
+        3.0.0 :145 > h3[:a]=1
+        => 1 
+        3.0.0 :146 > h3.default(:a)
+        => "No value" 
+
+    8.18) default = value : Sets the default value to value; returns value.
+    Example :
+        3.0.0 :148 > h3.default=false
+        => false 
+    
+    8.19) default_proc : Returns the default proc for self.
+    Example :
+        3.0.0 :161 > h3
+        => {} 
+        3.0.0 :162 > h3.default_proc = proc{|hash,key| "Default value"}
+        => #<Proc:0x000055fa6078ec80 (irb):162> 
+        3.0.0 :163 > h3.default_proc.class
+        => Proc 
+        3.0.0 :164 > h3[:a]
+        => "Default value" 
+
+    8.20) default_proc=proc : Sets the default proc for self to proc.
+    Example :
+        3.0.0 :174 > h3.default_proc=nil
+        => nil 
+        3.0.0 :175 > h3.default_proc
+        => nil 
+    
+    8.21) delete(key) or delete(key) {|key|...}: Deletes the entry for the given key and returns its associated value.
+    Example :
+        3.0.0 :177 > h1.delete(:D)
+        => nil 
+        3.0.0 :178 > h1
+        => {:A=>0, :B=>1, :C=>2} 
+    Another Example :
+        3.0.0 :187 > h1.delete(:C) {|key| "Not found"}
+        => "Not found" 
+
+    8.22) delete_if {|key,value|...} : If a block given, calls the block with each key-value pair; deletes each entry for which the block returns a truthy value; returns self.
+    Example :
+        3.0.0 :189 > h1.delete_if{|key,value| value>0}
+        => {:A=>0} 
+        3.0.0 :190 > h1
+        => {:A=>0} 
+    
+    8.23) dig (key,*identifiers) : Finds and returns the object in nested objects that is specified by key and identifiers. The nested objects may be instances of various classes.
+    Example :
+        3.0.0 :193 > nested_hash={A:{B:{C:[3,4,5]}}}
+        => {:A=>{:B=>{:C=>[3, 4, 5]}}} 
+        3.0.0 :194 > nested_hash.dig(:A) 
+        => {:B=>{:C=>[3, 4, 5]}} 
+
+    8.24) each {|key,value|...} or each_pair{|key,value|...} : Calls the given block with each key-value pair; returns self.
+    Example :   
+        3.0.0 :201 > h2
+        => {:A=>0, :B=>1, :C=>2} 
+        3.0.0 :202 > h2.each{|key,value| puts "#{key}: #{value}"}
+        A: 0
+        B: 1
+        C: 2
+        => {:A=>0, :B=>1, :C=>2} 
+
+    8.25) each_key {|key|...} : Calls the given block with each key; returns self.
+    Example :
+        3.0.0 :203 > h2.each_key {|key| puts key}
+        A
+        B
+        C
+        => {:A=>0, :B=>1, :C=>2} 
+    
+    8.26) each_value {|value|...} : Calls the given block with each value; returns self.
+    Example :
+        3.0.0 :207 > h2.each_value{|value| puts "#{value}"}
+        0
+        1
+        2
+        => {:A=>0, :B=>1, :C=>2} 
+
+    8.27) empty? : Returns true if there are no hash entries, false otherwise.
+    Example :
+        3.0.0 :209 > h2.empty?
+        => false 
+        3.0.0 :210 > h3
+        => {} 
+        3.0.0 :211 > h3.empty?
+        => true 
+
+    8.28) eql?object : Returns true if hash and object have same keys regardless of order and both have same values otherwise false.
+    Example :
+        3.0.0 :212 > h1
+        => {:A=>0} 
+        3.0.0 :213 > h2
+        => {:A=>0, :B=>1, :C=>2} 
+        3.0.0 :214 > h1.eql?h2
+        => false          
+    
+    8.29) except(*keys) : Returns a new Hash excluding entries for the given keys.
+    Example :   
+        3.0.0 :215 > h2
+        => {:A=>0, :B=>1, :C=>2} 
+        3.0.0 :216 > h2.except(:C)
+        => {:A=>0, :B=>1} 
+
+    8.30) fetch(key) → object
+        fetch(key, default_value) → object
+        fetch(key) {|key| ... } → object : Returns the value for the given key, if found.
+    Example :
+        3.0.0 :217 > h2
+        => {:A=>0, :B=>1, :C=>2} 
+        3.0.0 :218 > h2.fetch(:B)
+        => 1 
+    
+    8.31) fetch_value(*keys) or fetch_values(*keys) {|key|...} : Returns a new Array containing the values associated with the given keys *keys.
+    Example :   
+        3.0.0 :222 > h2.fetch_values(:A,:B)
+        => [0, 1] 
+    
+    8.32) filter or select : Returns a new Hash object whose entries are those for which the block returns a truthy value.
+    Example :
+        3.0.0 :227 > h2
+        => {:A=>0, :B=>1, :C=>2} 
+        3.0.0 :228 > h2.filter {|key,value| puts "#{key}:#{value}"}
+        A:0
+        B:1
+        C:2
+        => {} 
+    
+    8.33) filter! or select! : Returns self, whose entries are those for which the block returns a truthy value.
+
+    8.34) flatten / flatten(level) : Returns a new Array object that is a 1-dimensional flattening of self.
+    Example :
+        3.0.0 :234 > nested_hash = {A: 0, B: [:C, [:D, [:E, ]]]}
+        => {:A=>0, :B=>[:C, [:D, [:E]]]} 
+        3.0.0 :236 > nested_hash.flatten(4)
+        => [:A, 0, :B, :C, :D, :E] 
+
+    8.35) has_key?(key) or key?(key) or member?(key) or include?(key) : Returns true if key is a key in self, otherwise false.
+    Example :
+        3.0.0 :238 > h2
+        => {:A=>0, :B=>1, :C=>2} 
+        3.0.0 :239 > h2.has_key?(:A)
+        => true 
+
+    8.36) has_value?(value) or value?(value) : Returns true if value is a value in self, otherwise false.
+    Example :
+        3.0.0 :001 > h1={A:1,B:2,C:3}
+        => {:A=>1, :B=>2, :C=>3} 
+        3.0.0 :002 > h1.has_value?(2)
+        => true 
+
+    8.37) hash : Returns the Integer hash-code for the hash.
+    Example :
+        3.0.0 :004 > h1.hash
+         => -4074165278872340204 
+        
+    8.38) initialize_copy(other_hash) or replace(other_hash) : Replaces the entire contents of self with the contents of other_hash; returns self.
+    Example : 
+        3.0.0 :006 > h1
+        => {:A=>1, :B=>2, :C=>3} 
+        3.0.0 :007 > h1.replace({D:1,E:2,F:3})
+        => {:D=>1, :E=>2, :F=>3} 
+
+    8.39) inspect or to_s : Returns a new String containing the hash entries.
+    Example :
+        3.0.0 :009 > h1.inspect
+        => "{:D=>1, :E=>2, :F=>3}" 
+
+    8.40) invert : Returns a new Hash object with the each key-value pair inverted.
+    Example :
+        3.0.0 :010 > h1
+        => {:D=>1, :E=>2, :F=>3} 
+        3.0.0 :011 > h1.invert
+        => {1=>:D, 2=>:E, 3=>:F} 
+    
+    8.41) keep_if {|key,value|...} / keep_if->new_enumerator : Calls the block for each key-value pair; retains the entry if the block returns a truthy value; otherwise deletes the entry; returns self.
+    Example :   
+        3.0.0 :012 > h1
+        => {:D=>1, :E=>2, :F=>3} 
+        3.0.0 :013 > h1.keep_if{|key,value| value>1}
+        => {:E=>2, :F=>3} 
+    
+    8.42) key(value) : Returns the key for the first-found entry with the given value.
+    Example :
+        3.0.0 :014 > h1
+        => {:E=>2, :F=>3} 
+        3.0.0 :015 > h1.key(3)
+        => :F 
+    
+    8.43) keys : Returns a new Array containing all keys in self.
+    Example :
+        3.0.0 :016 > h1.keys
+        => [:E, :F] 
+
+    8.44) length or size : Returns the count of entries in self.
+    Example :
+        3.0.0 :017 > h1
+        => {:E=>2, :F=>3} 
+        3.0.0 :018 > h1.length
+        => 2 
+    
+    8.45) merge → copy_of_self
+        merge(*other_hashes) → new_hash
+        merge(*other_hashes) { |key, old_value, new_value| ... } → new_hash
+        Returns the new Hash formed by merging each of other_hashes into a copy of self.
+    Example :
+        3.0.0 :020 > h1
+        => {:E=>2, :F=>3} 
+        3.0.0 :021 > h2={A:1,B:2,C:3}
+        => {:A=>1, :B=>2, :C=>3} 
+        3.0.0 :022 > h1.merge(h2)
+        => {:E=>2, :F=>3, :A=>1, :B=>2, :C=>3} 
+    Note :- update is an alias for merge.
+
+    8.46) merge! → self
+        merge!(*other_hashes) → self
+        merge!(*other_hashes) { |key, old_value, new_value| ... } → self
+        Merges each of other_hashes into self; returns self.
+    Note :- update! is an alias for merge!.
+    
+    8.47) rassoc(value) : Returns a new 2-element Array consisting of the key and value of the first-found entry whose value is == to value 
+    Example : 
+        3.0.0 :023 > h1.rassoc(2)
+        => [:E, 2] 
+    
+    8.48) rehash : Rebuilds the hash table by recomputing the hash index for each key; returns self.
+    Example :
+        3.0.0 :027 > h1
+        => {:E=>4, :F=>3} 
+        3.0.0 :028 > h1.rehash
+        => {:E=>4, :F=>3} 
+
+    8.49) reject {|key,value|...} : Returns a new Hash object whose entries are all those from self for which the block returns false or nil.
+    Example :
+        3.0.0 :029 > h2
+        => {:A=>1, :B=>2, :C=>3} 
+        3.0.0 :030 > h2.reject{|key,value| value>=2}
+        => {:A=>1} 
+    
+    8.50) reject! {|key,value|...} : Returns self, whose remaining entries are those for which the block returns false or nil.
+
+    8.51) shift : Removes the first hash entry; returns a 2-element Array containing the removed key and value.
+    Example :
+        3.0.0 :036 > h1
+        => {:E=>4, :F=>3, :A=>1} 
+        3.0.0 :037 > h1.shift
+        => [:E, 4] 
+    
+    8.52) slice(*keys) : Returns a new Hash object containing the entries for the given keys.
+    Example :
+        3.0.0 :040 > h1
+        => {:F=>3, :A=>1, :B=>2} 
+        3.0.0 :041 > h1.slice(:F,:B)
+        => {:F=>3, :B=>2}
+    
+    8.53) store(key,value) : Associates the given value with the given key; returns value.
+    Example :
+        3.0.0 :042 > h1
+        => {:F=>3, :A=>1, :B=>2} 
+        3.0.0 :043 > h1.store(:F,4)
+        => 4 
+
+    8.54) to_a : Returns a new Array of 2-element Array objects; each nested Array contains a key-value pair from self.
+    Example :
+        3.0.0 :044 > h1
+        => {:F=>4, :A=>1, :B=>2} 
+        3.0.0 :045 > h1.to_a
+        => [[:F, 4], [:A, 1], [:B, 2]] 
+    
+    8.55) to_h / to_h {|key,value|...} : For an instance of Hash, returns self.
+    Example :
+        3.0.0 :046 > h1
+        => {:F=>4, :A=>1, :B=>2} 
+        3.0.0 :047 > h=h1.to_h
+        => {:F=>4, :A=>1, :B=>2} 
+        3.0.0 :048 > h
+        => {:F=>4, :A=>1, :B=>2} 
+    
+    8.56) to_hash : Returns self.
+    Example :
+        3.0.0 :052 > h.to_hash
+        => {:F=>4, :A=>1, :B=>2} 
+
+    8.57) to_proc : Returns a Proc object that maps a key to its value.
+    Example :
+        3.0.0 :058 > h1
+        => {:F=>4, :A=>1, :B=>2} 
+        3.0.0 :059 > proc=h1.to_proc
+        => #<Proc:0x000055fca1b70f18 (lambda)> 
+        3.0.0 :060 > proc.call(:B)
+        => 2 
+
+    8.58) transform_keys {|key| ... } → new_hash
+          transform_keys(hash2) → new_hash
+          transform_keys(hash2) {|other_key| ...} → new_hash
+          transform_keys → new_enumerator 
+        An optional hash argument can be provided to map keys to new keys. Any key not given will be mapped using the provided block, or remain the same if no block is given.
+    Example :
+        3.0.0 :061 > h1
+        => {:F=>4, :A=>1, :B=>2} 
+        3.0.0 :062 > h1.transform_keys{|key| key.to_s}
+        => {"F"=>4, "A"=>1, "B"=>2} 
+    
+    8.59) transform_keys! {|key| ... } → new_hash
+          transform_keys!(hash2) → new_hash
+          transform_keys!(hash2) {|other_key| ...} → new_hash
+          transform_keys! → new_enumerator 
+        Modify the original hash.
+    
+    8.60) transform_values {|value|...} : Returns a new Hash object.
+    Example :
+        3.0.0 :064 > h1
+        => {:F=>4, :A=>1, :B=>2} 
+        3.0.0 :065 > h1.transform_values{|value| value*2}
+        => {:F=>8, :A=>2, :B=>4} 
+    
+    8.61) transform_values! {|value|...} : Modify in original hash.
+
+    8.62) values : Returns a new Array containing all values in self.
+    Example :
+        3.0.0 :066 > h1
+        => {:F=>4, :A=>1, :B=>2} 
+        3.0.0 :067 > h1.values
+        => [4, 1, 2] 
+    
+    8.63) values_at(*keys) : Returns a new Array containing values for the given keys.
+    Example :
+         3.0.0 :068 > h1
+        => {:F=>4, :A=>1, :B=>2} 
+        3.0.0 :069 > h1.values_at(:F,:B)
+        => [4, 2] 
 
 9. Date and Time : Ruby has Mainly three classes related to date and time in its documentation.
     a) Date
