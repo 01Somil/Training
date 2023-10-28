@@ -3247,6 +3247,113 @@ Ruby objects are instances of the class.
         3.2.2 :057 > d1.zone
         => "+00:00" 
 
+    ** Public Methods Of Class Time **
+    require 'time'
+
+    9.C.1) to_date : Returns a Date object which denotes self.
+    Example : 
+        3.2.2 :081 > t=Time.new
+        => 2023-10-28 13:23:24.157519961 +0530 
+        3.2.2 :082 > t.to_date
+        => #<Date: 2023-10-28 ((2460246j,0s,0n),+0s,2299161j)> 
+
+    9.C.2) to_datetime : Returns a DateTime object which denotes self.
+    Example :
+        3.2.2 :083 > t
+        => 2023-10-28 13:23:24.157519961 +0530 
+        3.2.2 :084 > t.to_datetime
+      => #<DateTime: 2023-10-28T13:23:24+05:30 ((2460246j,28404s,157519961n),+19800s,2299161j)> 
+
+    9.C.3) to_time : Returns self.
+    Example :   
+        3.2.2 :085 > t=Time.now
+        => 2023-10-28 13:25:38.252212898 +0530 
+        3.2.2 :086 > t.to_time
+        => 2023-10-28 13:25:38.252212898 +0530
+    
+    9.C.4) ::new or ::now : Returns the current time.
+    Example :
+        3.2.2 :002 > Time.new
+        => 2023-10-28 16:39:04.03519311 +0530 
+
+    9.C.5) inspect : Returns the time in string representation.
+    Example :   
+         3.2.2 :004 > Time.now.inspect
+         => "2023-10-28 16:41:20.272657638 +0530" 
+
+    9.C.6) Components of Date and Time :
+        a) year -> Year of the date
+        b) month -> Month of the date.
+        c) day -> Day of the date (1 to 31).
+        d) wday -> Day of week (Sunday - 0)
+        e) yday -> Day of Year (365)
+        f) hour -> 24 hour clock
+        g) min -> minutes 
+        h) sec -> seconds 
+        i) usec -> microseconds 
+        j) zone -> timezone name ("UTC")
+    Example :
+        3.2.2 :006 > time=Time.new
+        => 2023-10-28 16:52:42.123230322 +0530 
+        3.2.2 :007 > time.year
+        => 2023 
+        3.2.2 :008 > time.month
+        => 10 
+        3.2.2 :009 > time.day
+        => 28 
+        3.2.2 :010 > time.wday
+        => 6 
+        3.2.2 :011 > time.yday
+        => 301 
+        3.2.2 :012 > time.hour
+        => 16 
+        3.2.2 :013 > time.min
+        => 52 
+        3.2.2 :014 > time.sec
+        => 42 
+        3.2.2 :015 > time.usec
+        => 123230 
+        3.2.2 :016 > time.zone
+        => "IST" 
+
+    9.C.7) strftime : To format date and time.
+    Example :
+        3.2.2 :017 > time
+        => 2023-10-28 16:52:42.123230322 +0530 
+        3.2.2 :018 > time.strftime("%Y-%m-%d %H:%M:%S")
+        => "2023-10-28 16:52:42" 
+
+    9.C.8) utc? : If time is in UTC time zone.
+    Example :   
+        3.2.2 :019 > time.utc?
+        => false 
+    
+    9.C.9) localtime : Convert to local time zone.
+    Example :
+        3.2.2 :022 > time.localtime
+         => 2023-10-28 16:52:42.123230322 +0530 
+
+    9.C.10) gmtime : Convert back to UTC.
+    Example :
+        3.2.2 :024 > time
+        => 2023-10-28 16:52:42.123230322 +0530 
+        3.2.2 :025 > time.gmtime
+        => 2023-10-28 11:22:42.123230322 UTC 
+
+    9.C.11) getlocal : Return a new time object in local zone.
+    Example :
+        3.2.2 :029 > time
+        => 2023-10-28 11:22:42.123230322 UTC 
+        3.2.2 :030 > time.getlocal
+        => 2023-10-28 16:52:42.123230322 +0530 
+    
+    9.C.12) getutc : Return a new Time object in UTC.
+    Example :
+        3.2.2 :034 > t
+        => 2023-10-28 16:52:42.123230322 +0530 
+        3.2.2 :035 > t.getutc
+        => 2023-10-28 11:22:42.123230322 UTC 
+
 10. Ranges : It represents a set of values with a beginning and an end. The ranges which has .. in them, run from beginning to end inclusively. The ranges which has ... in them, run exclusively the end value.
     Ruby has a variety of ways to define ranges.
     a) Ranges as sequences : The most natural way to define a range is in sequence. They have a start point and an end point. 
