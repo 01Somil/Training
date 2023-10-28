@@ -2612,9 +2612,458 @@ Ruby objects are instances of the class.
         => [4, 2] 
 
 9. Date and Time : Ruby has Mainly three classes related to date and time in its documentation.
-    a) Date
-    b) DateTime
-    c) Time
+    A) Date
+    B) DateTime
+    C) Time
+
+    Time Formatting Directives : These directives in the following table are used with the method Time.strftime.
+    a) %a : The abbreviated weekday name (Sun).
+    b) %A : The full weekday name (Sunday).
+    c) %b : The abbreviated month name (Jan).
+    d) %B : The full month name (January).
+    e) %c : The preferred local date and time representation.
+    f) %d : Day of the month (01 to 31).
+    g) %H : Hour of the day, 24-hour clock (00 to 23).
+    h) %I : Hour of the day, 12-hour clock (01 to 12).
+    i) %j : Day of the year (001 to 366).
+    j) %m : Month of the year (01 to 12).
+    k) %M : Minute of the hour (00 to 59).
+    l) %p : Meridian indicator (AM or PM).
+    m) %S : Second of the minute (00 to 60).
+    n) %U : Week number of the current year, starting with the first Sunday as the first day of the first week (00 to 53).
+    o) %W : Week number of the current year, starting with the first Monday as the first day of the first week (00 to 53).
+    p) %w : Day of the week (Sunday is 0, 0 to 6).
+    q) %x : Preferred representation for the date alone, no time.
+    r) %X : Preferred representation for the time alone, no date.
+    s) %y : Year without a century (00 to 99).
+    t) %Y : Year with century.
+    u) %Z : Time zone name.
+    v) %% : Literal % character.
+
+    ** Public Class Methods Of Date Class **
+    require 'date'
+
+    9.A.1) _httpdate (string ,limit:128) : Returns a hash of values parsed from string, which should be a valid HTTP date format.
+    Example :
+        3.2.2 :006 > d=Date.new(2001,2,3)
+        => #<Date: 2001-02-03 ((2451944j,0s,0n),+... 
+        3.2.2 :007 > s=d.httpdate
+        => "Sat, 03 Feb 2001 00:00:00 GMT" 
+        3.2.2 :008 > Date._httpdate(s)
+        => 
+        {:wday=>6,
+        :mday=>3,
+        :mon=>2,
+        :year=>2001,
+        :hour=>0,
+        :min=>0,
+        :sec=>0,
+        :zone=>"GMT",
+        :offset=>0} 
+    
+    9.A.2) _iso8601(string, limit: 128) : Returns a hash of values parsed from string, which should contain an ISO 8601 formatted date.
+    Example :
+        3.2.2 :011 > d
+        => #<Date: 2001-02-03 ((2451944j,0s,0n),+0s,2299161j)> 
+        3.2.2 :012 > s=d.iso8601
+        => "2001-02-03" 
+        3.2.2 :013 > Date._iso8601(s)
+        => {:mday=>3, :year=>2001, :mon=>2} 
+
+    9.A.3) _jisx0301(string, limit: 128) : Returns a hash of values parsed from string, which should be a valid JIS X 0301 date format.
+    Example :
+        3.2.2 :014 > d
+        => #<Date: 2001-02-03 ((2451944j,0s,0n),+0s,2299161j)> 
+        3.2.2 :015 > s=d.jisx0301
+        => "H13.02.03" 
+        3.2.2 :016 > Date._jisx0301(s)
+        => {:year=>2001, :mon=>2, :mday=>3} 
+
+    9.A.4) _parse(string, comp = true, limit: 128) : Returns a hash of values parsed from string
+    Example :
+        3.2.2 :019 > Date._parse('2023-10-28')
+        => {:year=>2023, :mon=>10, :mday=>28} 
+    
+    9.A.5) _rfc2822(string, limit: 128) or _rfc822 : Returns a hash of values parsed from string, which should be a valid RFC 2822 date format.
+    Example :
+        3.2.2 :020 > d
+        => #<Date: 2001-02-03 ((2451944j,0s,0n),+0s,2299161j)> 
+        3.2.2 :021 > s=d.rfc2822
+        => "Sat, 3 Feb 2001 00:00:00 +0000" 
+        3.2.2 :023 > Date._rfc2822(s)
+        => 
+        {:wday=>6,
+        :mday=>3,
+        :mon=>2,
+        :year=>2001,
+        :hour=>0,
+        :min=>0,
+        :sec=>0,
+        :zone=>"+0000",
+        :offset=>0} 
+    
+    9.A.6) _rfc3339(string, limit: 128) : Returns a hash of values parsed from string, which should be a valid RFC 3339 format.
+    Example : 
+        3.2.2 :027 > d=Date.new(2023,10,28)
+        => #<Date: 2023-10-28 ((2460246j,0s,0n),+0s,229916... 
+        3.2.2 :028 > s=d.rfc3339
+        => "2023-10-28T00:00:00+00:00" 
+        3.2.2 :029 > Date._rfc3339(s)
+        => 
+        {:year=>2023,
+        :mon=>10,
+        :mday=>28,
+        :hour=>0,
+        :min=>0,
+        :sec=>0,
+        :zone=>"+00:00",
+        :offset=>0} 
+
+    9.A.7) _strptime(string, format = '%F') : Returns a hash of values parsed from string according to the given format.
+    Example :
+        3.2.2 :031 > Date._strptime('2023-10-28','%Y-%m-%d')
+        => {:year=>2023, :mon=>10, :mday=>28} 
+
+    9.A.8) _xmlschema(string, limit: 128) : Returns a hash of values parsed from string, which should be a valid XML date format.
+    Example :
+        3.2.2 :032 > d
+        => #<Date: 2023-10-28 ((2460246j,0s,0n),+0s,2299161j)> 
+        3.2.2 :033 > s=d.xmlschema
+        => "2023-10-28" 
+        3.2.2 :034 > Date._xmlschema(s)
+        => {:year=>2023, :mon=>10, :mday=>28} 
+
+    9.A.9) commercial(cwyear = -4712, cweek = 1, cwday = 1, start = Date::ITALY) : Returns a new Date object constructed from the arguments.
+    Example :
+        3.2.2 :040 > Date.commercial(2023,10,1).to_s
+        => "2023-03-06" 
+
+    9.A.10) gregorian_leap?(year) or Date.leap?(year) : Returns true if the given year is a leap year in the proleptic Gregorian calendar, false otherwise.
+    Example :
+        3.2.2 :041 > Date.gregorian_leap?(2000)
+        => true 
+
+    9.A.11) httpdate(string = 'Mon, 01 Jan -4712 00:00:00 GMT', start = Date::ITALY, limit: 128) : Returns a new Date object with values parsed from string, which should be a valid HTTP date format.
+    Example :
+        3.2.2 :054 > d=Date.new(2023,10,28)
+        => #<Date: 2023-10-28 ((2460246j,0s,0n),+0s,229916... 
+        3.2.2 :055 > s=d.httpdate
+        => "Sat, 28 Oct 2023 00:00:00 GMT" 
+        3.2.2 :056 > Date.httpdate(s)
+        => #<Date: 2023-10-28 ((2460246j,0s,0n),+0s,2299161j)> 
+
+    9.A.12) jd(jd = 0, start = Date::ITALY) : Returns a new Date object formed from the arguments.
+    Example :
+        3.2.2 :081 > Date.jd(2458222).to_s
+        => "2018-04-13" 
+
+    9.A.13) jisx0301(string = '-4712-01-01', start = Date::ITALY, limit: 128) : Returns a new Date object with values parsed from string, which should be a valid JIS X 0301 format.
+    Example :
+        3.2.2 :082 > d
+        => #<Date: 2023-10-28 ((2460246j,0s,0n),+0s,2299161j)> 
+        3.2.2 :083 > s=d.jisx0301
+        => "R05.10.28" 
+        3.2.2 :084 > Date.jisx0301
+        => #<Date: -4712-01-01 ((0j,0s,0n),+0s,2299161j)> 
+    
+    9.A.14) julian_leap?(year) : Returns true if the given year is a leap year in the proleptic Julian calendar, false otherwise.
+    Example :
+        3.2.2 :086 > Date.julian_leap?(2000)
+        => true 
+    
+    9.A.15) new(year = -4712, month = 1, mday = 1, start = Date::ITALY) or civil(*args) : Returns a new Date object constructed from the given arguments.
+    Example :
+        3.2.2 :089 > Date.new(2023,10,28).to_s
+        => "2023-10-28" 
+
+    9.A.16) ordinal(year = -4712, yday = 1, start = Date::ITALY) : Returns a new Date object formed fom the arguments.
+    Example :   
+        3.2.2 :092 > Date.ordinal.to_s
+        => "-4712-01-01" 
+    
+    9.A.17) parse(string = '-4712-01-01', comp = true, start = Date::ITALY, limit: 128) :
+    Returns a new Date object with values parsed from string
+    Example :   
+        3.2.2 :093 > Date.parse('2023-10-28')
+        => #<Date: 2023-10-28 ((2460246j,0s,0n),+0s,2299161j)> 
+
+    9.A.18) strptime(string = '-4712-01-01', format = '%F', start = Date::ITALY) : Returns a new Date object with values parsed from string.
+    Example :
+        3.2.2 :097 > Date.parse('2023-10-28','%d-%m-%Y')
+         => #<Date: 2023-10-28 ((2460246j,0s,0n),+0s,2299161j)>
+
+    9.A.19) today (start=Date::ITALY) : Returns a new Date object constructed from the present date.
+    Example :   
+        3.2.2 :098 > Date.today.to_s
+        => "2023-10-28" 
+
+    9.A.20) valid_civil?(year, month, mday, start = Date::ITALY) or valid_date? (year, month, mday, start = Date::ITALY) : Returns true if the arguments define a valid ordinal date, false otherwise.
+    Example :   
+        3.2.2 :100 > Date.valid_civil?(2023,10,28)
+        => true 
+    
+    9.A.21) valid_commercial?(cwyear, cweek, cwday, start = Date::ITALY) : Returns true if the arguments define a valid commercial date, false otherwise.
+    Example :
+        3.2.2 :103 > Date.valid_commercial?(2023,4,28)
+        => false 
+
+    9.A.22) valid_jd?(jd, start = Date::ITALY) : Implemented for compatibility; returns true unless jd is invalid (i.e., not a Numeric).
+    Example :   
+        3.2.2 :104 > Date.valid_jd?(12371)
+        => true 
+
+    9.A.23) valid_ordinal?(year, yday, start = Date::ITALY) : Returns true if the arguments define a valid ordinal date, false otherwise.
+    Example :   
+        3.2.2 :105 > Date.valid_ordinal?(2023,256)
+        => true 
+
+    9.A.24) xmlschema(string = '-4712-01-01', start = Date::ITALY, limit: 128) : Returns a new Date object with values parsed from string, which should be a valid XML date format.
+    Example :   
+        3.2.2 :106 > d
+        => #<Date: 2023-10-28 ((2460246j,0s,0n),+0s,2299161j)> 
+        3.2.2 :107 > s=d.xmlschema
+        => "2023-10-28" 
+        3.2.2 :108 > Date.xmlschema(s)
+        => #<Date: 2023-10-28 ((2460246j,0s,0n),+0s,2299161j)> 
+
+    ** Public Instance Methods of Date Class **
+
+    9.A.25) d+other : Returns a date object pointing other days after self. The other should be a numeric value. If the other is a fractional number, assumes its precision is at most nanosecond.
+    Example :
+        3.2.2 :110 > d
+        => #<Date: 2023-10-28 ((2460246j,0s,0n),+0s,2299161j)> 
+        3.2.2 :111 > d+1
+        => #<Date: 2023-10-29 ((2460247j,0s,0n),+0s,2299161j)> 
+        3.2.2 :112 > 
+    
+    9.A.26) d- other : Returns the difference between the two dates if the other is a date object. If the other is a numeric value, returns a date object pointing other days before self.
+    Example :   
+        3.2.2 :112 > d-1
+         => #<Date: 2023-10-27 ((2460245j,0s,0n),+0s,2299161j)> 
+
+    9.A.27) d << n : Returns a new Date object representing the date n months earlier; n should be a numeric.
+    Example :   
+        3.2.2 :113 > d
+        => #<Date: 2023-10-28 ((2460246j,0s,0n),+0s,2299161j)> 
+        3.2.2 :114 > d << 2
+        => #<Date: 2023-08-28 ((2460185j,0s,0n),+0s,2299161j)>
+
+    9.A.28) self <=> other : Compares self and other.
+    Example :   
+        3.2.2 :115 > d
+        => #<Date: 2023-10-28 ((2460246j,0s,0n),+0s,2299161j)> 
+        3.2.2 :116 > d1=d<<2
+        => #<Date: 2023-08-28 ((2460185j,0s,0n),+0s,2299161j)> 
+        3.2.2 :117 > d <=> d1
+        => 1
+
+    9.A.29) self === other : Returns true if self and other represent the same date, false if not, nil if the two are not comparable.
+    Example :   
+        3.2.2 :118 > d===d1
+        => false 
+
+    9.A.30) d>>n : Returns a new Date object representing the date n months later; n should be a numeric.
+    Example :   
+        3.2.2 :120 > d
+        => #<Date: 2023-10-28 ((2460246j,0s,0n),+0s,2299161j)> 
+        3.2.2 :121 > d>>2
+        => #<Date: 2023-12-28 ((2460307j,0s,0n),+0s,2299161j)> 
+        3.2.2 :122 > 
+    
+    9.A.31) ajd : Returns the astronomical Julian day number. This is a fractional number, which is not adjusted by the offset.
+    Example :   
+        3.2.2 :125 > Date.new(2023,10,28).ajd
+        => (4920491/2) 
+
+    9.A.32) amjd : Returns the astronomical modified Julian day number. This is a fractional number, which is not adjusted by the offset.
+    Example :   
+        3.2.2 :126 > Date.new(2023,10,28).amjd
+         => (60245/1)
+
+    9.A.33) asctime or ctime : Equivalent to strftime with argument '%a %b %e %T %Y' (or its shorthand form '%c').  
+    Example :   
+        3.2.2 :127 > Date.new(2023,10,28).asctime
+        => "Sat Oct 28 00:00:00 2023" 
+
+    9.A.34) cwday : Returns the commercial-date weekday index for self; 1 is Monday:
+    Example :   
+        3.2.2 :128 > Date.new(2023,10,28).cwday
+         => 6 
+
+    9.A.35) cweek : Returns commercial-date week index for self.
+    Example :
+        3.2.2 :129 > Date.new(2023,10,28).cweek
+        => 43 
+    
+    9.A.36) cwyear : Returns commercial-date year for self.
+    Example :   
+        3.2.2 :130 > Date.new(2023,10,28).cwyear
+        => 2023 
+
+    9.A.37) day or mday : Returns the day of the month in range (1..31).
+    Example :   
+        3.2.2 :131 > Date.new(2023,10,28).day
+        => 28 
+    
+    9.A.38) friday? : Returns true if self is a Friday, false otherwise.
+    Example :   
+        3.2.2 :019 > d=Date.new(2023,10,28)
+        => #<Date: 2023-10-28 ((2460246j,0s,0n),+0s,2299161j)> 
+        3.2.2 :020 > d.friday?
+        => false 
+
+    9.A.39) gregorian? : Returns true if the date is on or after the date of calendar reform, false otherwise.
+    Example :   
+        3.2.2 :022 > d.gregorian?
+        => true 
+
+    9.A.40) httpdate : Equivalent to strftime with argument '%a, %d %b %Y %T GMT'.
+    Example :   
+        3.2.2 :023 > d.httpdate
+        => "Sat, 28 Oct 2023 00:00:00 GMT" 
+
+    9.A.41) infinite? : Returns false.
+    Example :   
+        3.2.2 :024 > d.infinite?
+        => false 
+
+    9.A.42) inspect : Returns a string representation of self.
+    Example :
+        3.2.2 :025 > d.inspect
+         => "#<Date: 2023-10-28 ((2460246j,0s,0n),+0s,2299161j)>" 
+
+    9.A.43) iso8601 or xmlschema : Equivalent to strftime with argument '%Y-%m-%d'.
+    Example :
+        3.2.2 :026 > d.iso8601
+        => "2023-10-28" 
+
+    9.A.44) jd : Returns the Julian day number. This is a whole number, which is adjusted by the offset as the local time.
+    Example :   
+        3.2.2 :032 > d
+        => #<Date: 2023-10-28 ((2460246j,0s,0n),+0s,2299161j)> 
+        3.2.2 :033 > d.jd
+        => 2460246 
+
+    9.A.45) jisx0301 : Returns a string representation of the date in self in JIS X 0301 format.
+    Example :   
+        3.2.2 :034 > d.jisx0301
+         => "R05.10.28" 
+
+    9.A.46) julian? : Returns true if the date is before the date of calendar reform, false otherwise.
+    Example :   
+        3.2.2 :035 > d.julian?
+        => false 
+
+    9.A.47) ld : Returns the Lilian day number, which is the number of days since the beginning of the Gregorian calendar, October 15, 1582.
+    Example :
+        3.2.2 :040 > d.ld
+        => 161086 
+
+    9.A.48) leap? : Returns true if the year is a leap year, false otherwise.
+    Example :   
+        3.2.2 :041 > d.leap?
+        => false 
+
+    9.A.49) mjd : Returns the modified Julian day number. This is a whole number, which is adjusted by the offset as the local time.
+    Example :   
+        3.2.2 :043 > d.mjd
+        => 60245 
+
+    9.A.50) mon or month : Returns the month in range (1..12).
+    Example :   
+        3.2.2 :044 > d.mon
+        => 10
+
+    9.A.51) new_start(start = Date::ITALY]) : Returns a copy of self with the given start value.
+    Example :
+        3.2.2 :050 > d
+        => #<Date: 2023-10-28 ((2460246j,0s,0n),+0s,2299161j)> 
+        3.2.2 :051 > d0=d.new_start(Date::JULIAN)
+        => #<Date: 2023-10-15 ((2460246j,0s,0n),+0s,Infj)> 
+        3.2.2 :052 > d0.julian?
+        => true 
+    
+    9.A.52) next or succ : Returns a new Date object representing the following day.
+    Example :  
+        3.2.2 :054 > d.to_s
+        => "2023-10-28" 
+        3.2.2 :055 > d.next.to_s
+        => "2023-10-29" 
+
+    9.A.53) next_day, next_month, next_year : Returns a copy of self with increment in respective terms.
+
+    9.A.54) prev_day, prev_month, prev_year : Returns a copy of self with one decrement in respective terms.
+
+    9.A.55) rfc2822 or rfc822 : Equivalent to strftime with argument '%a, %-d %b %Y %T %z'.
+    Example :   
+        3.2.2 :056 > d
+        => #<Date: 2023-10-28 ((2460246j,0s,0n),+0s,2299161j)> 
+        3.2.2 :057 > d.rfc2822
+        => "Sat, 28 Oct 2023 00:00:00 +0000" 
+    
+    9.A.56) rfc3339 : Equivalent to strftime with argument '%FT%T%:z'
+    Example :   
+        3.2.2 :058 > d
+        => #<Date: 2023-10-28 ((2460246j,0s,0n),+0s,2299161j)> 
+        3.2.2 :059 > d.rfc3339
+        => "2023-10-28T00:00:00+00:00" 
+
+    9.A.57) step(limit,step=1){|date|...} : Calls the block with specified dates; returns self.
+    Example :
+        3.2.2 :060 > limit=Date.new(2023,10,28)
+        => #<Date: 2023-10-28 ((2460246j,0s,0n),+0s,2299161j)> 
+        3.2.2 :061 > Date.new(2023).step(limit){|date| p date.to_s 
+        if date.mday==31}
+        "2023-01-31"
+        "2023-03-31"
+        "2023-05-31"
+        "2023-07-31"
+        "2023-08-31"
+        => #<Date: 2023-01-01 ((2459946j,0s,0n),+0s,2299161j)> 
+
+    9.A.58) strftime : Returns a string representation of the date in self, formatted according the given format.
+    Example :
+        3.2.2 :062 > d
+        => #<Date: 2023-10-28 ((2460246j,0s,0n),+0s,2299161j)> 
+        3.2.2 :063 > d.strftime
+        => "2023-10-28" 
+
+    9.A.59) to_date : Returns self.
+    Example :   
+        3.2.2 :064 > d.to_date
+        => #<Date: 2023-10-28 ((2460246j,0s,0n),+0s,2299161j)> 
+
+    9.A.60) to_datetime : Returns a DateTime whose value is the same as self.
+    Example :   
+        3.2.2 :065 > d.to_datetime
+         => #<DateTime: 2023-10-28T00:00:00+00:00 ((2460246j,0s,0n),+0s,2299161j)> 
+
+    9.A.61) to_s : Returns a string representation of the date in self in ISO 8601 extended date format ('%Y-%m-%d').
+    Example :   
+        3.2.2 :066 > d.to_s
+         => "2023-10-28" 
+
+    9.A.62) to_time : Returns a new Time object with the same value as self.
+    Example :
+        3.2.2 :067 > d.to_time
+         => 2023-10-28 00:00:00 +0530 
+
+    9.A.63) wday : Returns the day of week in range (0..6); Sunday is 0.
+    Example :   
+        3.2.2 :073 > d
+        => #<Date: 2023-10-28 ((2460246j,0s,0n),+0s,2299161j)> 
+        3.2.2 :074 > d.wday
+        => 6 
+    
+    9.A.64) yday : Returns the day of the year, in range (1..366).
+    Example :   
+        3.2.2 :075 > d.yday
+        => 301 
+
+    9.A.65) year : Returns the year.
+    Example :   
+        3.2.2 :076 > d.year
+        => 2023 
 
 10. Ranges : It represents a set of values with a beginning and an end. The ranges which has .. in them, run from beginning to end inclusively. The ranges which has ... in them, run exclusively the end value.
     Ruby has a variety of ways to define ranges.
