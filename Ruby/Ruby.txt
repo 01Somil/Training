@@ -3450,3 +3450,105 @@ Ruby objects are instances of the class.
                     --code--
                 end
              end   
+    
+17. Regular Expressions : A regular expression is a special sequence of characters that helps you match or find other strings or sets of strings using a specialized syntax held in a pattern.
+    Syntax : /search-string/
+
+    a) [ab] : [ab] means a or b. It is the opposite of /ab/ which means a and b.
+    Example :
+        3.2.2 :038 > /[hl]/.match(str)
+        => #<MatchData "l"> 
+
+    b)[a-d] : [a-d] is equivalent to [abcd]. The hyphen (-) character class represents range of characters.
+    Example : 
+        3.2.2 :040 > /H[a-e]llo/.match(str)
+        => #<MatchData "Hello"> 
+
+    c) [^a-d] : The ^ sign represents any other character which is not present in the range.
+    Example :
+        3.2.2 :041 > str
+        => "Hello World" 
+        3.2.2 :042 > /[^a-e]/.match(str)
+        => #<MatchData "H"> 
+        3.2.2 :043 > /[^a-e]ello/.match(str)
+        => #<MatchData "Hello"> 
+
+    d) Quantifiers : Characters defined till now match a single character. With the help of repetition metacharacter, we can specify how many times they need to occur. These meta characters are called quantifiers.
+        
+    d.1) * : Zero or more times
+    d.2) + : One or more times
+    d.3) ? : Zero or one times (optional)
+    d.4) {n} : Exactly n times
+    d.5) {n, } : n or more times
+    d.6) {,m} : m or less times
+    d.7) {n,m} : At least n and at most m times 
+
+** Public Instance Methods **
+
+    17.1) == or eql? : Returns true if object is another Regexp whose pattern, flags, and encoding are the same as self, false otherwise.
+    Example :
+        3.2.2 :001 > /foo/==Regexp.new("foo")
+        => true 
+
+    17.2) === : Returns true if self finds a match in string.
+    Example :   
+        3.2.2 :002 > /foo/==="FOO"
+        => false 
+    
+    17.3) =~ : Returns the integer index (in characters) of the first match for self and string, or nil if none.
+    Example :
+        3.2.2 :004 > str="Hello World"
+        => "Hello World" 
+        3.2.2 :005 > regex=Regexp.new("o")
+        => /o/ 
+        3.2.2 :006 > regex =~ str
+        => 4 
+
+    17.4) casefold? : Returns true if the case-insensitivity flag in self is set, false otherwise.
+    Example :
+        3.2.2 :010 > /o/i.casefold?
+        => true 
+
+    17.5) encoding : Returns the Encoding object that represents the encoding of obj.
+    Example :
+        3.2.2 :011 > regex
+        => /o/ 
+        3.2.2 :012 > regex.encoding
+        => #<Encoding:US-ASCII> 
+
+    17.6) fixed_encoding? : Returns false if self is applicable to a string with any ASCII-compatible encoding; otherwise returns true.
+    Example :
+        3.2.2 :013 > regex
+        => /o/ 
+        3.2.2 :014 > regex.fixed_encoding?
+        => false 
+
+    17.7) hash : Returns the integer hash value for self.
+    Example :
+        3.2.2 :015 > regex.hash
+        => -2088558671161935805 
+
+    17.8) inspect or to_s: Returns a nicely-formatted string representation of self.
+    Example :
+        3.2.2 :016 > regex
+        => /o/ 
+        3.2.2 :017 > regex.inspect
+        => "/o/" 
+    
+    17.9) match(string, offset = 0) → matchdata or nil
+        match(string, offset = 0) {|matchdata| ... } → object
+        With no block given, returns the MatchData object that describes the match, if any, or nil if none; the search begins at the given character offset in string.
+    Example :
+        3.2.2 :019 > regex=Regexp.new("Hello")
+        => /Hello/ 
+        3.2.2 :020 > regex.match("Hell")
+        => nil 
+        3.2.2 :021 > regex.match("Hello")
+        => #<MatchData "Hello">
+    
+    17.10)  match?(string) → true or false
+    match?(string, offset = 0) → true or false
+    Returns true or false to indicate whether the regexp is matched or not without updating $~ and other related variables. 
+    Example :
+        3.2.2 :022 > regex.match?("Hello")
+        => true 
