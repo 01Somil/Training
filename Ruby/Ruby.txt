@@ -3634,3 +3634,69 @@ The class IO provides all the basic methods, such as read, write, gets, puts, re
     e) Dir[<directory-path>/*] : An even more concise way of getting directory listings is by using Dir's class array method.
     f) Dir.mkdir : To create the directory.
     g) Dir.delete : The Dir.delete can be used to delete a directory. The Dir.unlink and Dir.rmdir performs exactly the same function and are provided for convenience.
+
+19. Exceptions : Exceptions are used to handle various type of errors, which may occur during a program execution and take appropriate action instead of halting program completely.
+    Syntax :
+        begin  
+        # -  
+        rescue OneTypeOfException  
+        # -  
+        rescue AnotherTypeOfException  
+        # -  
+        else  
+        # Other exceptions
+        ensure
+        # Always will be executed
+        end
+    
+    a) Using retry statements : You can capture an exception using rescue block and then use retry statement to execute begin block from the beginning.
+    Syntax :    
+        begin
+        # -
+        rescue
+        # This block will capture all types of exceptions
+        retry  # This will move control to the beginning of begin
+        end
+    
+    b) Using raise statements : You can use raise statement to raise an exception. The following method raises an exception whenever it's called. It's second message will be printed.
+    Syntax :
+        raise 
+        OR
+        raise "Error Message" 
+        OR
+        raise ExceptionType, "Error Message"
+        OR
+        raise ExceptionType, "Error Message" condition
+    
+    c) Using ensure statements : It goes after the last rescue clause and contains a chunk of code that will always be executed as the block terminates.
+    Syntax : 
+        begin 
+        #.. process 
+        #..raise exception
+        rescue 
+        #.. handle error 
+        ensure 
+        #.. finally ensure execution
+        #.. This will always execute.
+        end
+    d) Using else statement : If the else clause is present, it goes after the rescue clauses and before any ensure. The body of an else clause is executed only if no exceptions are raised by the main body of code.
+    Syntax :
+        begin 
+        #.. process 
+        #..raise exception
+        rescue 
+        # .. handle error
+        else
+        #.. executes if there is no exception
+        ensure 
+        #.. finally ensure execution
+        #.. This will always execute.
+        end
+    
+    e) Class Exception : Ruby's standard classes and modules raise exceptions.
+    -> Interrupt
+    -> NoMemoryError
+    -> SignalException
+    -> ScriptError
+    -> StandardError
+    -> SystemExit
