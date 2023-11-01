@@ -1,0 +1,2 @@
+Ruby is a programming language.
+Rails  is a framework of Ruby langauge.
