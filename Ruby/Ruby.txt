@@ -3552,3 +3552,85 @@ Ruby objects are instances of the class.
     Example :
         3.2.2 :022 > regex.match?("Hello")
         => true 
+
+18. File I/O and its functions : Ruby provides a whole set of I/O-related methods implemented in the Kernel module. All the I/O methods are derived from the class IO.
+The class IO provides all the basic methods, such as read, write, gets, puts, readline, getc, and printf.
+
+** Class I/O methods **
+
+    a) puts statement : The puts statement instructs the program to display the value stored in the variable. This will add a new line at the end of each line it writes.
+    Example :
+        3.0.0 :001 > puts "Hello"
+        Hello
+        => nil 
+    b) gets statement : The gets statement can be used to take any input from the user from standard screen called STDIN.
+    Example :
+        3.0.0 :002 > x=gets
+        2
+        => "2\n" 
+    c) putc statement : Unlike the puts statement, which outputs the entire string onto the screen, the putc statement can be used to output one character at a time.
+    Example :   
+        3.0.0 :003 > putc "Hello"
+        H => "Hello"
+    d) print statement : The print statement is similar to the puts statement. The only difference is that the puts statement goes to the next line after printing the contents, whereas with the print statement the cursor is positioned on the same line.
+    Example :
+        3.0.0 :005 > str1="Hello"
+        => "Hello" 
+        3.0.0 :006 > str2="World"
+        => "World" 
+        3.0.0 :007 > print str1+str2
+        HelloWorld => nil 
+        3.0.0 :008 > 
+    
+    ** Opening and Closing of Files ** 
+    a) File.new method : You can create a File object using File.new method for reading, writing, or both, according to the mode string. Finally, you can use File.close method to close that file.
+    Syntax :
+        aFile=File.new("filename","mode")
+            #...process the file
+        aFile.close
+    
+    b) File.open method : To create a new file object and assign that file object to a file.
+    Syntax :
+        File.open("filename","mode") do |aFile|
+            #...process the file
+        end
+
+    c) sysread method : To read the contents of a file.
+    d) syswrite method : To write the contents into a file. You need to open the file in write mode when using the method syswrite.
+
+    e) each_byte method : This method belongs to the class File. The method each_byte is always associated with a block.
+
+    f) IO.readlines method :  This method returns the contents of the file line by line.
+
+    g) IO.foreach method : This method also returns output line by line. The difference between the method foreach and the method readlines is that the method foreach is associated with a block.
+
+    h) Renaming and Deleting Files : You can rename and delete files programmatically with Ruby with the rename and delete methods.
+
+    i) chmod : Use the chmod method with a mask to change the mode or permissions/access list of a file.
+
+    j) File::exists? : It tests whether a file exists before opening it.
+
+    k) file? : It checks whether it is really a file.
+
+    l) File::directory? : It checks whether it is a directory or not.
+
+    m) readable? , writable? ,executable? : The following command finds whether the file is readable, writable or executable.
+
+    n) zero? : It finds whether the file has zero size or not.
+
+    o) size? : It returns the size of a file.
+
+    p) File::ftype : This command can be used to find out a type of file.
+
+    q) File::ctime , File::mtime , File::atime : These commands can be used to find when a file was created, modified, or last accessed.
+
+    ** Directories in Ruby **
+    All files are contained within various directories, and Ruby has no problem handling these too. Whereas the File class handles files, directories are handled with the Dir class.
+
+    a) Dir.chdir : To change directory within a Ruby program.
+    b) Dir.pwd : To find out the current directory.
+    c) Dir.entries : You can get a list of the files and directories within a specific directory using Dir.entries 
+    d) Dir.foreach : Dir.entries returns an array with all the entries within the specified directory. Dir.foreach provides the same feature .
+    e) Dir[<directory-path>/*] : An even more concise way of getting directory listings is by using Dir's class array method.
+    f) Dir.mkdir : To create the directory.
+    g) Dir.delete : The Dir.delete can be used to delete a directory. The Dir.unlink and Dir.rmdir performs exactly the same function and are provided for convenience.
