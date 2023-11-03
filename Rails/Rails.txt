@@ -1,0 +1,42 @@
+**** Rails (Version 7.1.1) ****
+
+Installation of Rails in Linux : 
+a) Before Installation of rails, your system has the proper prerequisites installed.
+    a.1) Ruby
+    a.2) SQLite3
+b) Open the terminal window.
+c) Check ruby version; type the following command :
+    ruby --version
+d) Check sqlite3 version; type the following command :
+    sqlite3 --version
+e) Now install rails, use the gem install command provided by RubyGems :
+    gem install rails
+f) Check if it is properly installed or not by checking its version :
+    rails --version
+g) If it says something about its version then you are ready to continue with rails.
+
+1. Rails : Rails is a web application development framework written in the Ruby programming    language. It is designed to make programming web applications easier by making assumptions about what every developer needs to get started. It allows you to write less code while accomplishing more than many other languages and frameworks. Experienced Rails developers also report that it makes web application development more fun.
+-> Two major principles of Rails :
+    a) DRY (Don't Repeat Yourself) : RY is a principle of software development which states that "Every piece of knowledge must have a single, unambiguous, authoritative representation within a system". By not writing the same information over and over again, our code is more maintainable, more extensible, and less buggy.
+    b)  Rails has opinions about the best way to do many things in a web application, and defaults to this set of conventions, rather than require that you specify minutiae through endless configuration files.
+
+2. Creation of new project : Type the command :
+    Syntax : rails new <application-name>
+
+3. Start Web Server : Type the command inside the <application-name> directory.
+    Syntax : bin/rails server
+    This will display a default web server of Rails on (http://localhost:3000).
+    To stop the web server press Ctrl+c in terminal.
+
+4. MVC : Like most other frameworks, Rails is also based on MVC pattern. Requests first come to the controller, controller finds an appropriate view and interacts with model which in turn interacts with database and send response to controller. Then controller gives the output to the view based on the response.
+    a) Model : The models are classes in Rails. They interact with database, store data, handles validation, transaction, etc.
+    b) View : View represent data in a particular format in an application for the users. It handles HTML, CSS, JavaScript and XML in an application. They do what controller tells them. 
+    c) Controller : Controller directs traffic to views and models. It query models for data from the database and display the desired result with the help of view in an application.
+
+
+
+
+
+
+
+
