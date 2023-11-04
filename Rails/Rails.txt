@@ -30,9 +30,29 @@ g) If it says something about its version then you are ready to continue with ra
 
 4. MVC : Like most other frameworks, Rails is also based on MVC pattern. Requests first come to the controller, controller finds an appropriate view and interacts with model which in turn interacts with database and send response to controller. Then controller gives the output to the view based on the response.
     a) Model : The models are classes in Rails. They interact with database, store data, handles validation, transaction, etc.
+    Syntax : bin/rails generate model <model-name> <column:data-type>
     b) View : View represent data in a particular format in an application for the users. It handles HTML, CSS, JavaScript and XML in an application. They do what controller tells them. 
     c) Controller : Controller directs traffic to views and models. It query models for data from the database and display the desired result with the help of view in an application.
+    Syntax : bin/rails generate controller <controller-name> <action-name> [--skip-routes]
+ 
+5. Migrations : Rails Migration allows you to use Ruby to define changes to your database schema, making it possible to use a version control system to keep things synchronized with the actual code.
+    Syntax : bin/rails db:migrate
 
+6. bin/rails console : This command is used to interact with console in Rails.
+
+7. <object-name>=<Model-name>.new(...) : To initialize a new object of model.
+
+8. <object-name>.save : The object is not saved to the database at all. It's only available in the console at the moment. To save the object to the database, we must call save.
+
+9. <Model-name>.find(id) : When we want to fetch the particular data from the database, we can call find on the model and pass the id as an argument.
+
+10. <Model-name>.all : When we want to fetch all the data from the database, we can call all on the model.
+
+11 <% %> / <%= %> : The <% %> tag means "evaluate the enclosed Ruby code." The <%= %> tag means "evaluate the enclosed Ruby code, and output the value it returns." 
+
+12. Resourceful Routing : Whenever we have such a combination of routes, controller actions, and views that work together to perform CRUD operations on an entity, we call that entity a resource. Rails provides a routes method named resources that maps all of the conventional routes for a collection of resources, such as articles. 
+
+13. bin/rails routes :  It inspect what routes are mapped.
 
 
 
