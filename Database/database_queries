@@ -1267,3 +1267,13 @@
             18
             11
     (5 rows)
+
+76. Dump database : To create a backup of database.
+    Syntax :  pg_dump database_name > database_name_20160527.sql
+
+77. Restore Database : To restore the database from backup.
+    Syntax : psql -U username -d new_database -f file_name.sql
+    where,
+    username -> select current_user;
+    new_database -> create a empty database.
+    file_name-> The file which is created for backup.
