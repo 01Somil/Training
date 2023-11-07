@@ -54,9 +54,66 @@ g) If it says something about its version then you are ready to continue with ra
 
 13. bin/rails routes :  It inspect what routes are mapped.
 
+14. Active Record : Active Record is the M in MVC - the model - which is the layer of the system responsible for representing business data and logic.
+    a) Naming Conventions : 
+    -> Model Class - Singular with the first letter of each word capitalized (e.g., BookClub).
+    -> Database Table - Plural with underscores separating words (e.g., book_clubs).
 
+    b) Schema Conventions : 
+    -> Foreign keys - These fields should be named following the pattern singularized_table_name_id (e.g., item_id, order_id). These are the fields that Active Record will look for when you create associations between your models.
+    -> Primary keys - By default, Active Record will use an integer column named id as the table's primary key (bigint for PostgreSQL and MySQL, integer for SQLite). When using Active Record Migrations to create your tables, this column will be automatically created.
 
+15. Role "username" does not exist error :
+    sudo -i -u postgres
+    psql postgres
+    postgres=# CREATE ROLE username superuser;
+    postgres=# ALTER ROLE username WITH LOGIN;
 
+16. Adding new column to existing table : bin/rails generate migration add_columnName_to_tablename columnName:string
 
+17. Rename table name : bin/rails generate migration RenameTableName
 
+18. bin/rails db:rollback : To revert the changes in database.
+
+19. CRUD Operations on Model through active records : 
+    CREATE operation :
+    a) create : This method will create the object and save it to the database.
+    Syntax : obj=Model.create(...)
+    b) new : An object can be instantiated without being saved . To save we should type (obj.save) in rails console.
+    Syntax : obj=Model.new
+             obj.name=""
+    c) block : This will instantiated a block without being saved in database. To save in database we should use (obj.save).
+
+    READ operation :
+    a) all method : Return a collection with all users.
+    Syntax : obj=Model.all
+    
+    b) first method : Return the first user.
+    Syntax : obj=Model.first
+
+    c) find_by : To find the data with some condition.
+    Syntax : user=User.find_by(name:"David")
+
+    d) where : To perform some query operation on data.
+    Syntax : users = User.where(name: 'David', occupation: 'Code Artist').order(created_at: :desc)
+
+    UPDATE operation : Once an Active Record object has been retrieved, its attributes can be modified and it can be saved to the database.
+    a) find_by : To find the data from the table and update it.
+    Syntax : obj=Model.find_by(...)
+            obj.name="..."
+            obj.save
+    b) update : To update with shorthand method.
+    Syntax : obj=Model.find_by(...)
+            obj.update(column_name:value)
+    c) update_all : To update all the data at once.
+    Syntax : Model.update_all column_name:value 
+
+    DELETE operation : 
+    a) destroy : To delete a record from the table.
+    Syntax : obj=Model.find_by(...)
+            obj.destroy
+    
+    b) destroy_all : To delete all records from the table.
+    Syntax : obj=Model.find_by(...)
+            obj.destroy_all
 
