@@ -117,3 +117,22 @@ g) If it says something about its version then you are ready to continue with ra
     Syntax : obj=Model.find_by(...)
             obj.destroy_all
 
+20. Validations : Active Record allows you to validate the state of a model before it gets written into the database. Methods like save, create and update validate a model before persisting it to the database. When a model is invalid these methods return false and no database operations are performed. All of these methods have a bang counterpart (that is, save!, create! and update!), which are stricter in that they raise an ActiveRecord::RecordInvalid exception when validation fails.
+
+21. Callbacks : Active Record callbacks allow you to attach code to certain events in the life-cycle of your models. This enables you to add behavior to your models by transparently executing code when those events occur, like when you create a new record, update it, destroy it, and so on.
+
+22. Associations : Active Record associations allow you to define relationships between models. Associations can be used to describe one-to-one, one-to-many, and many-to-many relationships. For example, a relationship like “Author has many Books”.
+
+23. Migrations : Migrations are a convenient way to alter your database schema over time in a consistent way. They use a Ruby DSL so that you don't have to write SQL by hand, allowing your schema and changes to be database independent.
+    a) Irreversible process : If you wish for a migration to do something that Active Record doesn't know how to reverse, you can use reversible.
+    Command : rails generate migration <action-name>
+
+    b) bin/rails db:migrate:status : This command will display a list of all the migrations along with their respective statuses and version numbers. 
+
+    c) rails db:rollback STEP=1 : STEP=1 specifies the number of migration versions to roll back.
+
+    d) rails db:migrate:down VERSION=<migration-id> : This command will roll back the database to the state it was in before the specified migration was applied.
+
+    e) rails db:migrate:up VERSION=<migration-id> : This command will migrate the changes of file in the database. 
+
+    f) Delete local migrate files : To delete a file from local directory first we should down the migrate files and then delete the file. Otherwise, schema.rb stores that moigration change in it and it whenever other user migrate the files it will automatically create the file in his system.
