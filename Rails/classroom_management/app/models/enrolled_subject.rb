@@ -1,0 +1,2 @@
+class EnrolledSubject < ApplicationRecord
+end
