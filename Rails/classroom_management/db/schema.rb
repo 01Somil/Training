@@ -10,16 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_08_111403) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_08_112546) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "enrolled_subjects", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "student_id"
   end
 
-  create_table "students", primary_key: "roll_no", id: :string, force: :cascade do |t|
+  create_table "students", primary_key: "roll_no", id: :serial, force: :cascade do |t|
     t.string "name"
     t.date "dob", default: "2023-11-08", null: false
     t.text "address"
@@ -50,6 +51,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_08_111403) do
     t.index ["subject_id"], name: "index_teachers_on_subject_id"
   end
 
+  add_foreign_key "enrolled_subjects", "students", primary_key: "roll_no"
   add_foreign_key "students", "teachers"
   add_foreign_key "teachers", "subjects"
 end
