@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_09_102601) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_09_114933) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -94,8 +94,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_09_102601) do
     t.string "gstn", null: false, comment: "This is sellers unique gst number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "country_id", null: false
-    t.string "full_name"
+    t.string "full_name", limit: 10
+    t.bigint "country_id"
     t.index ["country_id"], name: "index_sellers_on_country_id"
   end
 
@@ -112,5 +112,4 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_09_102601) do
   add_foreign_key "orders", "customers"
   add_foreign_key "reviews", "books"
   add_foreign_key "reviews", "customers"
-  add_foreign_key "sellers", "countries"
 end
