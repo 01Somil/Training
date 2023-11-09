@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_09_114933) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_09_120658) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -45,18 +45,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_09_114933) do
     t.index ["supplier_id"], name: "index_books_on_supplier_id"
   end
 
-  create_table "countries", force: :cascade do |t|
-    t.string "name"
-    t.integer "code"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "countries_sellers", id: false, force: :cascade do |t|
-    t.bigint "seller_id", null: false
-    t.bigint "country_id", null: false
-  end
-
   create_table "customers", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -88,15 +76,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_09_114933) do
     t.datetime "updated_at", null: false
     t.index ["book_id"], name: "index_reviews_on_book_id"
     t.index ["customer_id"], name: "index_reviews_on_customer_id"
-  end
-
-  create_table "sellers", force: :cascade do |t|
-    t.string "gstn", null: false, comment: "This is sellers unique gst number"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "full_name", limit: 10
-    t.bigint "country_id"
-    t.index ["country_id"], name: "index_sellers_on_country_id"
   end
 
   create_table "suppliers", force: :cascade do |t|
