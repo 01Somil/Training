@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_09_044907) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_09_053607) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,20 +22,10 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_09_044907) do
     t.integer "teacher_id", null: false
   end
 
-  create_table "marks", primary_key: ["mark_id", "description"], force: :cascade do |t|
-    t.bigint "enrolled_subject_id", null: false
-    t.integer "mark_id", null: false
-    t.integer "marks"
-    t.text "description", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["enrolled_subject_id"], name: "index_marks_on_enrolled_subject_id"
-  end
-
   create_table "students", primary_key: "roll_no", id: :serial, force: :cascade do |t|
     t.string "name"
     t.date "dob", default: "2023-11-08", null: false
-    t.text "address"
+    t.string "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "teacher_id", null: false
@@ -65,7 +55,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_09_044907) do
 
   add_foreign_key "enrolled_subjects", "students", primary_key: "roll_no"
   add_foreign_key "enrolled_subjects", "subjects"
-  add_foreign_key "marks", "enrolled_subjects"
   add_foreign_key "students", "teachers"
   add_foreign_key "teachers", "subjects"
 end
