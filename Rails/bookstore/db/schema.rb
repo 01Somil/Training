@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_09_085758) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_09_093938) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -43,6 +43,18 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_09_085758) do
     t.datetime "updated_at", null: false
     t.index ["author_id"], name: "index_books_on_author_id"
     t.index ["supplier_id"], name: "index_books_on_supplier_id"
+  end
+
+  create_table "countries", force: :cascade do |t|
+    t.string "name"
+    t.integer "code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "countries_sellers", id: false, force: :cascade do |t|
+    t.bigint "seller_id", null: false
+    t.bigint "country_id", null: false
   end
 
   create_table "customers", force: :cascade do |t|
@@ -78,6 +90,15 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_09_085758) do
     t.index ["customer_id"], name: "index_reviews_on_customer_id"
   end
 
+  create_table "sellers", force: :cascade do |t|
+    t.string "gstn"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "country_id", null: false
+    t.string "full_name"
+    t.index ["country_id"], name: "index_sellers_on_country_id"
+  end
+
   create_table "suppliers", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -91,4 +112,5 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_09_085758) do
   add_foreign_key "orders", "customers"
   add_foreign_key "reviews", "books"
   add_foreign_key "reviews", "customers"
+  add_foreign_key "sellers", "countries"
 end
