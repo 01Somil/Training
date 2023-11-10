@@ -136,3 +136,117 @@ g) If it says something about its version then you are ready to continue with ra
     e) rails db:migrate:up VERSION=<migration-id> : This command will migrate the changes of file in the database. 
 
     f) Delete local migrate files : To delete a file from local directory first we should down the migrate files and then delete the file. Otherwise, schema.rb stores that moigration change in it and it whenever other user migrate the files it will automatically create the file in his system.
+
+24. Active Record Validation : Validations are used to ensure that only valid data is saved into your database. 
+The following methods trigger validations, and will save the object to the database only if the object is valid:
+    a) create
+    b) create!
+    c) save
+    d) save!
+    e) update
+    f) update!
+
+    ** Skipping Validations **
+    The following methods skip validations, and will save the object to the database regardless of its validity. They should be used with caution.
+    a) decrement!
+    b) decrement_counter
+    c) increment!
+    d) increment_counter
+    e) insert
+    f) insert!
+    g) insert_all
+    h) insert_all!
+    i) toggle!
+    j) touch
+    k) touch_all
+    l) update_all
+    m) update_attribute
+    n) update_column
+    o) update_columns
+    p) update_counters
+    q) upsert
+    r) upsert_all
+    Note -> save also has the ability to skip validations if passed validate:
+            false as an argument. This technique should be used with caution.
+            save(validate: false)
+
+    24.1) valid? and invalid? :  valid? triggers your validations and returns true if no errors were found in the object, and false otherwise. invalid? is inverse of valid? .
+    Example : 
+        3.0.0 :023 > auth=Author.new
+        => #<Author:0x000055d4ff0b43c8 id: nil, first_name: nil, last_name: nil, title: nil, created_at: nil, updated_at: nil> 
+        3.0.0 :024 > auth.valid?
+        => false 
+
+    24.2) errors[:attribute] : To verify whether or not a particular attribute of an object is valid, you can use errors[:attribute]. 
+    Example : 
+        3.0.0 :021 > Author.create.errors[:first_name].any?
+        => true 
+        3.0.0 :022 > Author.new.errors[:first_name].any?
+        => false     
+
+    24.3) acceptance : This method validates that a checkbox on the user interface was checked when a form was submitted.
+    Example : terms_of_service, acceptance: true
+    
+    24.4) confirmation : You should use this helper when you have two text fields that should receive exactly the same content. For example, you may want to confirm an email address or a password.
+    Example :   
+        3.0.0 :009 > customer=Customer.create(first_name:"John",last_name:"Williams",email:"johnwilliams@gmail.com",email_confirmation:"john123@gmail.com")
+        => 
+        #<Customer:0x00005563255eddb8
+        ... 
+        3.0.0 :010 > customer.errors.objects.first.full_message
+        => "Email confirmation doesn't match Email" 
+
+    24.5) comparison : This check will validate a comparison between any two comparable values.
+    These options are all supported:
+        a) greater_than
+        b) greater_than_or_equal_to
+        c) equal_to
+        d) less_than
+        e) less_than_or_equal_to
+        f) other_than
+    Example:
+        3.0.0 :032 > book=Book.create(title:"John Wick",year_published:2010,author_id:1,supplier_id:1)
+        TRANSACTION (0.4ms)  BEGIN
+        Author Load (0.7ms)  SELECT "authors".* FROM "authors" WHERE "authors"."id" = $1 LIMIT $2  [["id", 1], ["LIMIT", 1]]
+        Supplier Load (0.6ms)  SELECT "suppliers".* FROM "suppliers" WHERE "suppliers"."id" = $1 LIMIT $2  [["id", 1], ["LIMIT", 1]]
+        TRANSACTION (0.4ms)  ROLLBACK
+        => 
+        #<Book:0x0000556325c82868
+        ... 
+        3.0.0 :033 > book.errors.objects.first.full_message
+        => "Year published must be greater than 2015" 
+
+    24.6) format : This helper validates the attributes' values by testing whether they match a given regular expression, which is specified using the :with option.
+    Example :
+        3.0.0 :038 > supplier=Supplier.create(name:"Paul12")
+        => #<Supplier:0x00005563263a52d0 id: nil, name: "Paul12", created_at: nil, updated_at: nil> 
+        3.0.0 :039 > supplier.errors.objects.first.full_message
+        => "Name only allows letters" 
+    
+    24.7) inclusion : This helper validates that the attributes' values are included in a given set. 
+    Example :   
+        validates :name, inclusion: {in: %w(John Paul David), message: "%{value} is not a valid name"}
+
+        3.0.0 :001 > supplier=Supplier.create(name:"Steve")
+        => #<Supplier:0x00005632520f2fa0 id: nil, name: "Steve", created_at: nil, updated_at: nil> 
+        3.0.0 :002 > supplier.save
+        => false 
+        3.0.0 :003 > supplier.errors.objects.first.full_message
+        => "Name Steve is not a valid name" 
+    
+    24.8) exclusion : This helper validates that the attributes' values are not included in a given set.
+
+    24.9) length : This helper validates the length of the attributes' values. It provides a variety of options, so you can specify length constraints in different ways.
+        a) minimum
+        b) maximum
+        c) in or within
+        d) is
+
+    24.10) numericality : This helper validates that your attributes have only numeric values.
+
+    24.11) presence : This helper validates that the specified attributes are not empty.
+
+    24.12) absence : This helper validates that the specified attributes are absent.
+
+    24.13) validates_associated : This helper when your model has associations that always need to be validated.
+    Note -> Don't use validates_associated on both ends of your associations. They would call each other in an infinite loop.
