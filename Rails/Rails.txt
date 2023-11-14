@@ -250,3 +250,96 @@ The following methods trigger validations, and will save the object to the datab
 
     24.13) validates_associated : This helper when your model has associations that always need to be validated.
     Note -> Don't use validates_associated on both ends of your associations. They would call each other in an infinite loop.
+
+    24.14) allow_nil : Skip validation if the attribute is nil.
+    Example :
+        3.0.0 :003 > supplier=Supplier.create
+        => #<Supplier:0x000055e8263ea120 id: nil, name: nil, created_at: nil, updated_at: nil> 
+        3.0.0 :004 > supplier.save
+        => false 
+        3.0.0 :005 > supplier.errors.objects.first.full_message
+        => "Name  is not a valid name" 
+
+    24.15) allow_blank : Skip validation if the attribute is blank.
+    Example : 
+        3.0.0 :027 > cust=Customer.new(first_name:"",email:"john@gmail.com",email_confirmation:"john@gmail.com")
+        => 
+        #<Customer:0x00007f9ac05c4498
+        ... 
+        3.0.0 :028 > cust.save
+        TRANSACTION (0.4ms)  BEGIN
+        Customer Exists? (2.6ms)  SELECT 1 AS one FROM "customers" WHERE "customers"."email" = $1 LIMIT $2  [["email", "john@gmail.com"], ["LIMIT", 1]]
+        Customer Create (4.1ms)  INSERT INTO "customers" ("first_name", "last_name", "title", "email", "orders_count", "created_at", "updated_at", "address", "email_confirmation") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"  [["first_name", ""], ["last_name", nil], ["title", nil], ["email", "john@gmail.com"], ["orders_count", nil], ["created_at", "2023-11-14 05:39:39.851762"], ["updated_at", "2023-11-14 05:39:39.851762"], ["address", nil], ["email_confirmation", nil]]
+        TRANSACTION (1.3ms)  COMMIT
+        => true 
+
+    24.16) message : Specify a custom error message.
+    Example : 
+        3.0.0 :037 > cust=Customer.create(first_name:"",email:"john3@gmail.com",email_confirmation:"john3@gmail.com")
+        TRANSACTION (0.3ms)  BEGIN
+        Customer Exists? (1.3ms)  SELECT 1 AS one FROM "customers" WHERE "customers"."email" = $1 LIMIT $2  [["email", "john3@gmail.com"], ["LIMIT", 1]]
+        TRANSACTION (0.3ms)  ROLLBACK
+        => 
+        #<Customer:0x000055e8269f65a0
+        ... 
+        3.0.0 :038 > cust.errors.objects.first.full_message
+        => "First name is too short (minimum is 1 character)" 
+
+    24.17) on : Specify the contexts where this validation is active.
+    Example : 
+        3.0.0 :037 > cust=Customer.create(first_name:"",email:"john3@gmail.com",email_confirmation:"john3@gmail.com")
+        TRANSACTION (0.3ms)  BEGIN
+        Customer Exists? (1.3ms)  SELECT 1 AS one FROM "customers" WHERE "customers"."email" = $1 LIMIT $2  [["email", "john3@gmail.com"], ["LIMIT", 1]]
+        TRANSACTION (0.3ms)  ROLLBACK
+        => 
+        #<Customer:0x000055e8269f65a0
+        ... 
+        3.0.0 :038 > cust.errors.objects.first.full_message
+        => "First name is too short (minimum is 1 character)" 
+
+    24.18) strict : Raise an exception when the validation fails.
+    Example :
+        3.0.0 :044 > cust=Customer.create(first_name:"John",email:"john5@gmail.com",email_confirmation:"")
+        TRANSACTION (0.3ms)  BEGIN
+        Customer Exists? (1.9ms)  SELECT 1 AS one FROM "customers" WHERE "customers"."email" = $1 LIMIT $2  [["email", "john5@gmail.com"], ["LIMIT", 1]]
+        TRANSACTION (0.4ms)  ROLLBACK
+        /home/beryl/.rvm/gems/ruby-3.0.0/gems/activemodel-7.1.1/lib/active_model/errors.rb:322:in `add': Email confirmation can't be blank (ActiveModel::StrictValidationFailed)
+
+    24.19) if and unless : Specify when the validation should or should not occur.
+
+    24.20) Strict Validations : You can also specify validations to be strict and raise ActiveModel::StrictValidationFailed when the object is invalid.
+
+    24.21) Custom Validations : These classes must implement the validate method which takes a record as an argument and performs the validation on it. The custom validator is called using the validates_with method.
+    Example : 
+        3.0.0 :001 > cust=Customer.new(first_name:"John",email:"john10@gmail.com",email_confirmation:"john10@gmail.com",title:"JohnWick")
+        => 
+        #<Customer:0x00007f6790be4048
+        ... 
+        3.0.0 :002 > cust.save
+        TRANSACTION (0.3ms)  BEGIN
+        Customer Exists? (3.7ms)  SELECT 1 AS one FROM "customers" WHERE "customers"."email" = $1 LIMIT $2  [["email", "john10@gmail.com"], ["LIMIT", 1]]
+        TRANSACTION (0.4ms)  ROLLBACK
+        => false 
+        3.0.0 :003 > cust.errors.objects.first.full_message
+        => "First name Provide a valid name!!"
+    
+    24.22) Custom Methods for Validation : You can pass more than one symbol for each class method and the respective validations will be run in the same order as they were registered.
+    Example : 
+        3.0.0 :011 > author=Author.new(first_name:"a",last_name:"b",title:"abcde")
+        => #<Author:0x0000562725545c70 id: nil, first_name: "a", last_name: "b", title: "abcde", created_at: nil, updated_at: nil> 
+        3.0.0 :012 > author.save
+        => false 
+        3.0.0 :013 > author.errors.objects.first.full_message
+        => "First name must be accepted" 
+
+    24.23) Validation errors : It helps us to identify errros.
+        a) errors : The gateway through which you can drill down into various details of each error.
+        b) errors[] : errors[] is used when you want to check the error messages for a specific attribute. It returns an array of strings with all error messages for the given attribute, each string with one error message. If there are no errors related to the attribute, it returns an empty array.
+        c) errors.where : This returns an array of error objects filtered by various degrees of conditions.
+        d) .attribute : It will give you the attribute name.
+        e) .type : It will give you the type of error.
+        f) message or full_message : It will generate a user friendly message.
+        g) add : The add method creates the error object by taking the attribute, the error type and additional options hash.
+        h) errors[:base] : You can add errors that are related to the object's state as a whole, instead of being related to a specific attribute.
+        i) errors.size : The size method returns the total number of errors for the object.
+        j) errors.clear : The clear method is used when you intentionally want to clear the errors collection. 
