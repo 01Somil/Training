@@ -343,3 +343,33 @@ The following methods trigger validations, and will save the object to the datab
         h) errors[:base] : You can add errors that are related to the object's state as a whole, instead of being related to a specific attribute.
         i) errors.size : The size method returns the total number of errors for the object.
         j) errors.clear : The clear method is used when you intentionally want to clear the errors collection. 
+
+25. Callbacks : Callbacks are methods that get called at certain moments of an object's life cycle. With callbacks it is possible to write code that will run whenever an Active Record object is created, saved, updated, deleted, validated, or loaded from the database.
+    -> Available Callbacks : 
+    a) Creating an object : 
+        a.1) before_validation
+        a.2) after_validation
+        a.3) before_save
+        a.4) around_save
+        a.5) before_create
+        a.6) around_create
+        a.7) after_create
+        a.8) after_save
+        a.9) after_commit / after_rollback
+
+    b) Updating an Object : 
+        b.1) before_validation
+        b.2) after_validation
+        b.3) before_save
+        b.4) around_save
+        b.5) before_update
+        b.6) around_update
+        b.7) after_update
+        b.8) after_save
+        b.9) after_commit / after_rollback
+
+    c) Destroying an object : 
+        c.1) before_destroy
+        c.2) around_destrou
+        c.3) after_destroy
+        c.4) after_commit / after_rollback
