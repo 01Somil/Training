@@ -1,5 +1,5 @@
 class Author < ApplicationRecord
-
+  has_many :books, after_add: :notify_book_added
   # Callbacks
   after_create -> {puts " New author has been created"}
 
@@ -32,4 +32,10 @@ class Author < ApplicationRecord
       errors.add(:last_name, "Last name cannot be less than 2")
     end
   end
+
+  private 
+  def notify_book_added(book)
+    puts "Book: #{book.title} and author name is:#{first_name}"
+  end
+
 end
