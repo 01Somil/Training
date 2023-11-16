@@ -373,3 +373,94 @@ The following methods trigger validations, and will save the object to the datab
         c.2) around_destrou
         c.3) after_destroy
         c.4) after_commit / after_rollback
+
+    24.1) after_initialize and after_find : Whenever an Active Record object is instantiated the after_initialize callback will be called.
+    When loading a record from the database the after_find callback will be called.
+    Example : 
+        3.0.0 :034 > Author.first
+        Author Load (0.7ms)  SELECT "authors".* FROM "authors" ORDER BY "authors"."id" ASC LIMIT $1  [["LIMIT", 1]]
+        You have found an object
+        You have initialized an object.
+        You have initialized an object.
+        You have initialized an object.
+        You have initialized an object.
+        You have initialized an object.
+        You have initialized an object.
+        You have initialized an object.
+        You have initialized an object.
+        You have initialized an object.
+        => 
+        #<Author:0x0000555c71e13f98
+        id: 1,
+        first_name: "John",
+        last_name: "Wick",
+        title: "JohnWick",
+        created_at: Fri, 10 Nov 2023 04:53:51.816031000 UTC +00:00,
+        updated_at: Fri, 10 Nov 2023 04:53:51.816031000 UTC +00:00> 
+    
+    -> The after_find callback is triggered by the following finder methods:
+        a) all
+        b) first
+        c) find
+        d) find_by
+        e) find_by_*
+        f) find_by_*!
+        g) find_by_sql
+        h) last
+    
+    -> The after_initialize callback is triggered every time a new object of the class is initialized.The after_initialize callback is triggered every time a new object of the class is initialized.
+    
+    24.2) after_touch : The after_touch callback will be called whenever an Active Record object is touched.
+    Example : 
+        3.0.0 :038 > auth=Author.create(first_name:"Ram",last_name:"Singh",title:"RamSingh")
+        You have initialized an object.
+        TRANSACTION (0.2ms)  BEGIN
+        Author Create (0.8ms)  INSERT INTO "authors" ("first_name", "last_name", "title", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["first_name", "Ram"], ["last_name", "Singh"], ["title", "RamSingh"], ["created_at", "2023-11-16 05:58:18.038579"], ["updated_at", "2023-11-16 05:58:18.038579"]]
+        New author has been created
+        TRANSACTION (1.7ms)  COMMIT
+        => 
+        #<Author:0x0000555c7127af10
+        ... 
+        3.0.0 :039 > auth.touch
+        TRANSACTION (0.4ms)  BEGIN
+        Author Update (2.1ms)  UPDATE "authors" SET "updated_at" = $1 WHERE "authors"."id" = $2  [["updated_at", "2023-11-16 05:58:30.149259"], ["id", 9]]
+        You have touched an objct.
+        TRANSACTION (2.2ms)  COMMIT
+        => true 
+    
+    24.3) Running callbacks : The following methods trigger callbacks.
+        a) create
+        b) create!
+        c) destroy
+        d) destroy!
+        e) destroy_all
+        f) destroy_by
+        g) save
+        h) save!
+        i) save(validate: false)
+        j) toggle!
+        k) touch
+        l) update_attribute
+        m) update
+        n) update!
+        o) valid?
+    
+    24.4) Skipping callbacks : It is also possible to skip callbacks by using the following methods:
+        a) decrement!
+        b) decrement_counter
+        c) delete
+        d) delete_all
+        e) delete_by
+        f) increment!
+        g) increment_counter
+        h) insert
+        i) insert!
+        j) insert_all
+        k) insert_all!
+        l) touch_all
+        m) update_column
+        n) update_columns
+        o) update_all
+        p) update_counters
+        q) upsert
+        r) upsert_all
