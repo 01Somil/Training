@@ -11,6 +11,10 @@ class Author < ApplicationRecord
     puts "You have found an object"
   end
 
+  after_touch do 
+    puts "You have touched an objct."
+  end
+
   # validations
   validates :first_name, presence: true, length: { maximum: 10 }
   validates :last_name, presence: true, length: { maximum: 10 }
